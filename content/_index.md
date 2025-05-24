@@ -7,7 +7,7 @@
 > 
 >
 > It is the world that has been pulled over your eyes,  
-> to blind you from the truth."
+> to blind you from the truth.
 
 &nbsp;
 
