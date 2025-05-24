@@ -49,8 +49,6 @@ languageName = "English"
     title = ""
 
 [params]
-  title = "No Spoon Labs"
-  description = "Wake up..."
 
   # Author config
   [params.author]
@@ -61,7 +59,7 @@ languageName = "English"
   # Header config
   [params.header]
     [params.header.title]
-      name = "NoSpoon"
+      name = "No Spoon Labs"
 
   # Home page config
   [params.home]
@@ -85,4 +83,3 @@ languageName = "English"
 [caches]
   [caches.images]
     dir = ':cacheDir/images'
-    
