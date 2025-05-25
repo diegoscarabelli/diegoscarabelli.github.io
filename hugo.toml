@@ -49,7 +49,6 @@ languageName = "English"
     title = ""
 
 [params]
-
   # Author config
   [params.author]
     name = "Diego Scarabelli"

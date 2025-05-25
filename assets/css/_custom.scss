@@ -1,0 +1,23 @@
+/* Custom CSS for LoveIt Theme */
+
+/* Make SVGs within the .content area responsive and fill available width */
+.content img[src$=".svg"] {
+    width: 100% !important;     /* Take full width of its container, try !important first */
+    height: auto !important;    /* Maintain aspect ratio */
+    max-width: 100%;         /* Ensure it doesn't overflow its direct parent (e.g., a <p> tag) */
+    display: block;          /* Ensures it behaves like a block, can help with centering/spacing */
+    margin-left: auto;       /* Optional: center the image if it's not full width */
+    margin-right: auto;      /* Optional: center the image if it's not full width */
+    box-sizing: border-box;  /* Ensures padding/border don't add to the width */
+
+    /* If you want to specifically cap its width to align with typical text content,
+       you'll need to know the max-width of your .content area or text column.
+       For example, if your theme's main text column is 720px wide, you might use: */
+    /* max-width: 720px !important; */
+}
+
+/* You might also want to ensure that paragraphs containing only an image
+   don't have extra bottom margin, which can sometimes create too much space. */
+.content p > img[src$=".svg"]:only-child {
+    margin-bottom: 0; /* Adjust as needed, or remove if not an issue */
+}
