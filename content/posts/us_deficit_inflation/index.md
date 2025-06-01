@@ -912,9 +912,26 @@ The resulting cross-correlation, more meaningful for negative lags, is minimal a
 
 After this analysis, I am quite convinced that the data in our possession does not show evidence of cross-correlation. Removing heteroscedasticity is possible with additional manipulation of the series, but given the consistent and very low value of the cross-correlation both before and after the removal of the unit roots, it is highly unlikely to change the results. 
 
+## Conclusions
+
+This analysis addresses a question at the heart of a contentious debate, especially in light of recent surges in fiscal deficits. I promised not to consult other research or opinions before conducting my own analysis — and I kept that promise, up until this very paragraph. At this point, I glanced at the literature and was immediately overwhelmed by a mountain of search results. Most sources (see the list below) that examine historical data reach the same conclusion I did: there is little to no correlation, and this holds true across most developed economies. Yet, many go on to rationalize this finding with appeals to "economic theory," offering a patchwork of statistically unsubstantiated and logically tenuous explanations, often dressed up with self-referential mathematics that does more to obscure than to clarify the lack of robust data or genuine understanding. So much ado about nothing. It appears that the term "economic theory" often serves as a catch-all for the prevailing dogmatic belief system — what most credentialed economists learned in school and what conveniently preserves both their professional standing and the status quo.
+
+Notably, I could not find a source that, as I did, simply presents the data and refrains from speculative theorizing about the reasons for the lack of the "expected" correlation. It is abundantly clear that when data is scarce and the number of parameters to fit is high, the first step should be to acknowledge these limitations. Rather than constructing elaborate theoretical frameworks to force a conclusion, it is wiser to focus on maintaining intellectual humility, removing unsubstantiated constraints, and letting ambitious experimentation explore and collect empirical evidence.  
+Macroeconomics, unlike the hard sciences, cannot run controlled experiments on parallel universes; we lack the luxury of hundreds of identical economies to tinker with. In fields like experimental physics, chemistry, or biology, mathematical models are powerful because they are testable and falsifiable with plenty of data (this is the core of the scientific method). It seems to me that in macroeconomics, they too often become elaborate rituals—comforting, but ultimately unmoored from empirical reality.
+
+The FRED datasets provide extensive opportunities to explore relationships between fiscal and monetary policies and key economic indicators, such as unemployment rates and price or wage inflation. These might be the subject of future investigations.
+
+Below are a few readings I consulted. All of them note a lack of correlation for "advanced economies and low-inflation country groups" (such as the USA), which, as the IMF paper by Luis Catao and Marco E. Terrones puts it, "begs the question why the theory seems to be violated." In my view, if a theory is contradicted by data, it is simply a wrong theory.
+
+- [Deficits and Inflation, by Milton Friedman (1981)](https://miltonfriedman.hoover.org/internal/media/dispatcher/214251/full): a notorious example of the unsubstantiated "economic theory" doctrine I referred to above, which has since become the core of what's taught in schools and universities. See also [Quantity Theory of Money (QTM), a.k.a Monetarism](https://miltonfriedman.hoover.org/internal/media/dispatcher/214346/full).
+- [Some Unpleasant Monetarist Arithmetic, by Thomas J. Sargent and Neil Wallace (1981)](https://www.minneapolisfed.org/research/quarterly-review/some-unpleasant-monetarist-arithmetic): the quintessential "castle in the sky".
+- [Fiscal Deficits and Inflation, by Luis Catao and Marco E. Terrones (2003)](https://www.imf.org/external/pubs/ft/wp/2003/wp0365.pdf): the "Conclusions" section is where I got the quote above.
+- [Do Budget Deficits Cause Inflation?, by Keith Sill (2005)](https://www.philadelphiafed.org/-/media/FRBP/Assets/Economy/Articles/business-review/2005/q3/Q3_05_Sill.pdf?sc_lang=en): the author notes the lack of correlation for many countries ("the U.S. and, for that matter, in most of the world’s advanced economies") and tries to explain it with the independence of monetary and fiscal policy, with arguments that seem unaware of the fact that the US government is the monopoly issuer of a [fiat currency](https://en.wikipedia.org/wiki/Fiat_money).
+- [The Inflationary Risks of Rising Federal Deficits and Debt, by The Budget Lab (2025)](https://budgetlab.yale.edu/research/inflationary-risks-rising-federal-deficits-and-debt): a recent example of an analysis that uses virtually no data and builds mathematical models and simulations that are as solid as a straw house.
+
 ### Supplemental 
 
-#### Attempt at Generating Stationary Series
+#### Further Attempt at Generating Stationary Series
 
 We can try to apply the logarithm to the `PCEPILFE_annually_percent` series, and then difference it, 
 
@@ -969,7 +986,7 @@ plot_dual_axis_series(
 
 
     
-![svg](index_files/index_49_0.svg)
+![svg](index_files/index_50_0.svg)
     
 
 
