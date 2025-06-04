@@ -11,8 +11,6 @@ tags:
 
 <!--more-->
 
-# Is The US Fiscal Deficit [Correlated](https://en.wikipedia.org/wiki/Cross-correlation) To Price Inflation?
-
 In other words: when there is a fiscal deficit, is there price inflation, possibly with a time lag? If the deficit increases or decreases, does inflation follow?
 
 This question arose from a discussion about an excerpt from [The Deficit Myth](https://stephaniekelton.com/book/), which explores macroeconomic topics such as fiscal and monetary policy, focusing on countries where the government is the monopoly issuer of its currency and most debt is denominated in that currency.
