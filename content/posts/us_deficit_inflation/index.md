@@ -55,10 +55,6 @@ pio.renderers.default = "svg"  # or "png", "jpeg", "pdf"
 # pio.templates.default = "plotly_dark"
 ```
 
-    The autoreload extension is already loaded. To reload it, use:
-      %reload_ext autoreload
-
-
 ### Data Ingestion
 
 The FRED datasets are extensive and offer multiple ways to measure both fiscal deficit and inflation.  
@@ -641,6 +637,26 @@ adf_report(metrics_container[deficit_key].data["value"], deficit_key)
 adf_report(metrics_container[inflation_key].data["value"], inflation_key)
 ```
 
+    ADF Test for FYFSGDA188S_annually_percent_gdp:
+      Test Statistic: -3.3105
+      p-value: 0.0144
+      #Lags Used: 1
+      #Observations: 63
+        Critical Value (1%): -3.5387
+        Critical Value (5%): -2.9086
+        Critical Value (10%): -2.5919
+    ----------------------------------------
+    ADF Test for PCEPILFE_annually_percent:
+      Test Statistic: -1.6917
+      p-value: 0.4354
+      #Lags Used: 5
+      #Observations: 59
+        Critical Value (1%): -3.5464
+        Critical Value (5%): -2.9119
+        Critical Value (10%): -2.5937
+    ----------------------------------------
+
+
 The low p-value of the ADF test for `FYFSGDA188S_annually_percent_gdp` indicates that it is highly unlikely that the series has a unit root. In contrast, the higher p-value for `PCEPILFE_annually_percent` does not rule out the presence of a unit root.
 
 To address this, we can difference the series to remove potential unit roots. However, it is important to note that this changes the interpretation of the cross-correlation calculation. The question that we set out to answer now becomes:
@@ -721,6 +737,10 @@ for param in params:
     add_diff_metric(metrics_container, **param)
 ```
 
+    Added diff_FYFSGDA188S_annually_percent_gdp to metrics_container. Shape: (64, 4)
+    Added diff_PCEPILFE_annually_percent to metrics_container. Shape: (64, 4)
+
+
 
 ```python
 diff_deficit_key = "diff_FYFSGDA188S_annually_percent_gdp"
@@ -736,6 +756,12 @@ plot_dual_axis_series(
 )
 ```
 
+
+    
+![svg](index_files/index_34_0.svg)
+    
+
+
 The plots show two series that don't seem to show a trend but there might be some heteroscedasticity, which the ADF test won't detect, but the KPSS test will. 
 
 
@@ -744,6 +770,26 @@ The plots show two series that don't seem to show a trend but there might be som
 adf_report(metrics_container[diff_deficit_key].data["value"], diff_deficit_key)
 adf_report(metrics_container[diff_inflation_key].data["value"], diff_inflation_key)
 ```
+
+    ADF Test for diff_FYFSGDA188S_annually_percent_gdp:
+      Test Statistic: -7.2650
+      p-value: 0.0000
+      #Lags Used: 1
+      #Observations: 62
+        Critical Value (1%): -3.5405
+        Critical Value (5%): -2.9094
+        Critical Value (10%): -2.5923
+    ----------------------------------------
+    ADF Test for diff_PCEPILFE_annually_percent:
+      Test Statistic: -3.3138
+      p-value: 0.0143
+      #Lags Used: 4
+      #Observations: 59
+        Critical Value (1%): -3.5464
+        Critical Value (5%): -2.9119
+        Critical Value (10%): -2.5937
+    ----------------------------------------
+
 
 The ADF test this time returned very convincing p-values, strongly suggesting that both series do not have a unit root. This means the series are likely stationary in mean, and shocks to the series are not persistent over time.
 
@@ -783,6 +829,42 @@ kpps_report(metrics_container[diff_deficit_key].data["value"], diff_deficit_key)
 kpps_report(metrics_container[diff_inflation_key].data["value"], diff_inflation_key)
 ```
 
+    KPSS Test for diff_FYFSGDA188S_annually_percent_gdp (regression='c'):
+      KPSS Statistic: 0.0666
+      p-value: 0.1000
+      #Lags Used: 7
+      Critical Values:
+        10%: 0.3470
+        5%: 0.4630
+        2.5%: 0.5740
+        1%: 0.7390
+    ----------------------------------------
+    KPSS Test for diff_PCEPILFE_annually_percent (regression='c'):
+      KPSS Statistic: 0.1544
+      p-value: 0.1000
+      #Lags Used: 5
+      Critical Values:
+        10%: 0.3470
+        5%: 0.4630
+        2.5%: 0.5740
+        1%: 0.7390
+    ----------------------------------------
+
+
+    /var/folders/lk/21hq1pz55xn204vhrhz_npp40000gn/T/ipykernel_19399/2369050582.py:12: InterpolationWarning:
+    
+    The test statistic is outside of the range of p-values available in the
+    look-up table. The actual p-value is greater than the p-value returned.
+    
+    
+    /var/folders/lk/21hq1pz55xn204vhrhz_npp40000gn/T/ipykernel_19399/2369050582.py:12: InterpolationWarning:
+    
+    The test statistic is outside of the range of p-values available in the
+    look-up table. The actual p-value is greater than the p-value returned.
+    
+    
+
+
 As expected, the KPSS test indicates that the differenced series are not stationary. Financial time series often show periods of higher volatility followed by lower volatility (which can be modelled using [ARCH/GARCH](https://en.wikipedia.org/wiki/Autoregressive_conditional_heteroskedasticity)). 
 
 Nevertheless, it is meaningful to examine the cross-correlation of these two series, after removing their unit roots. 
@@ -799,6 +881,40 @@ lags, ccf_coeffs = calculate_and_plot_cross_correlation(
     max_lag=10 
 )
 ```
+
+    Calculating cross-correlation for: diff_FYFSGDA188S_annually_percent_gdp and diff_PCEPILFE_annually_percent
+    
+    Cross-correlation between diff_FYFSGDA188S_annually_percent_gdp and diff_PCEPILFE_annually_percent:
+    Method: Variable segment length (full overlap). Max lag considered: 10.
+    Original number of data points (N): 64.
+    Negative lags indicate diff_FYFSGDA188S_annually_percent_gdp leads diff_PCEPILFE_annually_percent.
+      Lag: -10, CCF: 0.0185, Points used: 54
+      Lag: -9, CCF: 0.1427, Points used: 55
+      Lag: -8, CCF: -0.0100, Points used: 56
+      Lag: -7, CCF: 0.0025, Points used: 57
+      Lag: -6, CCF: 0.0688, Points used: 58
+      Lag: -5, CCF: 0.0186, Points used: 59
+      Lag: -4, CCF: -0.0087, Points used: 60
+      Lag: -3, CCF: -0.2224, Points used: 61
+      Lag: -2, CCF: -0.1029, Points used: 62
+      Lag: -1, CCF: 0.2776, Points used: 63
+      Lag:  1, CCF: -0.1843, Points used: 63
+      Lag:  2, CCF: -0.0327, Points used: 62
+      Lag:  3, CCF: -0.0506, Points used: 61
+      Lag:  4, CCF: -0.0229, Points used: 60
+      Lag:  5, CCF: 0.0092, Points used: 59
+      Lag:  6, CCF: 0.0778, Points used: 58
+      Lag:  7, CCF: -0.0712, Points used: 57
+      Lag:  8, CCF: -0.1027, Points used: 56
+      Lag:  9, CCF: 0.0619, Points used: 55
+      Lag: 10, CCF: 0.1049, Points used: 54
+
+
+
+    
+![svg](index_files/index_43_1.svg)
+    
+
 
 The resulting cross-correlation, more meaningful for negative lags, is minimal and noisy, again strongly indicating weak to no relationship between the two series for any lag. 
 
@@ -859,6 +975,9 @@ metrics_container["log_" + inflation_key] = FredMetric(
 print(f"Created log_{inflation_key}. Shape: {df_log.shape}")
 ```
 
+    Created log_PCEPILFE_annually_percent. Shape: (65, 4)
+
+
 
 ```python
 log_inflation_key = "log_PCEPILFE_annually_percent"
@@ -873,6 +992,12 @@ plot_dual_axis_series(
 )
 ```
 
+
+    
+![svg](index_files/index_50_0.svg)
+    
+
+
 The two series are very similar, this is because the 
 Unit root and stationary tests.
 
@@ -881,6 +1006,27 @@ Unit root and stationary tests.
 adf_report(metrics_container[log_inflation_key].data["value"], log_inflation_key)
 kpps_report(metrics_container[log_inflation_key].data["value"], log_inflation_key)
 ```
+
+    ADF Test for log_PCEPILFE_annually_percent:
+      Test Statistic: -1.8947
+      p-value: 0.3345
+      #Lags Used: 2
+      #Observations: 62
+        Critical Value (1%): -3.5405
+        Critical Value (5%): -2.9094
+        Critical Value (10%): -2.5923
+    ----------------------------------------
+    KPSS Test for log_PCEPILFE_annually_percent (regression='c'):
+      KPSS Statistic: 0.3807
+      p-value: 0.0855
+      #Lags Used: 4
+      Critical Values:
+        10%: 0.3470
+        5%: 0.4630
+        2.5%: 0.5740
+        1%: 0.7390
+    ----------------------------------------
+
 
 Differencing the log-transformed series.
 
@@ -896,6 +1042,9 @@ params = dict(
 add_diff_metric(metrics_container, **params)
 ```
 
+    Added diff_log_PCEPILFE_annually_percent to metrics_container. Shape: (64, 4)
+
+
 
 ```python
 diff_log_inflation_key = "diff_log_PCEPILFE_annually_percent"
@@ -906,5 +1055,34 @@ diff_log_inflation_key = "diff_log_PCEPILFE_annually_percent"
 adf_report(metrics_container[diff_log_inflation_key].data["value"], diff_log_inflation_key)
 kpps_report(metrics_container[diff_log_inflation_key].data["value"], diff_log_inflation_key)
 ```
+
+    ADF Test for diff_log_PCEPILFE_annually_percent:
+      Test Statistic: -6.3787
+      p-value: 0.0000
+      #Lags Used: 1
+      #Observations: 62
+        Critical Value (1%): -3.5405
+        Critical Value (5%): -2.9094
+        Critical Value (10%): -2.5923
+    ----------------------------------------
+    KPSS Test for diff_log_PCEPILFE_annually_percent (regression='c'):
+      KPSS Statistic: 0.1806
+      p-value: 0.1000
+      #Lags Used: 4
+      Critical Values:
+        10%: 0.3470
+        5%: 0.4630
+        2.5%: 0.5740
+        1%: 0.7390
+    ----------------------------------------
+
+
+    /var/folders/lk/21hq1pz55xn204vhrhz_npp40000gn/T/ipykernel_19399/2369050582.py:12: InterpolationWarning:
+    
+    The test statistic is outside of the range of p-values available in the
+    look-up table. The actual p-value is greater than the p-value returned.
+    
+    
+
 
 As suspected, applying a logarithmic transformation does not alter the outcome of the stationarity tests for the `PCEPILFE` series likely due to persistent heteroscedasticity.
