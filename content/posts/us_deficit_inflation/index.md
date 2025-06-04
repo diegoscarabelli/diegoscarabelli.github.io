@@ -1,5 +1,6 @@
 ---
 date: "2025-05-30"
+lastmod: "2025-06-03"
 author: "Diego Scarabelli"
 title: "Is the US Fiscal Deficit Correlated to Price Inflation?"
 description: "In other words: when there is a fiscal deficit, is there price inflation, possibly with a time lag? If the deficit increases or decreases, does inflation follow?"
