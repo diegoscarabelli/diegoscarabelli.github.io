@@ -1,0 +1,25 @@
+{{/* Custom footer for LoveIt theme, two lines: social icons and copyright */}}
+<footer class="footer">
+  <div class="footer-container">
+    <!-- Top line: Social icons -->
+    <div class="footer-line" style="margin-bottom:0.2em;">
+      <a href="https://bsky.app/profile/nospoonlabs.com" target="_blank" rel="noopener" title="Bluesky" style="margin:0 0.5em;display:inline-block;vertical-align:middle;">
+        <img src="/images/bluesky_logo.svg" alt="Bluesky" style="height:1.6em;width:1.6em;vertical-align:middle;"/>
+      </a>
+      <a href="https://github.com/diegoscarabelli" target="_blank" rel="noopener" title="GitHub" style="margin:0 0.5em;display:inline-block;vertical-align:middle;">
+        <img src="/images/github_logo.png" alt="GitHub" style="height:2.0em;width:2.0em;vertical-align:middle;"/>
+      </a>
+      <a href="https://www.linkedin.com/in/diegoscarabelli/" target="_blank" rel="noopener" title="LinkedIn" style="margin:0 0.5em;display:inline-block;vertical-align:middle;">
+        <img src="/images/linkedin_logo.png" alt="LinkedIn" style="height:1.6em;width:1.6em;vertical-align:middle;"/>
+      </a>
+    </div>
+    <!-- Bottom line: Copyright -->
+    <div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork">
+      <i class="far fa-copyright fa-fw" aria-hidden="true"></i>
+      <span itemprop="copyrightYear">
+        {{ if eq now.Year 2025 }}2025{{ else }}2025 - {{ now.Year }}{{ end }}
+      </span>
+      Diego Scarabelli
+    </div>
+  </div>
+</footer>
