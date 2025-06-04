@@ -1,13 +1,16 @@
-> It's everywhere.  
-> It's all around us.  
-> You can see it when you look out your window,  
-> or when you turn on your television.  
-> You can feel it when you go to work,  
-> when you pay your taxes.  
-> 
->
-> It is the world that has been pulled over your eyes,  
-> to blind you from the truth.
+<div style="text-align:center;">
+<blockquote style="font-size:1em; border-left:4px solid #ccc; margin:0 auto; display:inline-block; text-align:left; max-width:600px; font-style:normal;">
+It's everywhere.<br>
+It's all around us.<br>
+You can see it when you look out your window,<br>
+or when you turn on your television.<br>
+You can feel it when you go to work,<br>
+when you pay your taxes.<br>
+<br>
+It is the world that has been pulled over your eyes,<br>
+to blind you from the truth.
+</blockquote>
+</div>
 
 &nbsp;
 
@@ -24,7 +27,4 @@
 &nbsp;
 
 ---
-
-Find me on: [Bluesky](https://bsky.app/profile/nospoonlabs.com), [GitHub](https://github.com/diegoscarabelli), [LinkedIn](https://www.linkedin.com/in/diegoscarabelli/)
-
-
+---

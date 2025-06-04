@@ -2,11 +2,14 @@
 date: "2025-05-30"
 author: "Diego Scarabelli"
 title: "Is the US Fiscal Deficit Correlated to Price Inflation?"
+description: "In other words: when there is a fiscal deficit, is there price inflation, possibly with a time lag? If the deficit increases or decreases, does inflation follow?"
 tags:
 - jupyter
 - economics
 - time-series
 ---
+
+<!--more-->
 
 # Is The US Fiscal Deficit [Correlated](https://en.wikipedia.org/wiki/Cross-correlation) To Price Inflation?
 
@@ -218,7 +221,7 @@ plot_dual_axis_series(metrics_container,
 
 
     
-![svg](index_files/index_9_0.svg)
+![svg](index_files/index_10_0.svg)
     
 
 
@@ -393,7 +396,7 @@ plot_dual_axis_series(
 
 
     
-![svg](index_files/index_20_0.svg)
+![svg](index_files/index_21_0.svg)
     
 
 
@@ -558,7 +561,7 @@ lags, ccf_coeffs = calculate_and_plot_cross_correlation(
 
 
     
-![svg](index_files/index_23_1.svg)
+![svg](index_files/index_24_1.svg)
     
 
 
@@ -758,7 +761,7 @@ plot_dual_axis_series(
 
 
     
-![svg](index_files/index_34_0.svg)
+![svg](index_files/index_35_0.svg)
     
 
 
@@ -912,7 +915,7 @@ lags, ccf_coeffs = calculate_and_plot_cross_correlation(
 
 
     
-![svg](index_files/index_43_1.svg)
+![svg](index_files/index_44_1.svg)
     
 
 
@@ -994,7 +997,7 @@ plot_dual_axis_series(
 
 
     
-![svg](index_files/index_50_0.svg)
+![svg](index_files/index_51_0.svg)
     
 
 
