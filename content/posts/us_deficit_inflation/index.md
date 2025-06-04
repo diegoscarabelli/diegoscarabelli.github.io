@@ -12,21 +12,21 @@ tags:
 
 In other words: when there is a fiscal deficit, is there price inflation, possibly with a time lag? If the deficit increases or decreases, does inflation follow?
 
-This question arose from a chat about an excerpt from [The Deficit Myth](https://stephaniekelton.com/book/), which discusses macroeconomic topics such as fiscal and monetary policy, focusing on countries where the government has a monopoly over currency issuance and most debt is denominated in that currency.
+This question arose from a discussion about an excerpt from [The Deficit Myth](https://stephaniekelton.com/book/), which explores macroeconomic topics such as fiscal and monetary policy, focusing on countries where the government is the monopoly issuer of its currency and most debt is denominated in that currency.
 
-I tried to answer this question using data directly from the Federal Reserve Bank's [FRED](https://fred.stlouisfed.org/) datasets. To keep things fresh and unbiased, I did not look at other analyses before conducting my own. The plan was to figure this out with some simple, logical, and statistically sound steps. It's a pretty direct question, so I aimed for a clear answer. 
+To answer this question, I used data directly from the Federal Reserve Bank's [FRED](https://fred.stlouisfed.org/) datasets. To avoid bias, I did not consult other analyses before conducting my own. My goal was to approach the problem with simple, logical, and statistically sound steps, aiming for a clear answer to a straightforward question.
 
-Here are my findings. I encourage you to keep reading for the full derivation, which also clarifies the process and reasoning behind each step.
+Below are my findings. For a detailed explanation of the process and reasoning behind each step, keep reading.
 
-## Findings 
+## Findings
 
-1. The available data on the US fiscal deficit and price inflation is quite limited. The fiscal deficit series (`FYFSD`) is only meaningful at an annual frequency, while the personal consumption expenditures index (`PCEPILFE`), though available quarterly, starts only in 1959 and must be downsampled to annual frequency for comparison. This scarcity of overlapping, low-frequency data restricts statistical significance and limits the potential for robust insights.
-2. Cross-correlating the annual fiscal deficit (`FYFSD`) to the annual price inflation (annual change in the `PCEPILFE` index) reveals only weak or no average correlation for any time lag. Interestingly the sign is counterintuitive: larger deficits are associated with lower inflation, not higher. 
-3. This finding — insignificant average cross-correlation at any time lag — is further confirmed after differencing the two time series to remove unit roots, as validated by the Augmented Dickey-Fuller test. While the KPSS stationarity test highlights residual heteroscedasticity, it is unlikely to affect the results.
+1. The available data on the US fiscal deficit and price inflation is limited. The fiscal deficit as a proportion of GDP (`FYFSGDA188S`) is only meaningful at an annual frequency, while the personal consumption expenditures index (`PCEPILFE`), though available quarterly, starts only in 1959 and must be downsampled to annual frequency for comparison. This scarcity of overlapping, low-frequency data restricts statistical significance and limits the potential for robust insights.
+2. Cross-correlating the annual fiscal deficit (`FYFSGDA188S`) with annual price inflation (annual change in the `PCEPILFE` index) reveals no statistically significant correlation at any time lag.
+3. This result is further validated after differencing both time series to remove unit roots, as confirmed by the Augmented Dickey-Fuller test. Although the KPSS stationarity test indicates some remaining heteroscedasticity, this is unlikely to materially affect the outcome.
 
-💡 **Key Take-Away**
+💡 **Key Takeaway**
 
-The available data does not show statistically significant evidence of cross-correlation, either for the level series or for their rates of change.
+The available data does not provide statistically significant evidence of cross-correlation between the US fiscal deficit and price inflation, either for the level series or for their rates of change.
 
 ## Data Analysis
 
@@ -39,7 +39,7 @@ The available data does not show statistically significant evidence of cross-cor
 
 # Standard library imports
 from dataclasses import dataclass, field
-from typing import Optional
+from typing import Dict, List, Optional
 
 # Third-party imports
 import numpy as np
@@ -54,6 +54,10 @@ pio.renderers.default = "svg"  # or "png", "jpeg", "pdf"
 # # Set the default theme to plotly_dark for the entire session
 # pio.templates.default = "plotly_dark"
 ```
+
+    The autoreload extension is already loaded. To reload it, use:
+      %reload_ext autoreload
+
 
 ### Data Ingestion
 
@@ -124,9 +128,11 @@ for metric_cfg in metrics_config:
     metrics_container[dict_key] = metric_instance
     
     print(f"Successfully processed {metric_name}. Shape: {df_metric_data.shape}")
-        
-# Output the dictionary with FredMetric dataclasses
-metrics_container.keys()
+
+# 4. Print the keys of the metrics_container dictionary
+print("Metrics container keys:")
+for key in metrics_container.keys():
+    print(key)
 ```
 
     Downloading data for FYFSGDA188S from https://fred.stlouisfed.org/series/FYFSGDA188S/downloaddata/FYFSGDA188S.csv...
@@ -135,13 +141,10 @@ metrics_container.keys()
     Successfully processed PCEPILFE. Shape: (796, 4)
     Downloading data for ECIWAG from https://fred.stlouisfed.org/series/ECIWAG/downloaddata/ECIWAG.csv...
     Successfully processed ECIWAG. Shape: (97, 4)
-
-
-
-
-
-    dict_keys(['FYFSGDA188S_annually_percent_gdp', 'PCEPILFE_quarterly_index', 'ECIWAG_quarterly_index'])
-
+    Metrics container keys:
+    FYFSGDA188S_annually_percent_gdp
+    PCEPILFE_quarterly_index
+    ECIWAG_quarterly_index
 
 
 ### Visual Inspection
@@ -149,16 +152,15 @@ Alright, we've successfully grabbed our data from FRED. Before we dive into any 
 
 
 ```python
-def plot_dual_axis_series(metrics_container, y1_keys, y2_keys):
+def plot_dual_axis_series(metrics_container: Dict[str, FredMetric], y1_keys: List[str], y2_keys: List[str]):
     """
     Plot multiple time series on a dual y-axis plot using Plotly.
     
-    :param metrics_container: dict of FredMetric objects
-    :param y1_keys: list of keys to plot on y1 (left axis)
-    :param y2_keys: list of keys to plot on y2 (right axis)
+    :param metrics_container: Dictionary containing FredMetric instances with data
+    :param y1_keys: Keys of metrics_container corresponding to metrics to plot on y1 (left axis)
+    :param y2_keys: Keys of metrics_container corresponding to metrics to plot on y2 (right axis)
     """
 
-    import plotly.graph_objs as go
     fig = go.Figure()
 
     # Plot series on y1 axis
@@ -224,19 +226,19 @@ plot_dual_axis_series(metrics_container,
     
 
 
-The time series relevant to our analysis — `FYFSD` (fiscal deficit) and `PCEPILFE` (price inflation index) — cover different time ranges and have unmatched frequencies. Due to the limited availability of `PCEPILFE` data, our analysis will focus on the period from 1959 to the present. To enable cross-correlation analysis, we must also downsample the `PCEPILFE` data to an annual frequency to match that of `FYFSD`.
+The time series relevant to our analysis, `FYFSGDA188S` (fiscal deficit) and `PCEPILFE` (price inflation index), cover different time ranges and have unmatched frequencies. Due to the limited availability of `PCEPILFE` data, our analysis focuses on the period from 1959 to the present. To enable cross-correlation analysis, we must also downsample the `PCEPILFE` data to an annual frequency to match that of `FYFSGDA188S`.
 
-It's also insightful to include the `ECIWAG` (wage inflation index) series in the graph above. Over the last 20 years—the period for which `ECIWAG` data is available—wage inflation has closely tracked price inflation. This suggests that, during this period, price inflation may not have significantly eroded purchasing power, as wage growth has largely kept pace.
+It's also insightful to include the `ECIWAG` (wage inflation index) series in the graph above. Over the last 20 years, the period for which `ECIWAG` data is available, wage inflation has closely tracked price inflation. This suggests that, during this period, price inflation may not have significantly eroded purchasing power, as wage growth has largely kept pace.
 
 ### Resample Index Series to Annual Frequency
 
-Resample PCEPILFE and ECIWAG from quarterly to annual using the same fiscal year-end timestamps as FYFSD.
+Resample PCEPILFE and ECIWAG from quarterly to annual using the same fiscal year-end timestamps as FYFSGDA188S.
 
 
 ```python
-# 1. Get fiscal year-end timestamps from FYFSD_annually_$M
+# 1. Get fiscal deficit timestamps
 deficit_key = "FYFSGDA188S_annually_percent_gdp"
-fyfsd_timestamps = metrics_container[deficit_key].data["timestamp"].sort_values().reset_index(drop=True)
+fiscal_timestamps = metrics_container[deficit_key].data["timestamp"].sort_values().reset_index(drop=True)
 
 # 2. Keys to resample
 to_resample = ["PCEPILFE_quarterly_index", "ECIWAG_quarterly_index"]
@@ -245,9 +247,9 @@ for key in to_resample:
     metric = metrics_container[key]
     df = metric.data.copy().sort_values("timestamp")
     
-    # 3. Assign each row to a fiscal year period using FYFSD timestamps
-    bins = [pd.Timestamp.min] + list(fyfsd_timestamps)
-    labels = fyfsd_timestamps
+    # 3. Assign each row to a fiscal year period using FYFSGDA188S timestamps
+    bins = [pd.Timestamp.min] + list(fiscal_timestamps)
+    labels = fiscal_timestamps
     df["fiscal_year"] = pd.cut(
         df["timestamp"],
         bins=bins,
@@ -277,27 +279,28 @@ for key in to_resample:
     )
     print(f"Added {new_key} to metrics_container. Shape: {resampled.shape}")
 
-display(metrics_container)
+# 6. Print the keys of the metrics_container dictionary
+print("Metrics container keys:")
+for key in metrics_container.keys():
+    print(key)
 ```
 
     Added PCEPILFE_annually_index to metrics_container. Shape: (66, 4)
     Added ECIWAG_annually_index to metrics_container. Shape: (24, 4)
+    Metrics container keys:
+    FYFSGDA188S_annually_percent_gdp
+    PCEPILFE_quarterly_index
+    ECIWAG_quarterly_index
+    PCEPILFE_annually_index
+    ECIWAG_annually_index
 
 
-
-    {'FYFSGDA188S_annually_percent_gdp': FredMetric(name='FYFSGDA188S', description='Federal surplus or deficit (-)', units='percent_gdp', frequency='annually'),
-     'PCEPILFE_quarterly_index': FredMetric(name='PCEPILFE', description='Personal consumption expenditures excluding food and energy (chain-type price index).', units='index', frequency='quarterly'),
-     'ECIWAG_quarterly_index': FredMetric(name='ECIWAG', description='Employment cost index, wages and salaries, private industry workers', units='index', frequency='quarterly'),
-     'PCEPILFE_annually_index': FredMetric(name='PCEPILFE', description='Personal consumption expenditures excluding food and energy (chain-type price index). (Annually Resampled)', units='index', frequency='annually'),
-     'ECIWAG_annually_index': FredMetric(name='ECIWAG', description='Employment cost index, wages and salaries, private industry workers (Annually Resampled)', units='index', frequency='annually')}
-
-
-As mentioned earlier, matching time series frequency is important. However, this process further reduces the number of data points available for analysis — already limited — down to about 65, constrained by the PCEPILFE series.  
-I am not used to this level of scarcity! Hopefully, we can still extract something statistically significant from the available data.
+As mentioned earlier, matching time series frequency is important. However, this process further reduces the number of data points available for analysis, already limited, down to just over sixty, constrained by the PCEPILFE series.  
+This level of scarcity is concerning! Hopefully, we can still extract something statistically significant from the available data.
 
 ### Calculate Annual Percentage Change for Annually Resampled Index Metrics
 
-The index metrics should be differenced to show the percentage change over the sampling period. This approach not only aligns with how inflation is typically reported, but is also necessary to eliminate mean trends, as discussed in more detail in the section [Stationarity Testing](#stationarity-testing).
+To analyze inflation dynamics, the annually resampled index metrics are converted to annual percentage changes. This transformation not only matches standard inflation reporting practices but is also essential for removing mean trends, as further explained in the [Stationarity Testing](#stationarity-testing) section.
 
 
 ```python
@@ -338,18 +341,25 @@ for key in keys_for_pct_change:
     metrics_container[new_pct_key] = pct_metric_instance
     print(f"Added {new_pct_key} to metrics_container. Shape: {df_annual_pct.shape}")
 
-display(metrics_container.keys())
+# Print the keys of the metrics_container dictionary
+print("Metrics container keys:")
+for key in metrics_container.keys():
+    print(key)
 ```
 
     Added PCEPILFE_annually_percent to metrics_container. Shape: (65, 4)
     Added ECIWAG_annually_percent to metrics_container. Shape: (23, 4)
+    Metrics container keys:
+    FYFSGDA188S_annually_percent_gdp
+    PCEPILFE_quarterly_index
+    ECIWAG_quarterly_index
+    PCEPILFE_annually_index
+    ECIWAG_annually_index
+    PCEPILFE_annually_percent
+    ECIWAG_annually_percent
 
 
-
-    dict_keys(['FYFSGDA188S_annually_percent_gdp', 'PCEPILFE_quarterly_index', 'ECIWAG_quarterly_index', 'PCEPILFE_annually_index', 'ECIWAG_annually_index', 'PCEPILFE_annually_percent', 'ECIWAG_annually_percent'])
-
-
-We must truncate `FYFSGDA188S_annually_percent_gdp` to match `PCEPILFE_annually_percent` start date, since our objective is to cross-correlate the tow series. We won't use the `ECIWAG_annually_percent` for this analysis, but I find useful to visualize it alongside price inflation.
+We must truncate `FYFSGDA188S_annually_percent_gdp` to match the start date of `PCEPILFE_annually_percent`, since our objective is to cross-correlate the two series. We will not use `ECIWAG_annually_percent` for this analysis, but I find it useful to visualize alongside price inflation.
 
 
 ```python
@@ -363,9 +373,9 @@ inflation_key = "PCEPILFE_annually_percent"
 # Get the minimum timestamp in PCEPILFE_annually_percent
 t_min = metrics_container[inflation_key].data["timestamp"].min()
 
-# Truncate the FYFSD dataframe
-df_fyfsd = metrics_container[deficit_key].data
-truncated_df = df_fyfsd[df_fyfsd["timestamp"] >= t_min].copy()
+# Truncate the FYFSGDA188S series to start at the same timestamp
+df = metrics_container[deficit_key].data
+truncated_df = df[df["timestamp"] >= t_min].copy()
 metrics_container[deficit_key].data = truncated_df
 print(f"Truncated {deficit_key} to start at {t_min}. New shape: {truncated_df.shape}")
 ```
@@ -373,7 +383,7 @@ print(f"Truncated {deficit_key} to start at {t_min}. New shape: {truncated_df.sh
     Truncated FYFSGDA188S_annually_percent_gdp to start at 1960-01-01 00:00:00. New shape: (65, 4)
 
 
-Let's plot the annually resampled and differenced metrics alongside the fiscal deficit to visually compare their year-over-year changes. This helps reveal any patterns or relationships between fiscal deficits, price inflation, and wage growth over time.
+Let's plot the annually resampled and year-over-year change metrics alongside the fiscal deficit to visually compare their annual variations. This helps reveal any patterns or relationships between fiscal deficits, price inflation, and wage growth over time.
 
 
 ```python
@@ -391,9 +401,9 @@ plot_dual_axis_series(
     
 
 
-### [Cross-Correlation](https://en.wikipedia.org/wiki/Cross-correlation) - A First Naive Attempt
+### Cross-Correlation of Undifferenced (Level) Series
 
-The cross-correlation between two stochastic processes is defined as the ratio between their covariance (at a given lag) and the product of their standard deviations. In practical terms, this measures how much one time series tends to move in relation to another, as one is shifted forward or backward in time. By examining cross-correlation at different lags, we can explore whether changes in one series tend to precede, coincide with, or follow changes in the other. This is a foundational tool for investigating potential lead-lag relationships between economic variables such as fiscal deficits and inflation.
+The [cross-correlation](https://en.wikipedia.org/wiki/Cross-correlation) between two stochastic processes is defined as the ratio between their covariance (at a given lag) and the product of their standard deviations. In practical terms, this measures how much one time series tends to move in relation to another, as one is shifted forward or backward in time. By examining cross-correlation at different lags, we can explore whether changes in one series tend to precede, coincide with, or follow changes in the other. This is a foundational tool for investigating potential lead-lag relationships between economic variables such as fiscal deficits and inflation.
 
 
 
@@ -470,14 +480,15 @@ def calculate_and_plot_cross_correlation(
             ccf_values.append(np.corrcoef(s1_segment, s2_segment)[0, 1])
             
     print(f"Cross-correlation between {key1} and {key2}:")
-    print(f"Method: Variable segment length (full overlap). Max lag considered: {max_lag}")
-    print(f"Original number of data points (N): {N}")
+    print(f"Method: Variable segment length (full overlap). Max lag considered: {max_lag}.")
+    print(f"Original number of data points (N): {N}.")
+    print(f"Negative lags indicate {key1} leads {key2}.")
     for lag_val, val, n_pts in zip(lags_array, ccf_values, n_points_used_for_lag):
         if not np.isnan(val):
             if lag_val > 0:
-                print(f"  Lag: {lag_val:2d} ({key2} leads {key1} by {abs(lag_val)} time periods), CCF: {val:.4f}, Points used: {n_pts}")
+                print(f"  Lag: {lag_val:2d}, CCF: {val:.4f}, Points used: {n_pts}")
             elif lag_val < 0:
-                print(f"  Lag: {lag_val:2d} ({key1} leads {key2} by {abs(lag_val)} time periods), CCF: {val:.4f}, Points used: {n_pts}")
+                print(f"  Lag: {lag_val:2d}, CCF: {val:.4f}, Points used: {n_pts}")
         else:
             print(f"  Lag: {lag_val:2d}, CCF: Not calculable (insufficient/constant data for overlap of {n_pts} points)")
     
@@ -524,28 +535,29 @@ lags, ccf_coeffs = calculate_and_plot_cross_correlation(
     Calculating cross-correlation for: FYFSGDA188S_annually_percent_gdp and PCEPILFE_annually_percent
     
     Cross-correlation between FYFSGDA188S_annually_percent_gdp and PCEPILFE_annually_percent:
-    Method: Variable segment length (full overlap). Max lag considered: 10
-    Original number of data points (N): 65
-      Lag: -10 (FYFSGDA188S_annually_percent_gdp leads PCEPILFE_annually_percent by 10 time periods), CCF: 0.2830, Points used: 55
-      Lag: -9 (FYFSGDA188S_annually_percent_gdp leads PCEPILFE_annually_percent by 9 time periods), CCF: 0.3056, Points used: 56
-      Lag: -8 (FYFSGDA188S_annually_percent_gdp leads PCEPILFE_annually_percent by 8 time periods), CCF: 0.2742, Points used: 57
-      Lag: -7 (FYFSGDA188S_annually_percent_gdp leads PCEPILFE_annually_percent by 7 time periods), CCF: 0.2384, Points used: 58
-      Lag: -6 (FYFSGDA188S_annually_percent_gdp leads PCEPILFE_annually_percent by 6 time periods), CCF: 0.1896, Points used: 59
-      Lag: -5 (FYFSGDA188S_annually_percent_gdp leads PCEPILFE_annually_percent by 5 time periods), CCF: 0.1223, Points used: 60
-      Lag: -4 (FYFSGDA188S_annually_percent_gdp leads PCEPILFE_annually_percent by 4 time periods), CCF: 0.0234, Points used: 61
-      Lag: -3 (FYFSGDA188S_annually_percent_gdp leads PCEPILFE_annually_percent by 3 time periods), CCF: -0.0418, Points used: 62
-      Lag: -2 (FYFSGDA188S_annually_percent_gdp leads PCEPILFE_annually_percent by 2 time periods), CCF: -0.0274, Points used: 63
-      Lag: -1 (FYFSGDA188S_annually_percent_gdp leads PCEPILFE_annually_percent by 1 time periods), CCF: 0.0220, Points used: 64
-      Lag:  1 (PCEPILFE_annually_percent leads FYFSGDA188S_annually_percent_gdp by 1 time periods), CCF: -0.0648, Points used: 64
-      Lag:  2 (PCEPILFE_annually_percent leads FYFSGDA188S_annually_percent_gdp by 2 time periods), CCF: -0.0426, Points used: 63
-      Lag:  3 (PCEPILFE_annually_percent leads FYFSGDA188S_annually_percent_gdp by 3 time periods), CCF: -0.0237, Points used: 62
-      Lag:  4 (PCEPILFE_annually_percent leads FYFSGDA188S_annually_percent_gdp by 4 time periods), CCF: -0.0077, Points used: 61
-      Lag:  5 (PCEPILFE_annually_percent leads FYFSGDA188S_annually_percent_gdp by 5 time periods), CCF: 0.0176, Points used: 60
-      Lag:  6 (PCEPILFE_annually_percent leads FYFSGDA188S_annually_percent_gdp by 6 time periods), CCF: 0.0474, Points used: 59
-      Lag:  7 (PCEPILFE_annually_percent leads FYFSGDA188S_annually_percent_gdp by 7 time periods), CCF: 0.0505, Points used: 58
-      Lag:  8 (PCEPILFE_annually_percent leads FYFSGDA188S_annually_percent_gdp by 8 time periods), CCF: 0.0734, Points used: 57
-      Lag:  9 (PCEPILFE_annually_percent leads FYFSGDA188S_annually_percent_gdp by 9 time periods), CCF: 0.1157, Points used: 56
-      Lag: 10 (PCEPILFE_annually_percent leads FYFSGDA188S_annually_percent_gdp by 10 time periods), CCF: 0.1622, Points used: 55
+    Method: Variable segment length (full overlap). Max lag considered: 10.
+    Original number of data points (N): 65.
+    Negative lags indicate FYFSGDA188S_annually_percent_gdp leads PCEPILFE_annually_percent.
+      Lag: -10, CCF: 0.2830, Points used: 55
+      Lag: -9, CCF: 0.3056, Points used: 56
+      Lag: -8, CCF: 0.2742, Points used: 57
+      Lag: -7, CCF: 0.2384, Points used: 58
+      Lag: -6, CCF: 0.1896, Points used: 59
+      Lag: -5, CCF: 0.1223, Points used: 60
+      Lag: -4, CCF: 0.0234, Points used: 61
+      Lag: -3, CCF: -0.0418, Points used: 62
+      Lag: -2, CCF: -0.0274, Points used: 63
+      Lag: -1, CCF: 0.0220, Points used: 64
+      Lag:  1, CCF: -0.0648, Points used: 64
+      Lag:  2, CCF: -0.0426, Points used: 63
+      Lag:  3, CCF: -0.0237, Points used: 62
+      Lag:  4, CCF: -0.0077, Points used: 61
+      Lag:  5, CCF: 0.0176, Points used: 60
+      Lag:  6, CCF: 0.0474, Points used: 59
+      Lag:  7, CCF: 0.0505, Points used: 58
+      Lag:  8, CCF: 0.0734, Points used: 57
+      Lag:  9, CCF: 0.1157, Points used: 56
+      Lag: 10, CCF: 0.1622, Points used: 55
 
 
 
@@ -554,22 +566,21 @@ lags, ccf_coeffs = calculate_and_plot_cross_correlation(
     
 
 
-⚠️ **Attention**
 
-The cross-correlation between the fiscal deficit (`FYFSGDA188S_annually_percent_gdp`, a negative value by convention) and the annual percentage change in the price index (`PCEPILFE_annually_percent`) shows correlation coefficients which are very low, indicating lack of a significant relationship.
+⚠️ **Important**
 
-This finding is counterintuitive to the common expectation that larger deficits might fuel higher inflation. The correlations observed at negative lags are particularly interesting: a negative lag here means that changes in the fiscal deficit precede changes in inflation, which is what is commonly expected.
+The cross-correlation between the fiscal deficit as a proportion of GDP (`FYFSGDA188S_annually_percent_gdp`) and the annual percentage change in the price index (`PCEPILFE_annually_percent`) shows correlation coefficients which are very low, indicating lack of a significant relationship.
 
-🤔 **What is going on?**
+This finding is counterintuitive to the [common expectation](https://miltonfriedman.hoover.org/internal/media/dispatcher/214346/full) that larger deficits might fuel higher inflation. The correlation coefficients observed at negative lags are particularly interesting: a negative lag here means that changes in the fiscal deficit precede changes in inflation, which is what is commonly expected.
 
-This initial cross-correlation, calculated using the fiscal deficit as a proportion of GDP and price inflation as an annual percentage change, might offer some preliminary insights. These two series do appear to show non time-constant mean and variance, but I wouldn't immediately expect it to cause spurious correlation. However, in this case, no significant correlation is found.
+Both series exhibit non-constant mean and variance over time, which can sometimes lead to misleading or spurious correlations in time series analysis. However, in this case, even before formally addressing these issues, the observed correlation remains weak and statistically insignificant. This suggests that, at least in the raw data, there is little evidence of a meaningful link between fiscal deficits and subsequent inflation.
 
-Best practices in time series analysis aim to ensure wide-sense stationarity (WSS) of the time series before studying cross-correlation and differencing the series to achieve stationarity. This is what I attempted to do in the following part of this analysis.
+Best practices in time series analysis require establishing wide-sense stationarity (WSS) before interpreting cross-correlation results. This typically involves transforming the series, most often by differencing, to achieve constant mean and variance over time. In the next section, I follow this approach to ensure that any observed relationships are not artifacts of non-stationary data, but instead reflect genuine statistical associations.
 
 
 ### Stationarity Testing
 
-We proceed to establish [stationarity](https://en.wikipedia.org/wiki/Stationary_process) before calculating the cross-correlation between `FYFSD` and `PCEPILFE`. Standard correlation measures assume that the underlying statistical properties (like mean and variance) of the series are stable, to avoid calculating spurious correlations. 
+We proceed to establish [stationarity](https://en.wikipedia.org/wiki/Stationary_process) before calculating the cross-correlation between `FYFSGDA188S` and `PCEPILFE`. Standard correlation measures assume that the underlying statistical properties (like mean and variance) of the series are stable, to avoid calculating spurious correlations. 
 - If the means of the series have a trend, the series will show cross-correlation (as they grow together) but be completly unrelated otherwise. 
 - If variance changes, the strength or even direction of correlation might appear different in high-variance periods versus low-variance periods. 
 
@@ -629,26 +640,6 @@ def adf_report(series: pd.Series, name: str) -> None:
 adf_report(metrics_container[deficit_key].data["value"], deficit_key)
 adf_report(metrics_container[inflation_key].data["value"], inflation_key)
 ```
-
-    ADF Test for FYFSGDA188S_annually_percent_gdp:
-      Test Statistic: -3.3105
-      p-value: 0.0144
-      #Lags Used: 1
-      #Observations: 63
-        Critical Value (1%): -3.5387
-        Critical Value (5%): -2.9086
-        Critical Value (10%): -2.5919
-    ----------------------------------------
-    ADF Test for PCEPILFE_annually_percent:
-      Test Statistic: -1.6917
-      p-value: 0.4354
-      #Lags Used: 5
-      #Observations: 59
-        Critical Value (1%): -3.5464
-        Critical Value (5%): -2.9119
-        Critical Value (10%): -2.5937
-    ----------------------------------------
-
 
 The low p-value of the ADF test for `FYFSGDA188S_annually_percent_gdp` indicates that it is highly unlikely that the series has a unit root. In contrast, the higher p-value for `PCEPILFE_annually_percent` does not rule out the presence of a unit root.
 
@@ -730,10 +721,6 @@ for param in params:
     add_diff_metric(metrics_container, **param)
 ```
 
-    Added diff_FYFSGDA188S_annually_percent_gdp to metrics_container. Shape: (64, 4)
-    Added diff_PCEPILFE_annually_percent to metrics_container. Shape: (64, 4)
-
-
 
 ```python
 diff_deficit_key = "diff_FYFSGDA188S_annually_percent_gdp"
@@ -749,12 +736,6 @@ plot_dual_axis_series(
 )
 ```
 
-
-    
-![svg](index_files/index_34_0.svg)
-    
-
-
 The plots show two series that don't seem to show a trend but there might be some heteroscedasticity, which the ADF test won't detect, but the KPSS test will. 
 
 
@@ -763,26 +744,6 @@ The plots show two series that don't seem to show a trend but there might be som
 adf_report(metrics_container[diff_deficit_key].data["value"], diff_deficit_key)
 adf_report(metrics_container[diff_inflation_key].data["value"], diff_inflation_key)
 ```
-
-    ADF Test for diff_FYFSGDA188S_annually_percent_gdp:
-      Test Statistic: -7.2650
-      p-value: 0.0000
-      #Lags Used: 1
-      #Observations: 62
-        Critical Value (1%): -3.5405
-        Critical Value (5%): -2.9094
-        Critical Value (10%): -2.5923
-    ----------------------------------------
-    ADF Test for diff_PCEPILFE_annually_percent:
-      Test Statistic: -3.3138
-      p-value: 0.0143
-      #Lags Used: 4
-      #Observations: 59
-        Critical Value (1%): -3.5464
-        Critical Value (5%): -2.9119
-        Critical Value (10%): -2.5937
-    ----------------------------------------
-
 
 The ADF test this time returned very convincing p-values, strongly suggesting that both series do not have a unit root. This means the series are likely stationary in mean, and shocks to the series are not persistent over time.
 
@@ -822,42 +783,6 @@ kpps_report(metrics_container[diff_deficit_key].data["value"], diff_deficit_key)
 kpps_report(metrics_container[diff_inflation_key].data["value"], diff_inflation_key)
 ```
 
-    KPSS Test for diff_FYFSGDA188S_annually_percent_gdp (regression='c'):
-      KPSS Statistic: 0.0666
-      p-value: 0.1000
-      #Lags Used: 7
-      Critical Values:
-        10%: 0.3470
-        5%: 0.4630
-        2.5%: 0.5740
-        1%: 0.7390
-    ----------------------------------------
-    KPSS Test for diff_PCEPILFE_annually_percent (regression='c'):
-      KPSS Statistic: 0.1544
-      p-value: 0.1000
-      #Lags Used: 5
-      Critical Values:
-        10%: 0.3470
-        5%: 0.4630
-        2.5%: 0.5740
-        1%: 0.7390
-    ----------------------------------------
-
-
-    /var/folders/lk/21hq1pz55xn204vhrhz_npp40000gn/T/ipykernel_75495/2369050582.py:12: InterpolationWarning:
-    
-    The test statistic is outside of the range of p-values available in the
-    look-up table. The actual p-value is greater than the p-value returned.
-    
-    
-    /var/folders/lk/21hq1pz55xn204vhrhz_npp40000gn/T/ipykernel_75495/2369050582.py:12: InterpolationWarning:
-    
-    The test statistic is outside of the range of p-values available in the
-    look-up table. The actual p-value is greater than the p-value returned.
-    
-    
-
-
 As expected, the KPSS test indicates that the differenced series are not stationary. Financial time series often show periods of higher volatility followed by lower volatility (which can be modelled using [ARCH/GARCH](https://en.wikipedia.org/wiki/Autoregressive_conditional_heteroskedasticity)). 
 
 Nevertheless, it is meaningful to examine the cross-correlation of these two series, after removing their unit roots. 
@@ -875,51 +800,18 @@ lags, ccf_coeffs = calculate_and_plot_cross_correlation(
 )
 ```
 
-    Calculating cross-correlation for: diff_FYFSGDA188S_annually_percent_gdp and diff_PCEPILFE_annually_percent
-    
-    Cross-correlation between diff_FYFSGDA188S_annually_percent_gdp and diff_PCEPILFE_annually_percent:
-    Method: Variable segment length (full overlap). Max lag considered: 10
-    Original number of data points (N): 64
-      Lag: -10 (diff_FYFSGDA188S_annually_percent_gdp leads diff_PCEPILFE_annually_percent by 10 time periods), CCF: 0.0185, Points used: 54
-      Lag: -9 (diff_FYFSGDA188S_annually_percent_gdp leads diff_PCEPILFE_annually_percent by 9 time periods), CCF: 0.1427, Points used: 55
-      Lag: -8 (diff_FYFSGDA188S_annually_percent_gdp leads diff_PCEPILFE_annually_percent by 8 time periods), CCF: -0.0100, Points used: 56
-      Lag: -7 (diff_FYFSGDA188S_annually_percent_gdp leads diff_PCEPILFE_annually_percent by 7 time periods), CCF: 0.0025, Points used: 57
-      Lag: -6 (diff_FYFSGDA188S_annually_percent_gdp leads diff_PCEPILFE_annually_percent by 6 time periods), CCF: 0.0688, Points used: 58
-      Lag: -5 (diff_FYFSGDA188S_annually_percent_gdp leads diff_PCEPILFE_annually_percent by 5 time periods), CCF: 0.0186, Points used: 59
-      Lag: -4 (diff_FYFSGDA188S_annually_percent_gdp leads diff_PCEPILFE_annually_percent by 4 time periods), CCF: -0.0087, Points used: 60
-      Lag: -3 (diff_FYFSGDA188S_annually_percent_gdp leads diff_PCEPILFE_annually_percent by 3 time periods), CCF: -0.2224, Points used: 61
-      Lag: -2 (diff_FYFSGDA188S_annually_percent_gdp leads diff_PCEPILFE_annually_percent by 2 time periods), CCF: -0.1029, Points used: 62
-      Lag: -1 (diff_FYFSGDA188S_annually_percent_gdp leads diff_PCEPILFE_annually_percent by 1 time periods), CCF: 0.2776, Points used: 63
-      Lag:  1 (diff_PCEPILFE_annually_percent leads diff_FYFSGDA188S_annually_percent_gdp by 1 time periods), CCF: -0.1843, Points used: 63
-      Lag:  2 (diff_PCEPILFE_annually_percent leads diff_FYFSGDA188S_annually_percent_gdp by 2 time periods), CCF: -0.0327, Points used: 62
-      Lag:  3 (diff_PCEPILFE_annually_percent leads diff_FYFSGDA188S_annually_percent_gdp by 3 time periods), CCF: -0.0506, Points used: 61
-      Lag:  4 (diff_PCEPILFE_annually_percent leads diff_FYFSGDA188S_annually_percent_gdp by 4 time periods), CCF: -0.0229, Points used: 60
-      Lag:  5 (diff_PCEPILFE_annually_percent leads diff_FYFSGDA188S_annually_percent_gdp by 5 time periods), CCF: 0.0092, Points used: 59
-      Lag:  6 (diff_PCEPILFE_annually_percent leads diff_FYFSGDA188S_annually_percent_gdp by 6 time periods), CCF: 0.0778, Points used: 58
-      Lag:  7 (diff_PCEPILFE_annually_percent leads diff_FYFSGDA188S_annually_percent_gdp by 7 time periods), CCF: -0.0712, Points used: 57
-      Lag:  8 (diff_PCEPILFE_annually_percent leads diff_FYFSGDA188S_annually_percent_gdp by 8 time periods), CCF: -0.1027, Points used: 56
-      Lag:  9 (diff_PCEPILFE_annually_percent leads diff_FYFSGDA188S_annually_percent_gdp by 9 time periods), CCF: 0.0619, Points used: 55
-      Lag: 10 (diff_PCEPILFE_annually_percent leads diff_FYFSGDA188S_annually_percent_gdp by 10 time periods), CCF: 0.1049, Points used: 54
-
-
-
-    
-![svg](index_files/index_43_1.svg)
-    
-
-
 The resulting cross-correlation, more meaningful for negative lags, is minimal and noisy, again strongly indicating weak to no relationship between the two series for any lag. 
 
 After this analysis, I am quite convinced that the data in our possession does not show evidence of cross-correlation. Removing heteroscedasticity is possible with additional manipulation of the series, but given the consistent and very low value of the cross-correlation both before and after the removal of the unit roots, it is highly unlikely to change the results. 
 
 ## Conclusions
 
-This analysis addresses a question at the heart of a contentious debate, especially in light of recent surges in fiscal deficits. I promised not to consult other research or opinions before conducting my own analysis — and I kept that promise, up until this very paragraph. At this point, I glanced at the literature and was immediately overwhelmed by a mountain of search results. Most sources (see the list below) that examine historical data reach the same conclusion I did: there is little to no correlation, and this holds true across most developed economies. Yet, many go on to rationalize this finding with appeals to "economic theory," offering a patchwork of statistically unsubstantiated and logically tenuous explanations, often dressed up with self-referential mathematics that does more to obscure than to clarify the lack of robust data or genuine understanding. So much ado about nothing. It appears that the term "economic theory" often serves as a catch-all for the prevailing dogmatic belief system — what most credentialed economists learned in school and what conveniently preserves both their professional standing and the status quo.
+This analysis addresses a question at the heart of a contentious debate, especially in light of recent surges in fiscal deficits. I promised not to consult other research or opinions before conducting my own analysis, and I kept that promise, up until this very paragraph. At this point, I cast an eye over some of the literature and was immediately overwhelmed by a mountain of search results. Most sources (see the list below) that examine historical data reach the same conclusion I did: there is little to no correlation, and this holds true across most developed economies. Yet, many go on to rationalize this finding with appeals to "economic theory," offering a patchwork of statistically unsubstantiated and logically tenuous explanations, often dressed up with self-referential mathematics that does more to obscure than to clarify the lack of robust data or genuine understanding. So much ado about nothing. It appears that the term "economic theory" often serves as a catch-all for the prevailing dogma, what most credentialed economists learned in school and what conveniently preserves both their professional standing and the status quo.
 
 Notably, I could not find a source that, as I did, simply presents the data and refrains from speculative theorizing about the reasons for the lack of the "expected" correlation. It is abundantly clear that when data is scarce and the number of parameters to fit is high, the first step should be to acknowledge these limitations. Rather than constructing elaborate theoretical frameworks to force a conclusion, it is wiser to focus on maintaining intellectual humility, removing unsubstantiated constraints, and letting ambitious experimentation explore and collect empirical evidence.  
-Macroeconomics, unlike the hard sciences, cannot run controlled experiments on parallel universes; we lack the luxury of hundreds of identical economies to tinker with. In fields like experimental physics, chemistry, or biology, mathematical models are powerful because they are testable and falsifiable with plenty of data (this is the core of the scientific method). It seems to me that in macroeconomics, they too often become elaborate rituals—comforting, but ultimately unmoored from empirical reality.
+Macroeconomics, unlike the hard sciences, cannot run controlled experiments on parallel universes; we lack the luxury of hundreds of identical economies to tinker with. In fields like experimental physics, chemistry, or biology, mathematical models are powerful because they are testable and falsifiable with plenty of data (this is the core of the scientific method). It seems to me that in macroeconomics, they too often become elaborate rituals, comforting, but ultimately unmoored from empirical reality.
 
-The FRED datasets provide extensive opportunities to explore relationships between fiscal and monetary policies and key economic indicators, such as unemployment rates and price or wage inflation. These might be the subject of future investigations.
+The [FRED](https://fred.stlouisfed.org/) datasets provide extensive opportunities to explore relationships between fiscal and monetary policies and key economic indicators, such as unemployment rates and price or wage inflation. These might be the subject of future investigations. It would also be interesting to re-produce a similar analysis for other fiat currency governments, such as China, Japan, UK, Canada, etc.
 
 Below are a few readings I consulted. All of them note a lack of correlation for "advanced economies and low-inflation country groups" (such as the USA), which, as the IMF paper by Luis Catao and Marco E. Terrones puts it, "begs the question why the theory seems to be violated." In my view, if a theory is contradicted by data, it is simply a wrong theory.
 
@@ -927,11 +819,11 @@ Below are a few readings I consulted. All of them note a lack of correlation for
 - [Some Unpleasant Monetarist Arithmetic, by Thomas J. Sargent and Neil Wallace (1981)](https://www.minneapolisfed.org/research/quarterly-review/some-unpleasant-monetarist-arithmetic): the quintessential "castle in the sky".
 - [Fiscal Deficits and Inflation, by Luis Catao and Marco E. Terrones (2003)](https://www.imf.org/external/pubs/ft/wp/2003/wp0365.pdf): the "Conclusions" section is where I got the quote above.
 - [Do Budget Deficits Cause Inflation?, by Keith Sill (2005)](https://www.philadelphiafed.org/-/media/FRBP/Assets/Economy/Articles/business-review/2005/q3/Q3_05_Sill.pdf?sc_lang=en): the author notes the lack of correlation for many countries ("the U.S. and, for that matter, in most of the world’s advanced economies") and tries to explain it with the independence of monetary and fiscal policy, with arguments that seem unaware of the fact that the US government is the monopoly issuer of a [fiat currency](https://en.wikipedia.org/wiki/Fiat_money).
-- [The Inflationary Risks of Rising Federal Deficits and Debt, by The Budget Lab (2025)](https://budgetlab.yale.edu/research/inflationary-risks-rising-federal-deficits-and-debt): a recent example of an analysis that uses virtually no data and builds mathematical models and simulations that are as solid as a straw house.
+- [The Inflationary Risks of Rising Federal Deficits and Debt, by The Budget Lab (2025)](https://budgetlab.yale.edu/research/inflationary-risks-rising-federal-deficits-and-debt): a recent example of an analysis that uses virtually no data and builds mathematical models and simulations that are as solid as a house of straw.
 
-### Supplemental 
+## Supplemental 
 
-#### Further Attempt at Generating Stationary Series
+### Further Attempt at Generating Stationary Series
 
 We can try to apply the logarithm to the `PCEPILFE_annually_percent` series, and then difference it, 
 
@@ -967,9 +859,6 @@ metrics_container["log_" + inflation_key] = FredMetric(
 print(f"Created log_{inflation_key}. Shape: {df_log.shape}")
 ```
 
-    Created log_PCEPILFE_annually_percent. Shape: (65, 4)
-
-
 
 ```python
 log_inflation_key = "log_PCEPILFE_annually_percent"
@@ -984,12 +873,6 @@ plot_dual_axis_series(
 )
 ```
 
-
-    
-![svg](index_files/index_50_0.svg)
-    
-
-
 The two series are very similar, this is because the 
 Unit root and stationary tests.
 
@@ -998,27 +881,6 @@ Unit root and stationary tests.
 adf_report(metrics_container[log_inflation_key].data["value"], log_inflation_key)
 kpps_report(metrics_container[log_inflation_key].data["value"], log_inflation_key)
 ```
-
-    ADF Test for log_PCEPILFE_annually_percent:
-      Test Statistic: -1.8947
-      p-value: 0.3345
-      #Lags Used: 2
-      #Observations: 62
-        Critical Value (1%): -3.5405
-        Critical Value (5%): -2.9094
-        Critical Value (10%): -2.5923
-    ----------------------------------------
-    KPSS Test for log_PCEPILFE_annually_percent (regression='c'):
-      KPSS Statistic: 0.3807
-      p-value: 0.0855
-      #Lags Used: 4
-      Critical Values:
-        10%: 0.3470
-        5%: 0.4630
-        2.5%: 0.5740
-        1%: 0.7390
-    ----------------------------------------
-
 
 Differencing the log-transformed series.
 
@@ -1034,9 +896,6 @@ params = dict(
 add_diff_metric(metrics_container, **params)
 ```
 
-    Added diff_log_PCEPILFE_annually_percent to metrics_container. Shape: (64, 4)
-
-
 
 ```python
 diff_log_inflation_key = "diff_log_PCEPILFE_annually_percent"
@@ -1047,34 +906,5 @@ diff_log_inflation_key = "diff_log_PCEPILFE_annually_percent"
 adf_report(metrics_container[diff_log_inflation_key].data["value"], diff_log_inflation_key)
 kpps_report(metrics_container[diff_log_inflation_key].data["value"], diff_log_inflation_key)
 ```
-
-    ADF Test for diff_log_PCEPILFE_annually_percent:
-      Test Statistic: -6.3787
-      p-value: 0.0000
-      #Lags Used: 1
-      #Observations: 62
-        Critical Value (1%): -3.5405
-        Critical Value (5%): -2.9094
-        Critical Value (10%): -2.5923
-    ----------------------------------------
-    KPSS Test for diff_log_PCEPILFE_annually_percent (regression='c'):
-      KPSS Statistic: 0.1806
-      p-value: 0.1000
-      #Lags Used: 4
-      Critical Values:
-        10%: 0.3470
-        5%: 0.4630
-        2.5%: 0.5740
-        1%: 0.7390
-    ----------------------------------------
-
-
-    /var/folders/lk/21hq1pz55xn204vhrhz_npp40000gn/T/ipykernel_75495/2369050582.py:12: InterpolationWarning:
-    
-    The test statistic is outside of the range of p-values available in the
-    look-up table. The actual p-value is greater than the p-value returned.
-    
-    
-
 
 As suspected, applying a logarithmic transformation does not alter the outcome of the stationarity tests for the `PCEPILFE` series likely due to persistent heteroscedasticity.
