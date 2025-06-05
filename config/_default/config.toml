@@ -1,7 +1,0 @@
-[taxonomies]
-tag = "tags"
-category = "categories"
-
-[outputs]
-tag = ["HTML", "RSS"]
-category = ["HTML", "RSS"]

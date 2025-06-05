@@ -83,7 +83,13 @@ languageName = "English"
 
 [outputs]
   home = ["HTML", "RSS", "JSON"]
+  tag = ["HTML", "RSS"]
+  category = ["HTML", "RSS"]
 
 [caches]
   [caches.images]
     dir = ':cacheDir/images'
+
+[taxonomies]
+  tag = "tags"
+  category = "categories"
