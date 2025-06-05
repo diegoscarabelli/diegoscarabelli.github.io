@@ -65,6 +65,11 @@ languageName = "English"
     [params.home.profile]
     subtitle = "Wake up..."
 
+  [params.search]
+    enable = true
+    type = "lunr"
+    placeholder = "Search..."
+
 
 # Markup related configuration in Hugo
 [markup]
