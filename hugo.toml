@@ -20,15 +20,6 @@ languageName = "English"
 
   [[menu.main]]
     weight = 2
-    identifier = "tags"
-    pre = ""
-    post = ""
-    name = "Tags"
-    url = "/tags/"
-    title = ""
-
-  [[menu.main]]
-    weight = 3
     identifier = "categories"
     pre = ""
     post = ""
@@ -37,7 +28,16 @@ languageName = "English"
     title = ""
 
   [[menu.main]]
-    weight = 1
+    weight = 3
+    identifier = "tags"
+    pre = ""
+    post = ""
+    name = "Tags"
+    url = "/tags/"
+    title = ""
+
+  [[menu.main]]
+    weight = 4
     identifier = "about"
     # you can add extra information before the name (HTML format is supported), such as icons
     pre = ""
