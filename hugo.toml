@@ -89,8 +89,8 @@ languageName = "English"
 
 [outputs]
   home = ["HTML", "RSS", "JSON"]
-  tag = ["HTML", "RSS"]
-  category = ["HTML", "RSS"]
+  taxonomy = ["HTML", "RSS"]
+  term = ["HTML", "RSS"]
 
 [caches]
   [caches.images]
