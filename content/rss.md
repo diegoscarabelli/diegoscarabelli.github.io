@@ -7,6 +7,7 @@ Stay updated with my blog by subscribing to these RSS feeds:
 - [Posts Feed](/index.xml) - All blog posts
 - [Categories Feed](/categories/index.xml) - All categories
 - [Tags Feed](/tags/index.xml) - All tags
+- [Resources Feed](/resources/index.xml) - Book reviews and useful links
 
 To subscribe:
 

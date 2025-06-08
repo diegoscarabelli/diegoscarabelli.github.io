@@ -16,7 +16,7 @@ languageName = "English"
     name = "Posts"
     url = "/posts/"
     # title will be shown when you hover on this menu link
-    title = ""
+    title = "Posts"
 
   [[menu.main]]
     weight = 2
@@ -25,7 +25,7 @@ languageName = "English"
     post = ""
     name = "Categories"
     url = "/categories/"
-    title = ""
+    title = "Categories of Posts"
 
   [[menu.main]]
     weight = 3
@@ -34,16 +34,16 @@ languageName = "English"
     post = ""
     name = "Tags"
     url = "/tags/"
-    title = ""
+    title = "Tags applied to Posts"
 
   [[menu.main]]
     weight = 4
-    identifier = "knowledge"
+    identifier = "resources"
     pre = ""
     post = ""
-    name = "Knowledge"
-    url = "/knowledge/"
-    title = ""
+    name = "Resources"
+    url = "/resources/"
+    title = "Book Reviews and Useful Links"
 
   [[menu.main]]
     weight = 5
@@ -52,7 +52,7 @@ languageName = "English"
     post = ""
     name = "About"
     url = "/about/"
-    title = ""
+    title = "About the Author"
 
   [[menu.main]]
     weight = 6
@@ -61,7 +61,7 @@ languageName = "English"
     post = ""
     name = "RSS"
     url = "/rss/"
-    title = ""
+    title = "Subscribe to RSS Feeds"
 
 [params]
   # Author config
@@ -102,6 +102,7 @@ languageName = "English"
   home = ["HTML", "RSS", "JSON"]
   taxonomy = ["HTML", "RSS"]
   term = ["HTML", "RSS"]
+  section = ["HTML", "RSS"]
 
 [caches]
   [caches.images]
