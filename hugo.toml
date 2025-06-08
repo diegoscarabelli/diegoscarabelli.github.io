@@ -54,6 +54,15 @@ languageName = "English"
     url = "/about/"
     title = ""
 
+  [[menu.main]]
+    weight = 6
+    identifier = "rss"
+    pre = ""
+    post = ""
+    name = "RSS"
+    url = "/rss/"
+    title = ""
+
 [params]
   # Author config
   [params.author]
@@ -89,14 +98,10 @@ languageName = "English"
     [markup.goldmark.renderer]
       unsafe = true
 
-[outputFormats.RSSALT]
-  mediaType = "application/rss+xml"
-  baseName = "feed"
-
 [outputs]
   home = ["HTML", "RSS", "JSON"]
-  taxonomy = ["HTML", "RSSALT"]
-  term = ["HTML", "RSSALT"]
+  taxonomy = ["HTML", "RSS"]
+  term = ["HTML", "RSS"]
 
 [caches]
   [caches.images]
