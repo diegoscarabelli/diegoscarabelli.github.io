@@ -76,6 +76,9 @@ languageName = "English"
     type = "lunr"
     placeholder = "Search..."
 
+  [params.list]
+    dateFormat = "2006-01-02"   
+
 
 # Markup related configuration in Hugo
 [markup]
