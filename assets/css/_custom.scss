@@ -21,3 +21,8 @@
 .content p > img[src$=".svg"]:only-child {
     margin-bottom: 0; /* Adjust as needed, or remove if not an issue */
 }
+
+/* Increase font size for the home page subtitle */
+.home-profile .home-subtitle {
+  font-size: 1.4em !important; /* Or any other size you prefer */
+}
