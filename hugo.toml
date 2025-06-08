@@ -89,10 +89,14 @@ languageName = "English"
     [markup.goldmark.renderer]
       unsafe = true
 
+[outputFormats.RSSALT]
+  mediaType = "application/rss+xml"
+  baseName = "feed"
+
 [outputs]
   home = ["HTML", "RSS", "JSON"]
-  taxonomy = ["HTML", "RSS"]
-  term = ["HTML", "RSS"]
+  taxonomy = ["HTML", "RSSALT"]
+  term = ["HTML", "RSSALT"]
 
 [caches]
   [caches.images]
