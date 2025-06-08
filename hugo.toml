@@ -79,7 +79,6 @@ languageName = "English"
   [params.list]
     dateFormat = "2006-01-02"   
 
-
 # Markup related configuration in Hugo
 [markup]
   # Syntax Highlighting (https://gohugo.io/content-management/syntax-highlighting)
