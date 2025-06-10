@@ -70,6 +70,25 @@ languageName = "English"
     email = ""
     link = ""
 
+  # Comments config
+  [params.comment]
+    enable = true
+    type = "giscus"
+    [params.comment.giscus]
+      enable = true
+      repo = "diegoscarabelli/diegoscarabelli.github.io"
+      repoId = "R_kgDOOvABDQ"
+      category = "Blog Comments"
+      categoryId = "DIC_kwDOOvABDc4CrUWB"
+      mapping = "pathname"
+      strict = "0"
+      reactionsEnabled = "1"
+      emitMetadata = "0"
+      inputPosition = "top"
+      theme = "preferred_color_scheme"
+      lang = "en"
+      loading = "lazy"
+
   # Header config
   [params.header]
     [params.header.title]
@@ -87,25 +106,6 @@ languageName = "English"
 
   [params.list]
     dateFormat = "2006-01-02"   
-
-# Comments config (page-specific)
-[params.page.comment]
-  enable = true
-  type = "giscus"
-  [params.page.comment.giscus]
-    enable = true
-    repo = "diegoscarabelli/diegoscarabelli.github.io"
-    repoId = "R_kgDOOvABDQ"
-    category = "Blog Comments"
-    categoryId = "DIC_kwDOOvABDc4CrUWB"
-    mapping = "pathname"
-    strict = "0"
-    reactionsEnabled = "1"
-    emitMetadata = "0"
-    inputPosition = "top"
-    theme = "preferred_color_scheme"
-    lang = "en"
-    loading = "lazy"
 
 # Markup related configuration in Hugo
 [markup]
