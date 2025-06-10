@@ -70,12 +70,12 @@ languageName = "English"
     email = ""
     link = ""
 
-  # Comments config
+  # Global Comments config - Used when `comments: true` in front matter
   [params.comment]
-    enable = true
+    enable = true # Master switch for global comment system
     type = "giscus"
     [params.comment.giscus]
-      enable = true
+      enable = true # Giscus specific enable
       repo = "diegoscarabelli/diegoscarabelli.github.io"
       repoId = "R_kgDOOvABDQ"
       category = "Blog Comments"
@@ -88,6 +88,10 @@ languageName = "English"
       theme = "preferred_color_scheme"
       lang = "en"
       loading = "lazy"
+
+  # Page-specific Comments config - Default for pages without `comments` in front matter
+  [params.page.comment]
+    enable = false # Disable comments by default for pages without explicit front matter
 
   # Header config
   [params.header]
