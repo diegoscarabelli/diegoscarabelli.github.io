@@ -75,6 +75,7 @@ languageName = "English"
     enable = true
     type = "giscus"
     [params.comment.giscus]
+      enable = true
       repo = "diegoscarabelli/diegoscarabelli.github.io"
       repoId = "R_kgDOOvABDQ"
       category = "Blog Comments"
