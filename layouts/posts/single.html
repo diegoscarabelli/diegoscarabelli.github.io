@@ -69,10 +69,8 @@
         <div class="content" id="content">
             {{- dict "Content" .Content "Ruby" $params.ruby "Fraction" $params.fraction "Fontawesome" $params.fontawesome | partial "function/content.html" | safeHTML -}}
         </div>
-        {{- /* DEBUG Giscus Enable */ -}}
-        {{- $commentDebug := .Scratch.Get "comment" -}}
-        {{- $giscusDebug := $commentDebug.giscus | default dict -}}
-        DEBUG Giscus Enable: {{ $giscusDebug.enable }}
+        {{- /* DEBUG Giscus Site Params Enable */ -}}
+        DEBUG Site Params Giscus Enable: {{ .Site.Params.comment.giscus.enable }}
         {{- partial "single/footer.html" . -}}
         {{- partial "comment.html" . -}}
     </article>
