@@ -70,6 +70,24 @@ languageName = "English"
     email = ""
     link = ""
 
+  # Comments config
+  [params.comment]
+    enable = true
+    type = "giscus"
+    [params.comment.giscus]
+      repo = "diegoscarabelli/diegoscarabelli.github.io"
+      repoId = "R_kgDOOvABDQ"
+      category = "Blog Comments"
+      categoryId = "DIC_kwDOOvABDc4CrUWB"
+      mapping = "pathname"
+      strict = "0"
+      reactionsEnabled = "1"
+      emitMetadata = "0"
+      inputPosition = "top"
+      theme = "preferred_color_scheme"
+      lang = "en"
+      loading = "lazy"
+
   # Header config
   [params.header]
     [params.header.title]
