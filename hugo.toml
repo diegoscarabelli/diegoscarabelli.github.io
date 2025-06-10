@@ -88,8 +88,8 @@ languageName = "English"
       theme = "preferred_color_scheme"
       lang = "en"
       loading = "lazy"
-      lightTheme = "github-light"
-      darkTheme = "github-dark"
+      lightTheme = "light"
+      darkTheme = "dark"
 
   # Page-specific Comments config - Default for pages without `comments` in front matter
   [params.page.comment]
