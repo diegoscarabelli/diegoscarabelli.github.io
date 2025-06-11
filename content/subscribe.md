@@ -1,8 +1,12 @@
 ---
-title: "Subscribe to RSS Feeds"
+title: "Subscribe to RSS and Email Updates"
 ---
 
+## Email
+
 {{< subscribe >}}
+
+## RSS
 
 Stay updated with my blog by subscribing to these RSS feeds:
 
