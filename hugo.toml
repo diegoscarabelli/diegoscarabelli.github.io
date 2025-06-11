@@ -56,12 +56,12 @@ languageName = "English"
 
   [[menu.main]]
     weight = 6
-    identifier = "rss"
-    pre = ""
+    identifier = "subscribe"
+    pre = "<i class='fas fa-envelope fa-fw'></i>"
     post = ""
-    name = "RSS"
-    url = "/rss/"
-    title = "Subscribe to RSS Feeds"
+    name = "Subscribe"
+    url = "/subscribe/"
+    title = "Subscribe to RSS and Email Updates"
 
 [params]
   # Author config
@@ -69,6 +69,14 @@ languageName = "English"
     name = "Diego Scarabelli"
     email = ""
     link = ""
+
+  # Subscription config
+  [params.subscription]
+    enable = true
+    title = "Subscribe to No Spoon Labs"
+    description = "Get notified when new posts are published."
+    buttonText = "Subscribe"
+    note = "No spam, unsubscribe at any time."
 
   # Global Comments config - Used when `comments: true` in front matter
   [params.comment]

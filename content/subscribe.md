@@ -2,6 +2,8 @@
 title: "Subscribe to RSS Feeds"
 ---
 
+{{< subscribe >}}
+
 Stay updated with my blog by subscribing to these RSS feeds:
 
 - [Posts Feed](/index.xml) - All blog posts
