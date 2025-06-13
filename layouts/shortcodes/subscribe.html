@@ -1,3 +1,15 @@
-{{- if .Site.Params.subscription.enable -}}
-{{- partial "subscribe.html" . -}}
-{{- end -}} 
+<form
+  action="https://buttondown.com/api/emails/embed-subscribe/nospoonlabs"
+  method="post"
+  target="popupwindow"
+  onsubmit="window.open('https://buttondown.com/nospoonlabs', 'popupwindow')"
+  class="subscribe-form"
+>
+    <p>Get notified when new posts are published.</p>
+    <div class="form-group">
+        <input type="email" name="email" id="bd-email" placeholder="Enter your email" required>
+    </div>
+    <input type="hidden" value="1" name="embed">
+    <button type="submit">Subscribe</button>
+    <p class="subscribe-note">Unsubscribe at any time.</p>
+</form> 

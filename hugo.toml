@@ -111,7 +111,7 @@ languageName = "English"
   # Home page config
   [params.home]
     [params.home.profile]
-    subtitle = "Wake up..."
+    subtitle = "Wake up ..."
 
   [params.search]
     enable = true
