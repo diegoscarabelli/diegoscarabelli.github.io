@@ -7,7 +7,7 @@ title: "About"
     <div style="font-size: 0.9em; color: var(--secondary-color);">Diego Scarabelli</div>
 </div>
 
-My need to understand how things work began at a young age, sparked by books like "I Mille Perchè". Exceptional teachers during my childhood and adolescence, alongside stimulating and demanding academic environments, further fueled my drive to dissect problems into core components, reveal relationships, and model the forces that determine their dynamics. I feel privileged to have pursued this education and am very grateful to my teachers and class mates.
+My need to understand how things work began at a young age, sparked by books like "I Mille Perchè". Exceptional teachers during my childhood and adolescence, alongside stimulating and rigorous academic environments, further fueled my drive to dissect problems into core components, reveal relationships, and model the forces that determine their dynamics. I feel privileged to have pursued this education and am very grateful to my teachers and classmates.
 <br>
 <br>
 This forensic mindset, both entertaining and exasperating for those around me, has never been confined to science or my recent work in high-performance computing. I believe it is worthy of application to every aspect of life, often leading to polemic scrutiny of received wisdom, authority, and established systems of power. As a result, discussions are frequently... well-seasoned! 🌶️

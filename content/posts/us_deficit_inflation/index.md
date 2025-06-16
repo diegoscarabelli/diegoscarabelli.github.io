@@ -20,7 +20,7 @@ This question arose from a discussion about an excerpt from [The Deficit Myth](h
 
 To answer this question, I used data directly from the Federal Reserve Bank's [FRED](https://fred.stlouisfed.org/) datasets. To avoid bias, I did not consult other analyses before conducting my own. My goal was to approach the problem with simple, logical, and statistically sound steps, aiming for a clear answer to a straightforward question.
 
-Below are my findings. For a detailed explanation of the process and reasoning behind each step, keep reading.
+Below are my findings. For a detailed explanation of the process and reasoning behind each step, keep reading. This is the source [Jupyter Notebook](https://github.com/diegoscarabelli/diegoscarabelli.github.io/blob/main/content/posts/us_deficit_inflation/index.ipynb).
 
 ## Findings
 
