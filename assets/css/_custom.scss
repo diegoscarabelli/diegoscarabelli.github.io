@@ -26,3 +26,14 @@
 .home-profile .home-subtitle {
   font-size: 1.4em !important; /* Or any other size you prefer */
 }
+
+/* Add borders to markdown tables and their cells, ensuring visibility and proper rendering */
+main.main .post-content table {
+    border-collapse: collapse !important;
+}
+
+main.main .post-content table th,
+main.main .post-content table td {
+    border: 1px solid #666 !important; /* A darker gray for better visibility */
+    padding: 8px !important; /* Add some padding for better readability */
+}
