@@ -8,7 +8,9 @@ Below is a selection of books I've read in the past few years and found worth re
 
 | Title | Author(s) | Publication Year | Review |
 |---|---|---|---|
-| [The Expanse Series](https://www.goodreads.com/series/56399-the-expanse) | James S.A. Corey | 2011-2021 | A masterful space opera series that combines political intrigue, hard science fiction, and compelling character development. The series follows humanity's expansion into the solar system and beyond, dealing with complex themes of colonialism, power, and survival. |
+| [Understanding Power: The Indispensable Chomsky](https://www.goodreads.com/book/show/194805.Understanding_Power) | Noam Chomsky, Peter R. Mitchell, John Schoeffel | 2002 | I had never heard anyone before speaking so much of own thoughts  |
+| [The Expanse Series](https://www.goodreads.com/series/56399-the-expanse) | James S.A. Corey | 2011-2021 | I have read the nine core books in this hard science fiction series and watched the TV show based on them. It is a masterful space opera about humanity's expansion into the solar system and beyond, dealing with complex themes of colonialism, power, and survival. Technical and scientific topics are treated with much-appreciated thoughtfulness. |
+| [The Mercy of Gods](https://www.goodreads.com/book/show/201930181-the-mercy-of-gods) | James S.A. Corey | 2024 | Aliens rule over humans, who must learn how to accept the new reality, not self-destruct, and survive. I found interesting reflections on leadership. |
 | [A Brief History of Equality](https://www.goodreads.com/book/show/58663801-a-brief-history-of-equality) | Thomas Piketty | 2021 | |
 | [Atomic Habits: An Easy & Proven Way to Build Good Habits & Break Bad Ones](https://www.goodreads.com/book/show/40121378-atomic-habits) | James Clear | 2018 | |
 | [Capital and Ideology](https://www.goodreads.com/book/show/50861343-capital-and-ideology) | Thomas Piketty | 2019 | |
@@ -26,13 +28,12 @@ Below is a selection of books I've read in the past few years and found worth re
 | [Superluminary: The Complete Trilogy](https://www.goodreads.com/book/show/26884483-superluminary) | John C. Wright | 2015 | |
 | [The Brave Athlete: Calm the F--k Down and Rise to the Occasion](https://www.goodreads.com/book/show/32202353-the-brave-athlete) | Simon Marshall, Lesley Paterson | 2017 | |
 | [The Hidden Wealth of Nations: The Scourge of Tax Havens](https://www.goodreads.com/book/show/24432194-the-hidden-wealth-of-nations) | Gabriel Zucman | 2013 | |
-| [The Mercy of Gods](https://www.goodreads.com/book/show/62919429-the-mercy-of-gods) | James S.A. Corey | 2024 | |
+
 | [The Panama Papers: How the World's Rich and Powerful Hide Their Money](https://www.goodreads.com/book/show/34507561-the-panama-papers) | Frederik Obermaier, Bastian Obermayer | 2016 | |
 | [The Responsible Company: What We've Learned from Patagonia's First 40 Years](https://www.goodreads.com/book/show/13154240-the-responsible-company) | Yvon Chouinard, Vincent Stanley | 2012 | |
 | [The Triumph of Injustice: How the Rich Dodge Taxes and How to Make Them Pay](https://www.goodreads.com/book/show/45894166-the-triumph-of-injustice) | Emmanuel Saez, Gabriel Zucman | 2019 | |
 | [The War of Art: Break Through the Blocks & Win Your Inner Creative Battles](https://www.goodreads.com/book/show/1319.The_War_of_Art) | Steven Pressfield | 2002 | |
-| [Understanding Power: The Indispensable Chomsky](https://www.goodreads.com/book/show/11057.Understanding_Power) | Noam Chomsky, Peter R. Mitchell, John Schoeffel | 2002 | |
-| [What Color Is Your Parachute?: Your Guide to a Lifetime of Meaningful Work and Career Success](https://www.goodreads.com/book/show/59152.What_Color_Is_Your_Parachute_) | Richard N. Bolles | 1970 | |
+
 | [Winners Take All: The Elite Charade of Changing the World](https://www.goodreads.com/book/show/37506349-winners-take-all) | Anand Giridharadas | 2018 | |
 | [Work Without Stress: Building a Resilient Mindset for Lasting Success](https://www.goodreads.com/book/show/35564273-work-without-stress) | Derek Roger, Nick Petrie | 2017 | |
 
