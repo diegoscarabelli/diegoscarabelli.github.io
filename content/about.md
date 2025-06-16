@@ -7,13 +7,13 @@ title: "About"
     <div style="font-size: 0.9em; color: var(--secondary-color);">Diego Scarabelli</div>
 </div>
 
-My fascination with understanding how things work began at a young age, sparked by books like "I Mille Perchè". Exceptional teachers during my childhood and adolescence, alongside stimulating and demanding academic environments, further fueled my drive to dissect problems into core components, reveal relationships, and model the forces that determine their dynamics. I feel privileged to have pursued this education and am very grateful to my teachers.
+My need to understand how things work began at a young age, sparked by books like "I Mille Perchè". Exceptional teachers during my childhood and adolescence, alongside stimulating and demanding academic environments, further fueled my drive to dissect problems into core components, reveal relationships, and model the forces that determine their dynamics. I feel privileged to have pursued this education and am very grateful to my teachers and class mates.
 <br>
 <br>
-This habit of critical thinking, which I'm sure some find at times entertaining at times exhausting, hasn't been confined to science or building high-performance computing systems. I'm convinced it can be applied to every aspect of life, often leading to a polemical scrutiny of assumed knowledge, authority, and established power structures. This quality ensures my relationships are always... well-seasoned! 🌶️
+This forensic mindset, both entertaining and exasperating for those around me, has never been confined to science or my recent work in high-performance computing. I believe it is worthy of application to every aspect of life, often leading to polemic scrutiny of received wisdom, authority, and established systems of power. As a result, discussions are frequently... well-seasoned! 🌶️
 <br>
 <br>
-So, this blog serves as an outlet for these explorations. Content ranges from in-depth analyses to commentaries and educational material. Topics will vary based on my current interests or your suggestions. I look forward to connecting with you and reading your thoughtful comments, and the less so, if they are funny! Together, we have a better chance of getting closer to the truth.
+This blog serves as an outlet for these explorations. Content ranges from in-depth analyses to commentaries and educational resources. Subjects will vary based on my evolving interests and your recommendations. I look forward to connecting with you in the comments or any of the contacts below. Collaboration takes us closer to truth.
 <br>
 <div style="display:flex; justify-content:center; align-items:center; min-height:20vh;">
   <blockquote style="font-size:1.2em; border-left:6px solid #ccc; margin:0 auto; display:block; text-align:left; max-width:600px; font-style:italic; padding:2em 2em 1em 2em; box-shadow:0 2px 8px rgba(0,0,0,0.04); position:relative;">
