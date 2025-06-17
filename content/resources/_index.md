@@ -2,57 +2,69 @@
 title: "Resources"
 ---
 
-## Book Reviews
+## Books
 
-Below is a selection of books I've read in the past few years and found worth recommending.
+Below is a selection of books I've read in the most recent few years and find worth recommending.
 
-| Title | Author(s) | Publication Year | Review |
-|---|---|---|---|
-| [Understanding Power: The Indispensable Chomsky](https://www.goodreads.com/book/show/194805.Understanding_Power) | Noam Chomsky, Peter R. Mitchell, John Schoeffel | 2002 | I had never heard anyone before speaking so much of own thoughts  |
-| [The Expanse Series](https://www.goodreads.com/series/56399-the-expanse) | James S.A. Corey | 2011-2021 | I have read the nine core books in this hard science fiction series and watched the TV show based on them. It is a masterful space opera about humanity's expansion into the solar system and beyond, dealing with complex themes of colonialism, power, and survival. Technical and scientific topics are treated with much-appreciated thoughtfulness. |
-| [The Mercy of Gods](https://www.goodreads.com/book/show/201930181-the-mercy-of-gods) | James S.A. Corey | 2024 | Aliens rule over humans, who must learn how to accept the new reality, not self-destruct, and survive. I found interesting reflections on leadership. |
-| [A Brief History of Equality](https://www.goodreads.com/book/show/58663801-a-brief-history-of-equality) | Thomas Piketty | 2021 | |
-| [Atomic Habits: An Easy & Proven Way to Build Good Habits & Break Bad Ones](https://www.goodreads.com/book/show/40121378-atomic-habits) | James Clear | 2018 | |
-| [Capital and Ideology](https://www.goodreads.com/book/show/50861343-capital-and-ideology) | Thomas Piketty | 2019 | |
-| [Capital in the Twenty-First Century](https://www.goodreads.com/book/show/18736925-capital-in-the-twenty-first-century) | Thomas Piketty | 2013 | |
-| [Deep Work: Rules for Focused Success in a Distracted World](https://www.goodreads.com/book/show/25744928-deep-work) | Cal Newport | 2016 | |
-| [Dune](https://www.goodreads.com/book/show/44767458-dune) | Frank Herbert | 1965 | |
-| [Dune Messiah](https://www.goodreads.com/book/show/105.Dune_Messiah) | Frank Herbert | 1969 | |
-| [Evicted: Poverty and Profit in the American City](https://www.goodreads.com/book/show/25852784-evicted) | Matthew Desmond | 2016 | |
-| [Let My People Go Surfing: The Education of a Reluctant Businessman](https://www.goodreads.com/book/show/52316.Let_My_People_Go_Surfing) | Yvon Chouinard | 2005 | |
-| [Live Work Work Work Die: A Journey into the Savage Heart of Silicon Valley](https://www.goodreads.com/book/show/36360492-live-work-work-work-die) | Corey Pein | 2018 | |
-| [Living Beautifully with Uncertainty and Change](https://www.goodreads.com/book/show/13514081-living-beautifully-with-uncertainty-and-change) | Pema Chödrön | 2012 | |
-| [Manufacturing Consent: The Political Economy of the Mass Media](https://www.goodreads.com/book/show/11053.Manufacturing_Consent) | Edward S. Herman, Noam Chomsky | 1988 | |
-| [Permutation City](https://www.goodreads.com/book/show/156784.Permutation_City) | Greg Egan | 1994 | |
-| [Poverty, by America](https://www.goodreads.com/book/show/61221764-poverty-by-america) | Matthew Desmond | 2023 | |
-| [Superluminary: The Complete Trilogy](https://www.goodreads.com/book/show/26884483-superluminary) | John C. Wright | 2015 | |
-| [The Brave Athlete: Calm the F--k Down and Rise to the Occasion](https://www.goodreads.com/book/show/32202353-the-brave-athlete) | Simon Marshall, Lesley Paterson | 2017 | |
-| [The Hidden Wealth of Nations: The Scourge of Tax Havens](https://www.goodreads.com/book/show/24432194-the-hidden-wealth-of-nations) | Gabriel Zucman | 2013 | |
-
-| [The Panama Papers: How the World's Rich and Powerful Hide Their Money](https://www.goodreads.com/book/show/34507561-the-panama-papers) | Frederik Obermaier, Bastian Obermayer | 2016 | |
-| [The Responsible Company: What We've Learned from Patagonia's First 40 Years](https://www.goodreads.com/book/show/13154240-the-responsible-company) | Yvon Chouinard, Vincent Stanley | 2012 | |
-| [The Triumph of Injustice: How the Rich Dodge Taxes and How to Make Them Pay](https://www.goodreads.com/book/show/45894166-the-triumph-of-injustice) | Emmanuel Saez, Gabriel Zucman | 2019 | |
-| [The War of Art: Break Through the Blocks & Win Your Inner Creative Battles](https://www.goodreads.com/book/show/1319.The_War_of_Art) | Steven Pressfield | 2002 | |
-
-| [Winners Take All: The Elite Charade of Changing the World](https://www.goodreads.com/book/show/37506349-winners-take-all) | Anand Giridharadas | 2018 | |
-| [Work Without Stress: Building a Resilient Mindset for Lasting Success](https://www.goodreads.com/book/show/35564273-work-without-stress) | Derek Roger, Nick Petrie | 2017 | |
-
-## Useful Links
-
-Here are some useful resources I've found:
-
-- **Resource 1**  
-  Description and [link](#).
-
-- **Resource 2**  
-  Description and [link](#).
+| Title | Author(s) | Publication Year | Genre | Review |
+|---|---|---|---|---|
+| [Let My People Go Surfing: The Education of a Reluctant Businessman](https://www.goodreads.com/book/show/22155.Let_My_People_Go_Surfing) | Yvon Chouinard | 2005 | Business | Chouinard's commitment to environmental responsibility and ethical business practices is laudable. While I admired his principles and passion for nature, I was uncomfortable with the paternalistic tone and sense of ownership, reflected even in the title. |
+| [The Responsible Company: What We've Learned from Patagonia's First 40 Years](https://www.goodreads.com/book/show/13434697-the-responsible-company) | Yvon Chouinard, Vincent Stanley | 2012 | Business | A very reasonable, but unfortunately rare, approach to the production of consumer goods. If only there were governments enforcing some of the practices discussed in this book... |
+| [Live Work Work Work Die: A Journey into the Savage Heart of Silicon Valley](https://www.goodreads.com/book/show/35684687-live-work-work-work-die) | Corey Pein | 2018 | Business | Hilarious chronicle of an attempt to ride the hyper-capitalist carousel of the silicon valley startup dream. |
+| [The Panama Papers: How the World's Rich and Powerful Hide Their Money](https://www.goodreads.com/book/show/34507561-the-panama-papers) | Frederik Obermaier, Bastian Obermayer | 2016 | Investigative Journalism | This book is incredibly powerful. It tells the story behind the massive leak that exposed global corruption, criminal activity, and tax evasion. The level of detail provided by the authors is impressive, and it's just the tip of the iceberg. I was especially struck by the courage of the hundreds of journalists who risked so much to bring these stories to the public. The chapters are quite independent, so you can start wherever you like. I recommend beginning with the epilogue! https://www.icij.org/investigations/panama-papers/ |
+| [Atomic Habits: An Easy & Proven Way to Build Good Habits & Break Bad Ones](https://www.goodreads.com/book/show/40121378-atomic-habits) | James Clear | 2018 | Psychology | This book provides a practical framework for making small changes that lead to remarkable results by building good habits (and getting rid of unhelpful ones). |
+| [Living Beautifully with Uncertainty and Change](https://www.goodreads.com/book/show/13414918-living-beautifully-with-uncertainty-and-change) | Pema Chödrön | 2012 | Psychology | Although I often found it hard to grasp the practicality of some recommendations, I enjoyed the challenge and highly respect the altruistic culture and philosophy of acceptance. |
+| [Emotional Agility: Get Unstuck, Embrace Change, and Thrive in Work and Life](https://www.goodreads.com/book/show/27209485-emotional-agility) | Susan David | 2016 | Psychology | Flexibility and self-compassion are discussed as the key ingredients to a resilient and adaptable mindset. Chapter 10, about helping children, resonated particularly strongly with me, not only because I am a father, but because it reminded me how important it is to treat our-own selves (and other adults) with the same degree of compassion and understanding that is often reserved for the youngest learners among us. |
+| [How To Control Your Anger Before It Controls You](https://www.goodreads.com/book/show/410046.How_To_Control_Your_Anger_Before_It_Controls_You) | Albert Ellis | 1997 | Psychology | I found this book very practical and eye-opening, although at times examples might have not aged well. The book offers actionable strategies to help readers recognize triggers, challenge irrational beliefs, and develop healthier responses to anger and other unhelpful thought patterns. |
+| [The Brave Athlete: Calm the F--k Down and Rise to the Occasion](https://www.goodreads.com/book/show/34625105-the-brave-athlete) | Simon Marshall, Lesley Paterson | 2017 | Psychology | Although focused on athletic performance, the practical cognitive behavioral techniques it offers can help you better manage your thoughts and emotions when facing everyday life challenges. |
+| [Deep Work: Rules for Focused Success in a Distracted World](https://www.goodreads.com/book/show/25744928-deep-work) | Cal Newport | 2016 | Psychology | Offers practical tips for achieving a highly focused and productive mindset when needed. |
+| [Work Without Stress: Building a Resilient Mindset for Lasting Success](https://www.goodreads.com/book/show/29781510-work-without-stress) | Derek Roger, Nick Petrie | 2017 | Psychology | Stress can be avoided. This book offers very practical behavioral techniques for building a resilient mindset. A book to keep close and consult often. |
+| [Why We Sleep: Unlocking the Power of Sleep and Dreams](https://www.goodreads.com/book/show/34466963-why-we-sleep) | Matthew Walker | 2017 | Science | A thorough and engaging look at the science of sleep, its crucial impact on our health, and the risks of not getting enough rest. Losing sleep while caring for my two young children motivated me to pick it up. Since then, I have gained a much deeper appreciation for the importance of consistently prioritizing good sleep. |
+| [Ender's Game Trilogy](https://www.goodreads.com/book/show/375802.Ender_s_Game) | Orson Scott Card | 1985-1991 | Science Fiction | The trilogy (Ender's Game, Speaker for the Dead, Xenocide) explores the psychological and ethical challenges of war, leadership, and empathy. The first book is a gripping coming-of-age story set in a militarized future, while the sequels delve into deeper philosophical questions about understanding the "other" and the consequences of our choices. |
+| [The Three-Body Problem Trilogy: Remembrance of Earth's Past](https://www.goodreads.com/book/show/66430140-the-three-body-problem-trilogy) | Liu Cixin | 2008-2016 | Science Fiction | Like with Asimov's Foundation series, I fell for this story. It explores humanity's first contact with an alien civilization. It combines hard science fiction concepts with philosophical reflections on war, technology, and survival. The narrative is complex and thought-provoking. The Netflix series adaption an abomination. |
+| [The Expanse Series](https://www.goodreads.com/series/56399-the-expanse) | James S.A. Corey | 2011-2021 | Science Fiction | I have read the nine core books in this hard science fiction series and watched the TV show based on them. It is a masterful space opera about humanity's expansion into the solar system and beyond, dealing with complex themes of colonialism, power, and survival. Technical and scientific topics are treated with much-appreciated thoughtfulness. |
+| [The Mercy of Gods](https://www.goodreads.com/book/show/201930181-the-mercy-of-gods) | James S.A. Corey | 2024 | Science Fiction | Aliens rule over humans, who must learn how to accept the new reality, not self-destruct, and survive. I found particularly interesting the reflections on leadership. |
+| [Superluminary: The Complete Trilogy](https://www.goodreads.com/book/show/43803249-superluminary) | John C. Wright | 2017-2018 | Science Fiction | Wild, mind-bending sci-fi packed with big ideas, crazy physics, and questions about power and what it means to be conscious. If you like stories that really push the limits, you'll have fun with this one. |
+| [The Golden Oecumene Trilogy](https://www.goodreads.com/series/41545-the-golden-oecumene) | John C. Wright | 2002-2003 | Science Fiction | One of my favorite sci-fi stories, a far-future thriller exploring identity, consciousness, and society in a world of near-limitless possibility. |
+| [Understanding Power: The Indispensable Chomsky](https://www.goodreads.com/book/show/194805.Understanding_Power) | Noam Chomsky, Peter R. Mitchell, John Schoeffel | 2002 | Social Sciences | This book resonated deeply with me, articulating many thoughts and facts I had not heard expressed elsewhere. Chomsky's clarity, incisiveness and carefully collected facts, cut through propaganda and expose the oligarchic systems that rule and deceive us. |
+| [Poverty, by America](https://www.goodreads.com/book/show/61358638-poverty-by-america) | Matthew Desmond | 2023 | Social Sciences | This book exposes the deliberate systems and choices that keep millions in poverty, challenging readers to confront uncomfortable truths and consider their own roles in the cycle of exploitation. |
+| [Winners Take All: The Elite Charade of Changing the World](https://www.goodreads.com/book/show/37506348-winners-take-all) | Anand Giridharadas | 2018 | Social Sciences | This book pulls no punches in exposing plutocracy and the self-serving systems that allow the rich and powerful to maintain and expand their influence. It incisively critiques the barriers to real change and the feedback loops that perpetuate inequality. |
+| [The Panama Papers: How the World's Rich and Powerful Hide Their Money](https://www.goodreads.com/book/show/34507561-the-panama-papers) | Frederik Obermaier, Bastian Obermayer | 2016 | Social Sciences | This book is incredibly powerful. It tells the story behind the massive leak that exposed global corruption, criminal activity, and tax evasion. The level of detail provided by the authors is impressive, and it's just the tip of the iceberg. I was especially struck by the courage of the hundreds of journalists who risked so much to bring these stories to the public. The chapters are quite independent, so you can start wherever you like. I recommend beginning with the epilogue! https://www.icij.org/investigations/panama-papers/ |
+| [A Brief History of Equality](https://www.goodreads.com/book/show/58985601-a-brief-history-of-equality) | Thomas Piketty | 2021 | Social Sciences | Like Piketty's other works, this book rewards multiple readings. It masterfully weaves global historical analysis, rigorous data, and bold proposals into a compelling narrative about the ongoing struggle for greater equality of rights, opportunity, and power. |
+| [Capital and Ideology](https://www.goodreads.com/book/show/50849430-capital-and-ideology) | Thomas Piketty | 2019 | Social Sciences | Building on the foundation of *Capital in the Twenty-First Century*, Piketty explores how different societies have chosen to organize their economies throughout history, focusing on the ideologies that underpin these choices. I was impressed by the depth of his research and found his arguments for participatory socialism the necessary future we ought to build. |
+| [Capital in the Twenty-First Century](https://www.goodreads.com/book/show/18736925-capital-in-the-twenty-first-century) | Thomas Piketty | 2013 | Social Sciences | A monumental treatise on the dynamics of capital, with a focus on its distribution. As always, I was impressed by the painstaking work and intellectual candor that Piketty and his collaborators display in discussing the data and its implications. A foundational book for anyone interested in understanding inequality, one of the most pressing issues we face today. |
+| [The Triumph of Injustice: How the Rich Dodge Taxes and How to Make Them Pay](https://www.goodreads.com/book/show/45894166-the-triumph-of-injustice) | Emmanuel Saez, Gabriel Zucman | 2019 | Social Sciences | I valued the clear and compelling historical overview that underpins the authors' proposals for reforming an unequal and anti-democratic tax system. https://taxjusticenow.org/ |
+| [The Hidden Wealth of Nations: The Scourge of Tax Havens](https://www.goodreads.com/book/show/25245967-the-hidden-wealth-of-nations) | Gabriel Zucman | 2013 | Social Sciences | The measurement of worldwide tax evasion is insightful and profoundly disheartening, especially since it could be entirely avoided with feasible solutions and sufficient political determination. |
+| [Chips and Change: How Crisis Reshapes the Semiconductor Industry](https://www.goodreads.com/book/show/7555422-chips-and-change) | Clair Brown, Greg Linden | 2009 | Technology | A detailed look at the evolution of the semiconductor industry, focusing on how companies have adapted to cutthroat competition, crises and technological shifts. |
+| [The Hardware Startup: Building Your Product, Business, and Brand](https://www.goodreads.com/book/show/19485100-the-hardware-startup) | Renee DiResta, Brady Forrest, Ryan Vinyard | 2015 | Technology | A practical guide for entrepreneurs looking to bring hardware products to market. The book covers prototyping, manufacturing, funding, and scaling, with case studies and actionable advice. |
+| [The Supermen: The Story of Seymour Cray and the Technical Wizards Behind the Supercomputer](https://www.goodreads.com/book/show/116196.The_Supermen) | Charles J. Murray | 1997 | Technology | A fascinating account of Seymour Cray and the engineers who pioneered the supercomputer industry. The book provides insight into the personalities, technical challenges, and innovations that shaped high-performance computing. |
+| [Fabless: The Transformation of the Semiconductor Industry](https://www.goodreads.com/book/show/20935821-fabless) | Daniel Nenni, Paul McLellan | 2013 | Technology | An in-depth look at the rise of fabless semiconductor companies and how this business model revolutionized the chip industry. The book covers the history, key players, and the impact of this transformation on innovation and global competition. |
 
 ## Media
 
-Here are some videos or websites I recommend:
+Throughout my years on YouTube, I've discovered several exceptional content creators you might have not heard about and might find interesting:
 
-- **Video Title**  
-  Description and [link](#).
+### Science & Education
+- [3Blue1Brown](https://www.youtube.com/@3blue1brown): Beautiful visual explanations of mathematical concepts
+- [AlphaPhoenix](https://www.youtube.com/@AlphaPhoenix): Physics experiments and scientific demonstrations
+- [Institute of Human Anatomy](https://www.youtube.com/@theanatomylab): Educational content about human anatomy
+- [Kurzgesagt](https://www.youtube.com/@kurzgesagt): Animated educational videos about science
+- [Steve Mould](https://www.youtube.com/@SteveMould): Science demonstrations and explanations
+- [Branch Education](https://www.youtube.com/@BranchEducation): Educational content about technology and engineering with incredible graphics
 
-- **Website**  
-  Description and [link](#). 
+### Music
+- [Drumeo](https://www.youtube.com/@DrumeoOfficial): Drums
+- [Rick Beato](https://www.youtube.com/@RickBeato): Guitar
+- [Benn Jordan](https://www.youtube.com/@BennJordan): Music production and technology
+
+### Politics & Economics
+- [More Perfect Union](https://www.youtube.com/@MorePerfectUnion): Progressive political news and analysis
+- [The Market Exit](https://www.youtube.com/@TheMarketExit): Financial analysis and market commentary
+- [1Dime](https://www.youtube.com/@1Dimee): Economic and political analysis
+
+### Entertainment
+- [Harmen Hoek](https://www.youtube.com/@HarmenHoek): Silent and stunning hiking films
+- [AverageRob](https://www.youtube.com/@AverageRob): Mediocre dudes from Belgium
+- [Ephemeral Rift](https://www.youtube.com/@EphemeralRift): ASMR?
+- [Country life vlog](https://www.youtube.com/@country_life_vlog): A mind massage before sleep
+- [Hambini](https://www.youtube.com/@Hambini): Destroys bikes like a 5 year old
