@@ -37,3 +37,30 @@ main.main .post-content table td {
     border: 1px solid #666 !important; /* A darker gray for better visibility */
     padding: 8px !important; /* Add some padding for better readability */
 }
+
+/* Make table of contents background transparent */
+.toc {
+    .toc-title {
+        background: transparent !important;
+    }
+    
+    .toc-content {
+        background-color: transparent !important;
+    }
+}
+
+#toc-static {
+    .toc-title {
+        background: transparent !important;
+    }
+    
+    .toc-content {
+        background-color: transparent !important;
+    }
+    
+    &.open {
+        .toc-title {
+            background: transparent !important;
+        }
+    }
+}
