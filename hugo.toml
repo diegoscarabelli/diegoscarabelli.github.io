@@ -121,6 +121,10 @@ languageName = "English"
   [params.list]
     dateFormat = "2006-01-02"   
 
+  # App config
+  [params.app]
+    title = "No Spoon Labs"
+
 # Markup related configuration in Hugo
 [markup]
   # Syntax Highlighting (https://gohugo.io/content-management/syntax-highlighting)
