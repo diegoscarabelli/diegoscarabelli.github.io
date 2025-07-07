@@ -29,11 +29,11 @@ Email subscriptions are managed with [Buttondown](https://buttondown.email/), a 
 - [`assets/`](assets/): Stores asset files such as CSS, JS, or images to be processed by Hugo’s asset pipeline.
 - [`config/`](config/): (Currently empty) Intended for Hugo configuration files, e.g., per-environment settings.
 - [`content/`](content/): Main content directory containing all site pages and posts.
-    - [`_index.md`](content/_index.md): Defines the homepage content and metadata, such as the site introduction, featured posts, or custom sections shown on the landing page.
-    - [`posts/`](content/posts/): Directory for all blog posts, each as a separate Markdown file. Posts typically include front matter (title, date, tags, etc.) and the main article content. Hugo uses this directory to generate individual blog post pages and blog indexes.
-    - [`about.md`](content/about.md): Contains the About page, describing the site's purpose, author background, and any relevant information for visitors.
-    - [`subscribe.md`](content/subscribe.md): Provides subscription instructions and embeds the Buttondown email subscription form, allowing users to sign up for updates.
-    - [`resources/`](content/resources/): Contains additional resources, curated link collections, or reference materials relevant to the blog's topics.
+    - [`_index.md`](content/_index.md): Defines the homepage content and metadata, including a brief introduction and a list of featured or recent posts.
+    - [`posts/`](content/posts/): Contains all blog post Markdown files. Each file represents a single post and includes front matter (title, date, tags) and the main article content.
+    - [`about.md`](content/about.md): Provides information about the author and the purpose of the site.
+    - [`subscribe.md`](content/subscribe.md): Contains a subscription form for users to sign up for email and RSS updates.
+    - [`resources/`](content/resources/): Curated resources, including book recommendations with personal reviews and a selection of noteworthy YouTube channels.
 - [`data/`](data/): (Currently empty) For custom data files (YAML, JSON, TOML) used by Hugo.
 - [`i18n/`](i18n/): (Currently empty) For translation files to support multilingual content. If present, files in this folder override those in the LoveIt theme’s own `i18n/` directory, allowing you to customize or extend translations for your site.
 - [`layouts/`](layouts/): Custom Hugo templates and partials that override or extend the theme’s own `layouts/` files. Hugo uses files in this folder in preference to those in [`themes/LoveIt/layouts/`](themes/LoveIt/layouts/), allowing you to customize the site’s appearance and behavior without modifying the theme directly.
