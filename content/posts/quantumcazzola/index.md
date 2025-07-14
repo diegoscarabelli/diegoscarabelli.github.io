@@ -28,7 +28,7 @@ Instead, I aim to provide a clear comparison between what these companies have p
 
 ## Promises vs Achievements
 
-In the table below, I have summarized the promises made by each company, the dates of those promises, and the achievements they have made by July 2025. The "Promise Date" column indicates when the promise was made, while the "Achievement Date" column shows when the achievement was actually realized. If a promise has not been achieved yet, it is marked as "No" in the "Achieved" column. 
+Below is a summary table comparing the promises made by Rigetti Computing, IonQ, and D-Wave, alongside the dates those promises were announced and the corresponding achievements realized by July 2025. The "Promise Date" column records when each commitment was made, while the "Achievement Date" notes when a milestone was actually reached. If a promise remains unfulfilled, the "Achieved" column is marked "No." Some entries highlight achievements not directly tied to a prior public promise, but are included to illustrate the companies' technical progress over time.
 
 Company | Promise Date | Promise | Achieved (July 2025) | Achievement Date | Notes | References
 --- | --- | --- | --- | --- | --- | ---
