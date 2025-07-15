@@ -78,30 +78,25 @@ languageName = "English"
     buttonText = "Subscribe"
     note = "No spam, unsubscribe at any time."
 
-  # Global Comments config - Used when `comments: true` in front matter
-  [params.comment]
-    enable = true # Master switch for global comment system
-    type = "giscus"
-    [params.comment.giscus]
-      enable = true # Giscus specific enable
+  # Comments config
+  [params.page.comment]
+    enable = true # Default: enable comments on all pages (can be overridden in front matter)
+    [params.page.comment.giscus]
+      enable = true
       repo = "diegoscarabelli/diegoscarabelli.github.io"
       repoId = "R_kgDOOvABDQ"
       category = "Blog Comments"
       categoryId = "DIC_kwDOOvABDc4CrUWB"
       mapping = "pathname"
-      strict = "0"
+      strict = "1"
       reactionsEnabled = "1"
       emitMetadata = "0"
       inputPosition = "top"
-      theme = "preferred_color_scheme"
       lang = "en"
-      loading = "lazy"
+      lazyLoading = true
+      theme = "preferred_color_scheme"
       lightTheme = "light"
       darkTheme = "dark"
-
-  # Page-specific Comments config - Default for pages without `comments` in front matter
-  [params.page.comment]
-    enable = false # Disable comments by default for pages without explicit front matter
 
   # Header config
   [params.header]

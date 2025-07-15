@@ -6,7 +6,7 @@
 {{- $commentParams := dict -}}
 
 {{- if eq .Params.comments true -}}
-    {{- $commentParams = .Site.Params.comment | default dict -}}
+    {{- $commentParams = .Site.Params.page.comment | default dict -}}
     {{- $isCommentEnabledForPage = true -}}
 {{- else if eq .Params.comments false -}}
     {{- $isCommentEnabledForPage = false -}}
