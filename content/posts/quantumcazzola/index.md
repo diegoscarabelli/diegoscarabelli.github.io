@@ -1,6 +1,6 @@
 ---
 date: "2025-07-10"
-lastmod: "2025-07-10"
+lastmod: "2025-07-16"
 author: "Diego Scarabelli"
 title: "A Quantumcazzola"
 description: "Do the quantum computing unicorns keep their promises?"
