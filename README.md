@@ -14,8 +14,12 @@
 - Builds the site in production mode.
 - Deploys the generated static files to GitHub Pages.
 
-### Page Views with Busuanzi
-Page view counts are displayed using [Busuanzi](http://busuanzi.ibruce.info/), a free, privacy-friendly service that tracks and displays page and site view counts. The integration is done by including the Busuanzi script in [`layouts/partials/footer.html`](layouts/partials/footer.html) and displaying the view count in [`layouts/posts/single.html`](layouts/posts/single.html). Busuanzi works by running a JavaScript script in each visitor's browser (client side). When a user loads a page, the script sends a request to Busuanzi's server, which increments and stores the view count for that specific page. The server then returns the updated total, which is displayed on the page. This mechanism means that all users' views are aggregated and recorded on Busuanzi's server, but the counting is triggered by each user's browser when they visit the page.
+### Analytics with GoatCounter
+Page view analytics are powered by [GoatCounter](https://www.goatcounter.com/), a privacy-first analytics service that avoids tracking personal data or using cookies. Integration is accomplished by including the GoatCounter script in [`layouts/partials/footer.html`](layouts/partials/footer.html). This lightweight JavaScript snippet anonymously records page views, providing insight into site traffic and popular content while respecting user privacy. Analytics are accessible via the GoatCounter dashboard and are used exclusively to understand usage patterns.
+
+I considered displaying page view counts directly in post metadata, but encountered several technical challenges:
+- GoatCounter’s JSON API is not accessible from frontend JavaScript due to CORS restrictions; browser requests to the API result in errors because the required `Access-Control-Allow-Origin` header is missing. The API is designed for server-side use only.
+- GoatCounter’s `visit_count()` widget offers limited customization and is difficult to style with CSS. Its JSON extension and iframe-based approaches also suffer from CORS limitations and cannot be easily integrated into the frontend.
 
 ### Comments via GitHub Discussions
 Comments are enabled via [GitHub Discussions](https://github.com/diegoscarabelli/diegoscarabelli.github.io/discussions), using the [Giscus](https://giscus.app/) integration. Each post has a linked discussion thread in the [Blog Comments category](https://github.com/diegoscarabelli/diegoscarabelli.github.io/discussions/categories/blog-comments). When a user visits a post, the Giscus widget loads the relevant discussion, allowing readers to comment using their GitHub account. Configuration is in [`hugo.toml`](hugo.toml) under `[params.comment.giscus]`.

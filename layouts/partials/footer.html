@@ -23,54 +23,5 @@
     </div>
     <!-- GoatCounter analytics - privacy-friendly page view counter -->
     <script data-goatcounter="https://nospoonlabs.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-    
-    <!-- GoatCounter page view display -->
-    <script>
-      // Historical view counts from Busuanzi (before migration)
-      var historicalCounts = {
-        '/posts/us_deficit_inflation/': 213
-        // Add more posts here if needed: '/posts/other-post/': count
-      };
-      
-      // Function to get and display page views from GoatCounter
-      function loadGoatCounterViews() {
-        var pageviewsElement = document.getElementById('goatcounter-pageviews');
-        if (!pageviewsElement) return;
-        
-        var siteCode = 'nospoonlabs';
-        var currentPath = window.location.pathname;
-        
-        // Get historical count for this page
-        var historicalCount = historicalCounts[currentPath] || 0;
-        
-        // GoatCounter API endpoint for getting page views
-        var apiUrl = 'https://' + siteCode + '.goatcounter.com/api/v0/export?format=json&start-from-path=' + encodeURIComponent(currentPath);
-        
-        fetch(apiUrl)
-          .then(response => response.json())
-          .then(data => {
-            var goatCounterViews = 0;
-            if (data && data.hits && data.hits.length > 0) {
-              goatCounterViews = data.hits[0].count || 0;
-            }
-            
-            // Combine historical and new views
-            var totalViews = historicalCount + goatCounterViews;
-            pageviewsElement.textContent = totalViews;
-          })
-          .catch(error => {
-            console.log('GoatCounter API error:', error);
-            // Fallback to historical count if API fails
-            pageviewsElement.textContent = historicalCount > 0 ? historicalCount : '-';
-          });
-      }
-      
-      // Load page views when page is ready
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', loadGoatCounterViews);
-      } else {
-        loadGoatCounterViews();
-      }
-    </script>
   </div>
 </footer>
