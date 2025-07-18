@@ -128,21 +128,52 @@
 
 .subscribe-button {
     display: inline-block;
-    background-color: var(--my-custom-primary-color) !important;
+    background-color: var(--my-custom-primary-color);
     color: white !important;
-    text-decoration: none !important;
-    padding: 0.3rem 0.6rem !important;
-    border-radius: 4px !important;
-    font-size: 0.8rem !important;
-    font-weight: bold !important;
-    transition: all 0.3s ease !important;
-    border: none !important;
+    text-decoration: none;
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    border: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
 }
 
-.subscribe-button:hover {
-    background-color: var(--my-custom-primary-color-dark) !important;
-    transform: translateY(-1px) !important;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2) !important;
+.subscribe-button:hover,
+.subscribe-button:focus,
+.subscribe-button:active {
+    background-color: var(--my-custom-primary-color-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
     color: white !important;
-    text-decoration: none !important;
+    text-decoration: none;
+}
+
+.subscribe-button:link,
+.subscribe-button:visited {
+    color: white !important;
+    text-decoration: none;
+}
+
+/* Ensure button styling on mobile */
+@media (max-width: 768px) {
+    .subscribe-button {
+        display: inline-block;
+        background-color: var(--my-custom-primary-color);
+        color: white !important;
+        text-decoration: none;
+        padding: 0.3rem 0.6rem;
+        border-radius: 4px;
+        font-size: 0.8rem;
+        font-weight: bold;
+        border: none;
+    }
+    
+    .subscribe-button:link,
+    .subscribe-button:visited {
+        color: white !important;
+    }
 } 
