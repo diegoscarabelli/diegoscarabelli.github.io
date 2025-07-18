@@ -44,6 +44,12 @@
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;{{ T "readingTime" .ReadingTime }}
             </div>
         </div>
+        {{- /* Subscribe button after metadata */ -}}
+        <div class="post-subscribe">
+            <a href="/subscribe/" class="subscribe-button">
+                <i class="fas fa-bell fa-fw" aria-hidden="true"></i>&nbsp;Subscribe
+            </a>
+        </div>
         {{- $image := $params.featuredimage -}}
         {{- with .Resources.GetMatch "featured-image" -}}
             {{- $image = .RelPermalink -}}

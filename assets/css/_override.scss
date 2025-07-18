@@ -118,4 +118,31 @@
 
 .close:hover {
     color: var(--my-custom-primary-color) !important;
+}
+
+/* Subscribe button in posts */
+.post-subscribe {
+    margin: 1rem 0 1.5rem 0;
+    text-align: left;
+}
+
+.subscribe-button {
+    display: inline-block;
+    background-color: var(--my-custom-primary-color) !important;
+    color: white !important;
+    text-decoration: none !important;
+    padding: 0.3rem 0.6rem !important;
+    border-radius: 4px !important;
+    font-size: 0.8rem !important;
+    font-weight: bold !important;
+    transition: all 0.3s ease !important;
+    border: none !important;
+}
+
+.subscribe-button:hover {
+    background-color: var(--my-custom-primary-color-dark) !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2) !important;
+    color: white !important;
+    text-decoration: none !important;
 } 

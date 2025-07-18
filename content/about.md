@@ -26,4 +26,4 @@ This blog serves as an outlet for these explorations. Content ranges from in-dep
 </div>
 <br>
 <br>
-📖 Read, 💬 Comment, 🔗 Share, and 🔔 Subscribe ‼️
+📖 Read, 💬 Comment, 🔗 Share, and 🔔 <a href="/subscribe/">Subscribe</a> ‼️
