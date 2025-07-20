@@ -16,6 +16,29 @@ tags:
 
 <!--more-->
 
+## Takeaways
+
+<div class="summary-container">
+<div class="summary-panel">
+
+<h4>The Science 🔬</h4>
+<ul>
+    <li><strong>Fuel for Intensity:</strong> Carbohydrates are your body's most efficient energy source for high-intensity efforts, preventing the dreaded "bonk" by maintaining a high rate of ATP production.</li>
+    <li><strong>The Dual-Transporter Advantage:</strong> Combining <strong>maltodextrin (glucose)</strong> and <strong>fructose</strong> is key. Your gut absorbs them through separate channels (SGLT1 and GLUT5), allowing for a total absorption rate of up to 90 g/hour or more, minimizing GI distress.</li>
+    <li><strong>Optimal Ratios:</strong> For endurance activities lasting over 90 minutes, a <strong>2:1 glucose-to-fructose ratio</strong> is a scientifically-backed starting point. Elite athletes may use a <strong>1:0.8 ratio</strong> for even higher intake.</li>
+</ul>
+</div>
+<div class="summary-panel">
+
+<h4>The Recipe 🧑‍🍳</h4>
+<ul>
+    <li><strong>Why DIY?:</strong> Crafting your own gel is highly <strong>cost-effective</strong> and gives you full <strong>control over ingredients</strong> and ratios. It also allows you to carry a large amount of fuel in a concentrated form, separate from your hydration.</li>
+    <li><strong>Core Components:</strong> The recipe is simple—just <strong>maltodextrin</strong>, <strong>fructose</strong>, a pinch of <strong>salt</strong>, and electrolytes like <strong>potassium</strong> and <strong>magnesium</strong>.</li>
+    <li><strong>Easy to Make:</strong> Simply mix the powders, add a minimal amount of water, and heat gently to dissolve everything into a smooth gel. Once cooled, it's ready for your flask.</li>
+</ul>
+</div>
+</div>
+
 ## Why Eat Carbohydrates During Exercise?
 
 During training rides or races, the intensity and duration often dictate my need for carbohydrate intake to prevent ["bonking"](https://en.wikipedia.org/wiki/Hitting_the_wall). Bonking occurs when glycogen stores in muscles and liver are depleted, leading to a sudden and dramatic decrease in the glucose [catabolic](https://en.wikipedia.org/wiki/Catabolism) pathway, the most efficient route for producing a high rate of [ATP](https://en.wikipedia.org/wiki/Adenosine_triphosphate), the molecule responsible for muscle contraction during aerobic exercise.
@@ -83,12 +106,14 @@ Below is the recipe I have tested, which works well. I chose a ratio of maltodex
 - **Potassium tablet**
 - **Magnesium tablet**
 - **Water** (about 70 mL, just enough to dissolve the powders)
+- **Food flavoring**
 - **Pestle and mortar** (for grinding tablets)
 - **250 mL silicone flask** ([example](https://www.hydrapak.com/products/softflask-250ml?variant=44433769890025))
 - **Pot** (for mixing and heating)
 - **Silicone spatula**
 - **Scale** (for accurate measurement)
 - **Funnel** (for transferring gel to flask)
+
 ### Step 1: Grind the Electrolyte Tablets
 
 Purchasing potassium gluconate and magnesium tablets from the pharmacy is often more cost-effective than buying pre-made electrolyte powders. However, you'll need to grind the tablets into a fine powder to ensure they dissolve evenly in your gel mixture.

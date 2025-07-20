@@ -64,3 +64,43 @@ main.main .post-content table td {
         }
     }
 }
+
+/* Custom CSS for summary panels */
+.summary-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.summary-panel {
+  flex: 1;
+  min-width: 300px;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid rgba(0,0,0,0.08);
+  background-color: rgba(0,0,0,0.03);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+[data-theme="dark"] .summary-panel {
+    border-color: rgba(255,255,255,0.15);
+    background-color: rgba(255,255,255,0.07);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+}
+
+.summary-panel h4 {
+    margin-top: 0;
+    color: var(--heading-color);
+}
+
+.summary-panel ul {
+    padding-left: 20px;
+}
+
+.summary-panel ul li {
+    color: var(--content-color);
+    margin-bottom: 10px;
+}
