@@ -33,7 +33,7 @@ tags:
 <h4>The Recipe 🧑‍🍳</h4>
 <ul>
     <li><strong>Why DIY?:</strong> Crafting your own gel is highly <strong>cost-effective</strong> and gives you full <strong>control over ingredients</strong> and ratios. It also allows you to carry a large amount of fuel in a concentrated form, separate from your hydration.</li>
-    <li><strong>Core Components:</strong> The recipe is simple—just <strong>maltodextrin</strong>, <strong>fructose</strong>, a pinch of <strong>salt</strong>, and electrolytes like <strong>potassium</strong> and <strong>magnesium</strong>.</li>
+    <li><strong>Core Components:</strong> The recipe is simple, just <strong>maltodextrin</strong>, <strong>fructose</strong>, a pinch of <strong>salt</strong>, and electrolytes like <strong>potassium</strong> and <strong>magnesium</strong>.</li>
     <li><strong>Easy to Make:</strong> Simply mix the powders, add a minimal amount of water, and heat gently to dissolve everything into a smooth gel. Once cooled, it's ready for your flask.</li>
 </ul>
 </div>
