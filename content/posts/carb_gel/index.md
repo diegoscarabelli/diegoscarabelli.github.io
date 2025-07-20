@@ -23,9 +23,9 @@ tags:
 
 <h4>The Science 🔬</h4>
 <ul>
-    <li><strong>Fuel for Intensity:</strong> Carbohydrates are your body's most efficient energy source for high-intensity efforts, preventing the dreaded "bonk" by maintaining a high rate of ATP production.</li>
-    <li><strong>The Dual-Transporter Advantage:</strong> Combining <strong>maltodextrin (glucose)</strong> and <strong>fructose</strong> is key. Your gut absorbs them through separate channels (SGLT1 and GLUT5), allowing for a total absorption rate of up to 90 g/hour or more, minimizing GI distress.</li>
-    <li><strong>Optimal Ratios:</strong> For endurance activities lasting over 90 minutes, a <strong>2:1 glucose-to-fructose ratio</strong> is a scientifically-backed starting point. Elite athletes may use a <strong>1:0.8 ratio</strong> for even higher intake.</li>
+    <li><strong>Fuel for Intensity:</strong> Carbohydrates are the body's primary energy source for high-intensity aerobic exercise. Consuming them during activity is essential to prevent "bonking" and to sustain a high rate of ATP production.</li>
+    <li><strong>The Dual-Transporter Advantage:</strong> Combining <strong>maltodextrin (glucose)</strong> and <strong>fructose</strong> in an isotonic solution maximizes carbohydrate absorption. These sugars are absorbed through separate transporters (SGLT1 for glucose and GLUT5 for fructose), enabling a total absorption rate of 90 g/hour or more and reducing gastrointestinal discomfort.</li>
+    <li><strong>Optimal Ratios:</strong> The ideal glucose-to-fructose ratio depends on your target intake rate, which varies with exercise duration and intensity. For intense endurance activities lasting less than 2 hours, a 3:1 glucose-to-fructose ratio with an intake of 60–90 g/hour is recommended. For longer events, increasing the proportion of fructose to a 2:1 or even 1:0.8 ratio can further boost absorption, but requires adaptation of intestinal transport capacity.</li>
 </ul>
 </div>
 <div class="summary-panel">
