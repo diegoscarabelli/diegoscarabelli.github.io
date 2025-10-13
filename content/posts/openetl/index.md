@@ -78,7 +78,7 @@ In an attempt to make OpenETL approachable to a larger audience, the [Getting St
 
 The [Infrastructure as Code (IaC)](https://github.com/diegoscarabelli/openetl/tree/main/iac) directory contains installation scripts, configuration templates, and deployment guides. These resources give you a solid starting point while preserving flexibility to adapt to your specific environment. You can go from zero to running pipelines in an afternoon.
 
-## The Garmin Connect Pipeline
+## First Use Case: Garmin Connect Pipeline
 
 The first data pipeline I built in OpenETL emerged from a bit of an obsession: owning my sports and health data insights. For years, my Garmin watches recorded most of my road runs and night's sleep, but the complexity increased when I transitioned from track and field to triathlon. Three disciplines, running, cycling, swimming, each with distinct metrics, physiological demands, and training zones. As my training grew more sophisticated, so did my analytical needs. 
 
