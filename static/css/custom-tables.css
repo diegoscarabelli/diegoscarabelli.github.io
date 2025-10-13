@@ -1,0 +1,144 @@
+/**
+ * Custom styling for DataTables on Resources page.
+ * Ensures consistency with LoveIt theme and provides clean UX.
+ */
+
+/* Define theme colors matching subscribe button */
+:root {
+    --search-primary-color: #2d96bd;
+    --search-primary-color-dark: #227c9d;
+}
+
+[theme='dark'] {
+    --search-primary-color: #55bde2;
+    --search-primary-color-dark: #419dc1;
+}
+
+/* Force search box above table, not beside it */
+.dataTables_wrapper .dataTables_filter {
+    width: 100% !important;
+    float: none !important;
+    text-align: left !important;
+    margin-bottom: 1.5rem;
+    display: block;
+}
+
+.dataTables_wrapper .dataTables_filter label {
+    font-weight: 600;
+    color: var(--global-font-color);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    width: 100%;
+}
+
+.dataTables_wrapper .dataTables_filter input {
+    margin-left: 0.5rem;
+    padding: 0.5rem 1rem;
+    border: 2px solid var(--search-primary-color);
+    border-radius: 0.375rem;
+    font-size: 0.95rem;
+    width: 300px;
+    background-color: var(--global-background-color);
+    color: var(--global-font-color);
+    transition: all 0.3s ease;
+}
+
+.dataTables_wrapper .dataTables_filter input:focus {
+    outline: none;
+    border-color: var(--search-primary-color-dark);
+    box-shadow: 0 0 0 3px rgba(45, 150, 189, 0.2);
+}
+
+.dataTables_wrapper .dataTables_filter input:hover {
+    border-color: var(--search-primary-color-dark);
+}
+
+/* Table header styling */
+table.dataTable thead th {
+    cursor: pointer;
+    user-select: none;
+    position: relative;
+    padding-right: 2rem;
+}
+
+table.dataTable thead th:hover {
+    background-color: var(--table-thead-color);
+}
+
+/* Sort indicators */
+table.dataTable thead .sorting:after,
+table.dataTable thead .sorting_asc:after,
+table.dataTable thead .sorting_desc:after {
+    opacity: 0.5;
+    position: absolute;
+    right: 0.75rem;
+}
+
+table.dataTable thead .sorting_asc:after,
+table.dataTable thead .sorting_desc:after {
+    opacity: 1;
+}
+
+/* Responsive table wrapper - ensure full width */
+.dataTables_wrapper {
+    width: 100% !important;
+    overflow-x: auto;
+    display: block;
+}
+
+/* Clear any floats from DataTables default layout */
+.dataTables_wrapper:before,
+.dataTables_wrapper:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Ensure table scrolls container uses full width */
+.dataTables_wrapper .dataTables_scroll {
+    width: 100% !important;
+}
+
+/* Table itself should be full width */
+table.dataTable {
+    width: 100% !important;
+    margin: 0 auto;
+    clear: both;
+}
+
+/* Dark mode support */
+[theme='dark'] .dataTables_wrapper .dataTables_filter input {
+    background-color: #292a2d;
+    color: #a9a9b3;
+}
+
+[theme='dark'] .dataTables_wrapper .dataTables_filter input:focus {
+    box-shadow: 0 0 0 3px rgba(85, 189, 226, 0.2);
+}
+
+[theme='dark'] table.dataTable thead th:hover {
+    background-color: #363636;
+}
+
+/* Mobile responsiveness */
+@media screen and (max-width: 768px) {
+    .dataTables_wrapper .dataTables_filter input {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .dataTables_wrapper .dataTables_filter label {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+}
+
+/* Empty state styling */
+.dataTables_wrapper .dataTables_empty {
+    padding: 2rem;
+    text-align: center;
+    color: var(--global-font-secondary-color);
+    font-style: italic;
+}
