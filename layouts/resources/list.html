@@ -5,6 +5,10 @@
 {{- define "content" -}}
     {{- $params := .Scratch.Get "params" -}}
     {{- $toc := $params.toc | default .Site.Params.page.toc | default dict -}}
+
+    {{- /* Load DataTables assets for interactive tables */ -}}
+    {{- partial "datatable-assets.html" . -}}
+
     <div class="page single">
         <!-- Title -->
         <h2 class="single-title animate__animated animate__pulse animate__faster" style="text-align: right;">

@@ -1,0 +1,18 @@
+{{- /* DataTables assets - only loaded on Resources page */ -}}
+
+{{- /* jQuery - required by DataTables */ -}}
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+        crossorigin="anonymous"></script>
+
+{{- /* DataTables CSS */ -}}
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
+
+{{- /* DataTables JS */ -}}
+<script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+
+{{- /* Custom initialization script */ -}}
+<script src="{{ "js/datatable-init.js" | relURL }}"></script>
+
+{{- /* Custom table styling */ -}}
+<link rel="stylesheet" href="{{ "css/custom-tables.css" | relURL }}">
