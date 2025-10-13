@@ -5,9 +5,11 @@
 [**No Spoon Labs**](https://www.nospoonlabs.com) is a personal blog and knowledge site built with [Hugo](https://gohugo.io/) and published via [GitHub Pages](https://pages.github.com/). All content is authored in Markdown and managed in the repository, with Hugo generating the static site. The site is automatically built and deployed using a [GitHub Actions workflow](.github/workflows/hugo.yaml), which installs Hugo, builds the site, and publishes it to GitHub Pages.
 
 ### About Hugo
+
 [Hugo](https://gohugo.io/) is a fast, open-source static site generator. It takes Markdown files and templates, processes them, and outputs a complete static website. Hugo is widely used for blogs, documentation, and personal sites because it is easy to use, supports themes, and builds sites extremely quickly. In this project, all posts and pages are written in Markdown under [`content/`](content/), and layouts are defined in [`layouts/`](layouts/). Hugo processes these and outputs the static HTML site to [`public/`](public/).
 
 ### About GitHub Pages and GitHub Actions
+
 [GitHub Pages](https://pages.github.com/) is a free static site hosting service that serves content directly from a GitHub repository. When integrated with Hugo, GitHub Pages hosts the generated static files (HTML, CSS, JS, etc.) from the `public/` directory. The [GitHub Actions workflow](.github/workflows/hugo.yaml) in this repository automates the process: on every push to the `main` branch, it builds the site with Hugo and deploys the result to GitHub Pages, making updates live automatically. This workflow:
 - Runs on every push to the `main` branch.
 - Installs the specified Hugo version.
@@ -15,6 +17,7 @@
 - Deploys the generated static files to GitHub Pages.
 
 ### Analytics with GoatCounter
+
 Page view analytics are powered by [GoatCounter](https://www.goatcounter.com/), a privacy-first analytics service that avoids tracking personal data or using cookies. Integration is accomplished by including the GoatCounter script in [`layouts/partials/footer.html`](layouts/partials/footer.html). This lightweight JavaScript snippet anonymously records page views, providing insight into site traffic and popular content while respecting user privacy. Analytics are accessible via the GoatCounter dashboard and are used exclusively to understand usage patterns.
 
 I considered displaying page view counts directly in post metadata, but encountered several technical challenges:
@@ -22,9 +25,11 @@ I considered displaying page view counts directly in post metadata, but encounte
 - GoatCounter’s `visit_count()` widget offers limited customization and is difficult to style with CSS. Its JSON extension and iframe-based approaches also suffer from CORS limitations and cannot be easily integrated into the frontend.
 
 ### Comments via GitHub Discussions
+
 Comments are enabled via [GitHub Discussions](https://github.com/diegoscarabelli/diegoscarabelli.github.io/discussions), using the [Giscus](https://giscus.app/) integration. Each post has a linked discussion thread in the [Blog Comments category](https://github.com/diegoscarabelli/diegoscarabelli.github.io/discussions/categories/blog-comments). When a user visits a post, the Giscus widget loads the relevant discussion, allowing readers to comment using their GitHub account. Configuration is in [`hugo.toml`](hugo.toml) under `[params.comment.giscus]`.
 
 ### Subscription via Buttondown
+
 Email subscriptions are managed with [Buttondown](https://buttondown.email/), a newsletter service. The subscription form is embedded using a shortcode ([`layouts/shortcodes/subscribe.html`](layouts/shortcodes/subscribe.html)) and a partial ([`layouts/partials/subscribe.html`](layouts/partials/subscribe.html)). When a user submits their email, it is sent to Buttondown, which manages the mailing list and sends notifications for new posts. Configuration is in [`hugo.toml`](hugo.toml) under `[params.subscription]`.
 
 ## Directory Structure
