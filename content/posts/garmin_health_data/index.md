@@ -32,7 +32,7 @@ cursor = conn.cursor()
 cursor.execute("""
     SELECT sql
     FROM sqlite_master
-    WHERE type='table' AND name='activities'
+    WHERE type='table' AND name='activity'
 """)
 
 create_sql = cursor.fetchone()[0]
