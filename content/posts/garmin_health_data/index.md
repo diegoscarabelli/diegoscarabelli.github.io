@@ -41,7 +41,7 @@ print(create_sql)
 conn.close()
 ```
 
-The [GitHub repository](https://github.com/diegoscarabelli/garmin-health-data) includes a quick start guide, detailed usage instructions, and examples to help you get started.
+The [GitHub repository](https://github.com/diegoscarabelli/garmin-health-data) documentation includes a quick start guide, detailed usage instructions, and examples to help you get started.
 
 Here's a short demonstration of the tool in action:
 
