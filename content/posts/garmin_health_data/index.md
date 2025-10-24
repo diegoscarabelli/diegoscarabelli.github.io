@@ -50,6 +50,6 @@ Here's a short demonstration of the tool in action:
   Your browser does not support the video tag.
 </video>
 
-SQLite is a serverless, self-contained database engine that is easy to set up and use, making it an excellent choice for personal data storage and analysis. With `garmin-health-data`, you can have your Garmin Connect data readily available in a structured format for analysis, visualization, or integration with other tools.
+SQLite is a serverless, self-contained database engine, making it an excellent choice for personal data storage and analysis. With `garmin-health-data`, you can have your Garmin Connect data readily available in a structured format for analysis, visualization, or integration with other tools.
 
 Other projects exist with similar goals, as discussed in [this section of the docs](https://github.com/diegoscarabelli/garmin-health-data?tab=readme-ov-file#comparison-with-other-tools). However, `garmin-health-data` stands out for its comprehensive and well-documented schema, automatic data deduplication, and the ability to process detailed FIT files for time-series activity data, with enhanced support for running, cycling, and swimming activities while maintaining broad compatibility with other activity types.
