@@ -14,7 +14,7 @@ tags:
 
 <!--more-->
 
-This is a short follow-up to my previous post [OpenETL: The Data Engineering Bicycle](../openetl/). Some readers suggested it would be valuable to have the [Garmin Connect data pipeline](https://github.com/diegoscarabelli/openetl/tree/main/dags/pipelines/garmin), which was built within the OpenETL framework, available as a standalone tool with minimal setup requirements. Since most of the data processing code was already written, this seemed like an achievable addition with moderate effort. The result is a Python package called [`garmin-health-data`](https://pypi.org/project/garmin-health-data/), which you can install directly into your Python environment:
+This is a short follow-up to my previous post [OpenETL: The Data Engineering Bicycle](../openetl/). Some readers suggested it would be valuable to have the [Garmin Connect data pipeline](https://github.com/diegoscarabelli/openetl/tree/main/dags/pipelines/garmin), which was built within the OpenETL framework, available as a standalone tool with minimal setup requirements. Since most of the data processing code was already written, this seemed like an achievable addition with moderate effort. The result is a Python package called [garmin-health-data](https://pypi.org/project/garmin-health-data/), which you can install directly into your Python environment:
 
 ```bash
 pip install garmin-health-data
