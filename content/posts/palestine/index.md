@@ -109,12 +109,13 @@ The year that followed was catastrophic. What Israeli historiography calls the "
 
 By this point, Israel controlled approximately 80% of historic Palestine (up from the 55% allocated by the UN partition plan), while Jordan occupied the West Bank and East Jerusalem (about 20%), and Egypt took control of the Gaza Strip. The West Bank and Gaza Strip essentially were refugee camps for Palestinians expelled from their homes. Approximately 750,000 Palestinians (**75% of all Palestinians!**) were forcibly displaced or fled to these camps or to neighboring Lebanon, Egypt, and Syria. Israel refused to allow their return. Palestinian villages and towns were systematically destroyed, hundreds razed to the ground. The 150,000 Palestinians who remained within Israel's borders were subjected to martial law, which severely restricted their movement, political activity, and access to land and resources. Look at the map below, which shows the additional expansion of the State of Israel as per the [1949 Armistice Agreements (the Green Line)](https://unterm.un.org/unterm2/en/view/51c4703d-727d-494c-9ab7-f98afd9d9f77):
 
-<div style="display: flex; justify-content: center; gap: 20px;">
+<div style="display: flex; justify-content: center; gap: 20px; margin-bottom: 20px;">
   <img src="index_files/armistice_1949_map.jpg" alt="Armistice Lines 1949" style="width: 45%; height: auto;">
   <img src="index_files/aremistice_1949_diagram.png" alt="Armistice 1949 Diagram" style="width: 45%; height: auto;">
 </div>
 
-*Maps showing the territorial partition defined by the 1949 Armistice Agreements. The red areas in the right diagram represent land annexed by Israel beyond the UN partition plan, bringing Israeli control to approximately 80% of what had been Mandatory Palestine just two years prior.*
+*Maps showing the territorial partition defined by the 1949 Armistice Agreements. The red areas in the right diagram represent land annexed by Israel beyond the UN partition plan, bringing Israeli control to approximately 80% of what had been Mandatory Palestine just two years prior. Critically, the continuity of the Palestinian territories was broken.*
+
 The following table summarizes key statistics from historical research, including Ilan Pappé’s [*The Ethnic Cleansing of Palestine*](https://www.goodreads.com/book/show/57540.The_Ethnic_Cleansing_of_Palestine) and Benny Morris’s [*Righteous Victims: A History of the Zionist-Arab Conflict*](https://www.goodreads.com/book/show/131324.Righteous_Victims):
 
 | Category | Value | Notes |
