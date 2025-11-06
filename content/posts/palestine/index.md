@@ -409,7 +409,15 @@ In May 2021, another round of mowing the lawn took place with [Operation Guardia
 
 Even before October 2023, the West Bank experienced a sharp increase in [settler violence](https://www.crisisgroup.org/middle-east-north-africa/east-mediterranean-mena/israelpalestine/settler-violence-rises-west-bank-gaza-war), with frequent attacks on Palestinian villages and [farmers](https://www.theguardian.com/world/2025/nov/03/olives-settler-violence-west-bank-farmers) resulting in hundreds of deaths and injuries. The Israeli military often responded with raids and arrests, imprisoning an additional 1,700 people.
 
-Throughout this entire period, the United States has provided unwavering financial and military support to Israel. [Since 1948, the US has provided over $250 billion in cumulative military aid to Israel alone](https://www.cfr.org/article/us-aid-israel-four-charts) (adjusted for inflation), excluding economic support, making it the largest cumulative recipient of US foreign assistance by far. This support has been instrumental in enabling Israel's military dominance and its ability to maintain the occupation and apartheid system with impunity.
+---
+
+The map of the evolution of the Palestinian territories from 1946 to 2023 illustrates the bottom line of the historical process that I tried to summarize above.
+
+![Erosion of Palestine](index_files/final_map.png)
+
+*Erosion of Palestine*
+
+Throughout this entire period, the United States has provided unwavering financial and military support to Israel. [**Since 1948, the US has provided over $250 billion in cumulative military aid to Israel alone**](https://www.cfr.org/article/us-aid-israel-four-charts) (adjusted for inflation), excluding economic support, making it the largest cumulative recipient of US foreign assistance by far. This support has been instrumental in enabling Israel's military dominance and its ability to maintain the occupation and apartheid system with impunity.
 
 <div style="display: flex; justify-content: center; gap: 20px; margin-bottom: 20px;">
   <img src="index_files/us_aid_to_israel.png" alt="US Aid to Israel Historical" style="width: 45%; height: auto;">
@@ -418,13 +426,7 @@ Throughout this entire period, the United States has provided unwavering financi
 
 *(left) Historical trend of US military aid to Israel ([source](https://costsofwar.watson.brown.edu/sites/default/files/papers/Costs-of-War_US-Support-Since-Oct7-FINALv2.pdf)); (right) 2023 US aid by country ([source](https://www.pewresearch.org/short-reads/2025/02/06/what-the-data-says-about-us-foreign-aid/)).*
 
-The map of the evolution of the Palestinian territories from 1946 to 2023 illustrates the bottom line of the historical process that I tried to summarize above.
-
-![Erosion of Palestine](index_files/final_map.png)
-
-*Erosion of Palestine*
-
-The UN OCHA curates a dataset of casualties in the occupied Palestinian territory (oPt) since 2008, which you can explore [here](https://www.ochaopt.org/data/casualties). It doesn't yet include the genocide in Gaza post Oct. 2023. The ratio of Palestinian to Israeli casualties since 2008 is approximately 20:1. In September 2023, they also published the updated [OCHA Gaza Strip Access and Movement map](https://www.ochaopt.org/content/gaza-strip-access-and-movement-september-2023), which I highly encourage you to read: it quantifies the persistent unlivable conditions in the Gaza concentration camp. While reading it, I could not help but think:
+The UN OCHA curates a [dataset of casualties](https://www.ochaopt.org/data/casualties) in the occupied Palestinian territory (oPt) since 2008. It doesn't yet include the genocide in Gaza post Oct. 2023. **The ratio of Palestinian to Israeli casualties since 2008 is approximately 20:1**. In September 2023, they also published the updated [OCHA Gaza Strip Access and Movement map](https://www.ochaopt.org/content/gaza-strip-access-and-movement-september-2023), which I highly encourage you to read, as it clearly quantifies the persistent unlivable conditions in the Gaza Strip concentration camp. While reading it, I could not help but think:
 
 > **If I grew up in Gaza and managed to survive to adulthood, what would I do?**
 
