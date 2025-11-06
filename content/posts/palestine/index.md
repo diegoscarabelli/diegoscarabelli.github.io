@@ -2,8 +2,8 @@
 date: "2025-10-23"
 lastmod: "2025-10-23"
 author: "Diego Scarabelli"
-title: ""
-description: "Reflections on The Palestinian Genocide, Apartheid and Occupation"
+title: "Anatomy of a Pain Machine"
+description: "History and Reflections on the Occupation of Palestine, Israel's Apartheid State and its Incremental Genocide of Palestinians."
 comments: true
 categories:
 - Geopolitics
@@ -24,15 +24,13 @@ Recent exchanges with my parents highlighted how one's immediate social circle c
 
 A topic that is plagued by all of these barriers in their full force is that of Palestine. Decades of investigative reporting, historical analysis, human rights work and activism, by countless brave individuals and organizations that have spoken the truth of what has been happening since the creation of the State of Israel in 1948 (and leading to it), have not yet managed to defeat widespread disinformation. The result is that public opinion has been fractured and mobilization for practical action remains limited to this day. It's such a heartbreaking tragedy.
 
-I am therefore doing my best to point my finger towards the truth, hoping to be your catalyst, if you need one, and that you will do the same for others.  
-
-Time to go down the rabbit hole.
+This essay aggregates factual context and analysis which I hope can be that catalyst, if you need one, which dissolves the consent for the Pain Machine. Let's go down the rabbit hole.
 
 ## Hamas Attacks of October 2023
 
-The Independent International Commission of Inquiry (the Commission) of the UN Human Rights Council ([OHCHR](https://www.ohchr.org/en/ohchr_homepage)) reported in June 2024 on the findings of their investigation of the events of October 7th 2023 in [A/HRC/56/CRP.3](https://www.ohchr.org/sites/default/files/documents/hrbodies/hrcouncil/sessions-regular/session56/a-hrc-56-crp-3.pdf). They collected evidence from open-source items, including photos, videos, social media content, official data, submitted documents, remote witness testimony. They noted that Israel barred the Commission access to the relevant sites in Israel and the occupied Palestinian territory (oPt), instructed medical personnel not to speak with the Commission, and particularly obstructed investigations into acts of sexual violence by denying meetings with survivors, and lack of forensic evidence. In examining the evidence, they applied cross-referencing and forensic evaluation. This report is the most comprehensive and reliable account of what happened that day I could find.
+The Independent International Commission of Inquiry (the Commission) of the UN Human Rights Council ([OHCHR](https://www.ohchr.org/en/ohchr_homepage)) reported in June 2024 on the findings of their investigation of the events of October 7th 2023 in [A/HRC/56/CRP.3](https://www.ohchr.org/sites/default/files/documents/hrbodies/hrcouncil/sessions-regular/session56/a-hrc-56-crp-3.pdf). They collected evidence such as photos, videos, social media content, official data, submitted documents, remote witness testimony. They noted that Israel barred the Commission access to the relevant sites in Israel and the occupied Palestinian territory (oPt), instructed medical personnel not to speak with the Commission, and obstructed investigations into acts of sexual violence by denying meetings with alleged victims. They also noted a systematic lack of forensic evidence collection by Israeli authorities. In examining the evidence they obtained, they applied cross-referencing and forensic evaluation. This report is the most comprehensive and reliable account of what happened that day I could find.
 
-In addition, Al Jazeera Investigative Unit also conducted an in-depth investigation into the events of that day by examining hours of footage from CCTV, dashcams, personal phones and headcams of dead Hamas fighters, and published their findings in the documentary [October 7](https://www.ajiunit.com/investigation/october-7/).
+In addition, Al Jazeera Investigative Unit also conducted an in-depth investigation into these events by examining hours of footage from CCTV, dashcams, personal phones and headcams of dead Hamas fighters, and published their findings in the documentary [October 7](https://www.ajiunit.com/investigation/october-7/).
 
 ### What Happened 
 
@@ -635,7 +633,7 @@ In the case of Israel, the state was established through the occupation of Pales
 
 The question *"Does Israel have the right to exist?"* is designed to prevent us from asking the more relevant questions: *"Did Israel have the right to be created through ethnic cleansing and occupation?"* and *"Given that the state of Israel was created, what sovereignty do you recognize? Are the occupied territories part of it?"*.
 
-### What Peace
+### What's Peace
 
 The imposition of will through incremental use of violence has been from the beginning the modus operandi of the Israeli State. This has created Hezobollah and Hamas, which mirrored incremental use of violence to resist. The choice of expansion over security has been a genocidal policy for the Palestinians and suicidal for Israel, which has long been a morally bankrupt pariah state.
 
