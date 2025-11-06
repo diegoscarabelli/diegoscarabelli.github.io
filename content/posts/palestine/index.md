@@ -520,11 +520,11 @@ The UN Special Rapporteur on the situation of human rights in the Palestinian te
 
 ### The other territories
 
-The UN Human Rights Office [report on oPt](https://www.un.org/unispal/document/ohchr-press-release-17oct25/), estimates that in the past 2 years, in the West Bank alone, one thousand Palestinians have been killed, mostly by Israeli military forces, of which about 200 are children. According to this report the occupied Palestinian territory, among the 968 Palestinians killed, almost half were unarmed, and not involved in any violence or confrontation at the time of their killing. One hundred and seventy-four Palestinians, including 71 children, were killed while throwing stones or Molotov cocktails, often at well-equipped and protected ISF or ISF vehicles. Israeli airstrikes on Palestinian towns and refugee camps made up a considerable portion of the casualities, applying combat doctrines it has developed during its ongoing offensive in Gaza.
+The UN Human Rights Office [report on oPt](https://www.un.org/unispal/document/ohchr-press-release-17oct25/), estimates that in the past 2 years, in the West Bank alone, ~1,000 Palestinians have been killed, mostly by Israeli military forces, of which about 200 are children. According to this report, almost half were unarmed, and not involved in any violence or confrontation at the time of their killing. One 174 Palestinians, including 71 children, were killed while throwing stones or Molotov cocktails, often at well-equipped and protected ISF vehicles. Israeli airstrikes on Palestinian towns and refugee camps made up a considerable portion of the casualities, applying combat doctrines it developed during its offensives in Gaza.
 
 | Category | Value | Notes |
 |----------|--------|-------|
-| Palestinians Killed in West Bank | ~1,000 | ~20% children |
+| Palestinians Killed in West Bank | ~1,000 | ~20% children. |
 | Palestinians Injured in West Bank | ~10,000 | Predominantly civilians. |     
 | Palestinians Displaced in West Bank | ~40,000 | |
 
@@ -532,16 +532,14 @@ The UN Human Rights Office [report on oPt](https://www.un.org/unispal/document/o
 
 *Source: [UN Human Rights Office report on oPt](https://www.un.org/unispal/document/ohchr-press-release-17oct25/)*
 
-Increasingly, settler attacks have played a major role in the violence in the West Bank. According to the [UN OCHA](https://www.ochaopt.org/content/west-bank-impact-setter-attacks-january-2023-june-2025), between January 2023 and June 2025, there were thousands documented settler attacks resulting in 38 Palestinian deaths, 4,000 injuries, and 3,000 displaced people. These attacks often involve murder, physical assaults, property damage and destruction including arson, and intimidation tactics against Palestinian civilians, exacerbating tensions and contributing to the overall instability in the region.  
+Increasingly, settler attacks have played a major role in the violence in the West Bank. According to the [UN OCHA](https://www.ochaopt.org/content/west-bank-impact-setter-attacks-january-2023-june-2025), between January 2023 and June 2025, there were thousands of documented settler attacks resulting in 38 Palestinian deaths, 4,000 injuries, and 3,000 displaced people. These attacks often involve murder, physical assaults, property damage and destruction including arson, and intimidation tactics against Palestinian civilians, exacerbating tensions and contributing to the overall instability in the region.  
 Israeli apartheid intensified throughout the West Bank and East Jerusalem. The [July 2025 map of West Bank access restrictions published by UN OCHA](https://www.ochaopt.org/content/west-bank-access-restrictions-map-july-2025) reveals the extensive network of checkpoints, roadblocks, and closed roads that fragment Palestinian territories. The systematic expansion of Israeli settlements, militarization of occupied land, and severe movement restrictions imposed on Palestinians are staggering.
 
-The number of prisoners and detainees and hostages (the legality of the imprisonment is for many cases arbitray) in Israeli jails has surged to over 10,000, according to data from the Israel Prison Service (IPS). More than half have not been charged or tried and face indefinite detention. These figures exclude detainees from the Gaza Strip held by the Israeli military. Incarcerating citizens of the occupied Palestinian territory (oPt) inside Israel constitutes a blatant violation of the Fourth Geneva Convention, which prohibits the transfer of prisoners and detainees outside occupied territories. B'Tselem published a detailed and well documented report, titled [*Welcome to Hell* (2024)](https://www.btselem.org/sites/default/files/publications/202408_welcome_to_hell_eng.pdf) documenting the systematic torture, abuse, and denial of basic rights these detainees endure.
+The number of prisoners and detainees and hostages (the legality of the imprisonment is for many cases arbitray) in Israeli jails has surged to over 10,000, according to data from the Israel Prison Service (IPS). More than half have not been charged or tried and face indefinite detention. These figures exclude detainees from the Gaza Strip held by the Israeli military. Incarcerating citizens of the occupied Palestinian territory (oPt) inside Israel constitutes a blatant violation of the Fourth Geneva Convention, which prohibits the transfer of prisoners and detainees outside occupied territories. B'Tselem published a detailed and well documented report, titled [*Welcome to Hell* (2024)](https://www.btselem.org/sites/default/files/publications/202408_welcome_to_hell_eng.pdf) documenting the systematic torture, abuse, and denial of basic rights these detainees endure. I struggled to read it. 
 
 <img src="index_files/detainees.png" alt="Inmates held in Israeli prisons" width="70%">
 
 *Inmates held in Israeli prisons, the vast majority of whom are Palestinians. [Source: HaMoked](https://hamoked.org/prisoners-charts.php)*
-
-I struggled to read it. 
 
 ## Manufactured Consent
 
