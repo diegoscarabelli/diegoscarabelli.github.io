@@ -212,8 +212,8 @@ The [First Intifada](https://en.wikipedia.org/wiki/First_Intifada) (1987–1993)
 | Category | Value | Notes |
 |----------|--------|-------|
 | Palestinians Killed | ~1,300 | Approximately 25% were children under 17. |
-| Palestinians Injured | ~100,000 | Predominantly from live ammunition, beatings, tear gas. |
 | Israelis Killed | ~170 | Soldiers and civilians, 3 children. |
+| Palestinians Injured | ~100,000 | Predominantly from live ammunition, beatings, tear gas. |
 | Israelis Injured | ~3,000 | Soldiers and civilians. |
 | Palestinians Arrested | ~120,000 | [Spent variable time in Israeli prisons.](https://www.washingtonpost.com/archive/politics/1995/10/03/palestinians-await-release-of-prisoners/fb9ba469-1faf-431e-a0ca-628505bf784c/) |
 
@@ -284,7 +284,7 @@ At the same time (summer 2006), Israel invaded Lebanon for the third time (1978,
 | Category | Value | Notes |
 |----------|--------|-------|
 | Lebanese Killed | ~1,500 | ~1200 civilians, ~300 Hezbollah fighters. |
-| Israeli Killed | ~160 | ~120 military, ~40 civilians. |
+| Israelis Killed | ~160 | ~120 military, ~40 civilians. |
 | Displaced | ~1,000,000 | Lebanese civilians displaced by the invasion. |
 
 The war ended with a [UN-brokered ceasefire](https://unsco.unmissions.org/sites/default/files/s_res_17012006.pdf), but the underlying issues remained unresolved. 
@@ -382,8 +382,8 @@ Beginning in March 2018, Palestinians in Gaza launched the [Great March of Retur
 | Category | Value | Notes |
 |----------|--------|-------|
 | Palestinians Killed | ~200 | Mostly civilians, ~50 children. |
-| Palestinians Injured | ~9,000 | 6000 sustained injuries from live ammunition; many with permanent disabilities. Medics and journalists were targeted.|
 | Israelis Killed | 1 | Israeli soldier killed by sniper. |
+| Palestinians Injured | ~9,000 | 6000 sustained injuries from live ammunition; many with permanent disabilities. Medics and journalists were targeted.|
 | Israelis Injured | ~11 | Israeli soldiers and civilians. |
 
 The UN Independent Commission of Inquiry [reported](https://www.un.org/unispal/document/un-independent-commission-of-inquiry-on-protests-in-gaza-presents-its-findings-press-release/):
@@ -394,9 +394,9 @@ The UN Independent Commission of Inquiry [reported](https://www.un.org/unispal/d
 > 
 > *"The Commission took note of the Israeli claim that the protests by the separation fence masked “terror activities” by Palestinian armed groups. The Commission found however that the demonstrations were civilian in nature, with clearly stated political aims. Despite some acts of significant violence, the Commission found that the demonstrations did not constitute combat or military campaigns."*
 
-In 2020, the US brokered agreements ([Abraham Accords](https://www.state.gov/the-abraham-accords) between Israel and several Arab nations, including the United Arab Emirates, Bahrain, Sudan, and Morocco. This was seen as a major blow by Palestinian leaders, who condemned the deals as a betrayal of the long-standing Arab position that normalization should only come after the creation of a Palestinian state.
+In 2020, the US brokered agreements ([Abraham Accords](https://www.state.gov/the-abraham-accords)) between Israel and several Arab nations, including the United Arab Emirates, Bahrain, Sudan, and Morocco. This was seen as a major blow by Palestinian leaders, who condemned the deals as a betrayal of the long-standing Arab position that normalization should only come after the creation of a Palestinian state.
 
-In May 2021 another round of mowing the lawn took place with [Operation Guardian of the Walls](https://en.wikipedia.org/wiki/2021_Israel%E2%80%93Palestine_crisis) and in August 2022 [Operation Breaking Dawn](https://en.wikipedia.org/wiki/2022_Gaza%E2%80%93Israel_clashes), both short but intense bombardments of Gaza with typical phenomenology of escalation, pretexts, and consequences. As per [UN OCHA reports](https://www.ochaopt.org/content/response-escalation-opt-situation-report-no-1-21-27-may-2021), cumulatively the casualties were as customary disproportionate:
+In May 2021, another round of mowing the lawn took place with [Operation Guardian of the Walls](https://en.wikipedia.org/wiki/2021_Israel%E2%80%93Palestine_crisis), and in August 2022, [Operation Breaking Dawn](https://en.wikipedia.org/wiki/2022_Gaza%E2%80%93Israel_clashes), both short but intense bombardments of Gaza with the typical phenomenology of escalation, pretexts, and consequences. As per [UN OCHA reports](https://www.ochaopt.org/content/response-escalation-opt-situation-report-no-1-21-27-may-2021), cumulatively the casualties were, as customary, disproportionate:
 
 | Category | Value | Notes |
 |----------|--------|-------|
