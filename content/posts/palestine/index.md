@@ -300,11 +300,11 @@ These cycles of aggression typically unfolded as follows:
 1. **Meticulous planning:** Israeli military and political leaders prepare military and propaganda strategy months in advance, coordinating with the US government for diplomatic support and military aid.
 2. **Pretext:** Israel cites rockets from Gaza targeting surrounding military installations and civilian settlements, framing them as unprovoked and driven by pure evil and desire to destroy Israel.
 3. **Right to defend itself:** Israel asserts that destroying Hamas is the only solution to these attacks, invoking its right to self-defense by using military aggression.
-4. **Ceasefire rejection:** Initial ceasefires—often respected by Hamas—are broken by Israeli military actions.
+4. **Ceasefire rejection:** Initial ceasefires, often respected by Hamas, are broken by Israeli military actions.
 5. **Large-scale bombing:** Israel launches disproportionate military campaigns in Gaza, resulting in extensive destruction of infrastructure, high civilian casualties, and a permanent humanitarian crisis.
 6. **Impunity:** War crimes and acts with genocidal implications are documented and denounced, but rarely punished, further expanding the boundaries of impunity.
 
-The Dahiya Doctrine, named after the Beirut neighborhood leveled by Israeli forces in 2006, exemplifies the strategy outlined in point 5. This doctrine calls for the use of overwhelming military force against civilian infrastructure as a means of deterring future resistance. Former Israeli general and politician [Gadi Eizenkot described this approach](https://www.reuters.com/article/economy/israel-warns-hezbollah-war-would-invite-destruction-idUSL3251393/) with stark clarity:
+The *"Dahiya Doctrine"*, named after the Beirut neighborhood leveled by Israeli forces in 2006, exemplifies the strategy outlined in point 5. This doctrine calls for the use of overwhelming military force against civilian infrastructure as a means of deterring future resistance. Former Israeli general and politician [Gadi Eizenkot described this approach](https://www.reuters.com/article/economy/israel-warns-hezbollah-war-would-invite-destruction-idUSL3251393/) with stark clarity:
 
 > *"What happened in the Dahiya quarter of Beirut in 2006 will happen in every village from which Israel is fired on."*
 >
@@ -320,9 +320,9 @@ Israeli Colonel Gabi Siboni reinforced this doctrine in an [article published by
 >
 > — Gabi Siboni, Israeli Institute for National Security Studies
 
-Needless to say, international law expressly prohibits the use of disproportionate force and the targeting of civilians and civilian infrastructure, both of which are considered war crimes. [Article 51](https://ihl-databases.icrc.org/en/ihl-treaties/api-1977/article-51) of the Fourth Geneva Convention prohibits attacks “which may be expected to cause incidental loss of civilian life, injury to civilians, damage to civilian objects, or a combination thereof, which would be excessive in relation to the concrete and direct military advantage anticipated.”
+Needless to say, international law expressly prohibits the use of disproportionate force and the targeting of civilians and civilian infrastructure, both of which are considered war crimes. [Article 51](https://ihl-databases.icrc.org/en/ihl-treaties/api-1977/article-51) of the Fourth Geneva Convention prohibits attacks *“which may be expected to cause incidental loss of civilian life, injury to civilians, damage to civilian objects, or a combination thereof, which would be excessive in relation to the concrete and direct military advantage anticipated.”*
 
-In December 2008 and January 2009, [Operation Cast Lead](https://en.wikipedia.org/wiki/Operation_Cast_Lead) was launched against Gaza, a two-month period marked by devastating casualties and destruction, as documented by the [2009 UN Human Rights Council report](https://www2.ohchr.org/english/bodies/hrcouncil/docs/12session/a-hrc-12-48.pdf) and [Amnesty International](https://www.amnesty.org/en/wp-content/uploads/2021/07/mde150072009en.pdf). The attack systematically destroyed means of life, civilian infrastructure (schools, hospitals, universities, mosques, farms, agricultural land, etc.) sometimes using US-made white phosphorus shells in densely populated areas. The use of US-made white phosphorus shells in densely populated areas was documented, contributing to long-term public health crises and epidemics in the aftermath.
+In December 2008 and January 2009, [Operation Cast Lead](https://en.wikipedia.org/wiki/Operation_Cast_Lead) was launched against Gaza, a two-month period marked by devastating casualties and destruction, as documented by the [2009 UN Human Rights Council report](https://www2.ohchr.org/english/bodies/hrcouncil/docs/12session/a-hrc-12-48.pdf) and [Amnesty International](https://www.amnesty.org/en/wp-content/uploads/2021/07/mde150072009en.pdf). The attack systematically destroyed means of life, civilian infrastructure (schools, hospitals, universities, mosques, farms, power, water, sewage,  etc.), sometimes using US-made white phosphorus shells in densely populated areas. What reasonable person could possibly justify this level of destruction and loss of life as self-defense?
 
 | Category | Value | Notes |
 |----------|--------|-------|
@@ -331,11 +331,9 @@ In December 2008 and January 2009, [Operation Cast Lead](https://en.wikipedia.or
 | Palestinians Injured | ~5,300 | Predominantly civilians. |
 | Israelis Injured | ~518 | Including civilians from rocket attacks. |
 
-What reasonable person could possibly justify this level of destruction and loss of life as self-defense?
+Between Operation Cast Lead and the end of 2012, approximately 330 Palestinians were killed by the Israeli military, compared to 20 Israelis ([B'Tselem statistics](https://web.archive.org/web/20130308112551/http://www.btselem.org/statistics/fatalities/after-cast-lead/by-date-of-event)). True to form, the Nobel Peace Prize committee awarded the [2009 peace prize to Barack Obama](https://www.nobelprize.org/prizes/peace/2009/summary/). 🤮
 
-True to form, the Nobel Peace Prize committee awarded the [2009 peace prize to Barack Obama](https://www.nobelprize.org/prizes/peace/2009/summary/). 🤮
-
-Between Operation Cast Lead and the end of 2012, approximately 330 Palestinians were killed by the Israeli military, compared to 20 Israelis ([B'Tselem statistics](https://web.archive.org/web/20130308112551/http://www.btselem.org/statistics/fatalities/after-cast-lead/by-date-of-event)). In November 2012, Israel launched [Operation Pillar of Defense](https://en.wikipedia.org/wiki/2012_Gaza_War). This escalation was immediately preceded by the assassination of Ahmed Jabari, a senior official in the military wing of Hamas who had been working with the Israeli military to establish a permanent truce. Israeli peace activist [Gershon Baskin reported](https://gershonbaskin.org/interviews/ahmed-jabari-1960-2012/) that Jabari was killed just hours before he was set to receive the draft of a truce agreement with Israel, which included mechanisms for maintaining a ceasefire.
+In November 2012, Israel launched [Operation Pillar of Defense](https://en.wikipedia.org/wiki/2012_Gaza_War). This escalation was immediately preceded by the [assassination of Ahmed Jabari](https://www.aljazeera.com/news/2012/11/14/hamas-military-chief-killed-in-israeli-attack), a senior official in the military wing of Hamas who had been working with the Israeli military to establish a permanent truce. Israeli peace activist [Gershon Baskin reported](https://gershonbaskin.org/interviews/ahmed-jabari-1960-2012/) that Jabari was killed just hours before he was set to receive the draft of a truce agreement with Israel, which included mechanisms for maintaining a ceasefire.
 
 | Category | Value | Notes |
 |----------|--------|-------|
