@@ -40,11 +40,9 @@ The number of Israeli and foreign nationals casualties on that day, according to
 
 | Category | Value | Notes |
 |----------|--------|-------|
-| Killed | ~ 1,150 | Includes ~ 300 Israel security forces personnel. |
-| Civilians Killed | ~ 800 | Includes at least 280 women, 36 children (13 under the age of 12, 2 of which babies). |
+| Killed | ~ 1,150 | Includes ~ 300 Israel security forces personnel and ~ 800 civilians of which 36 children (13 under the age of 12, 2 of which babies). |
 | Injured | 14,970 | Transferred to hospitals for treatment. |
 | Abducted Hostages | 252 | Taken to Gaza. Includes 90 women and 36 children. |
-| Displaced | ~150,000 | Evacuated from homes in southern Israel. |
 
 An undetermined number of Palestinians also died that day. Israel initially reported approximately 1,400 total casualties, later revising this figure downward after acknowledging that around 200 bodies were Palestinian combatants, misidentified due to severe burns or mutilation. Since no independent assessment of these figures was permitted, the actual number of Palestinian casualties remains uncertain and is likely underestimated.
 
