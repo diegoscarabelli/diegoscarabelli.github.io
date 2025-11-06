@@ -2,7 +2,7 @@
 date: "2025-10-23"
 lastmod: "2025-10-23"
 author: "Diego Scarabelli"
-title: "The Guilt We'll Carry to Our Graves"
+title: ""
 description: "Reflections on The Palestinian Genocide, Apartheid and Occupation"
 comments: true
 categories:
@@ -15,7 +15,6 @@ tags:
 
 <!--more-->
 
-
 Recent exchanges with my parents highlighted how one's immediate social circle can serve as a powerful catalyst in breaking through the formidable barriers that prevent us from confronting truth and taking meaningful action. This is likely due to a superior level of empathy and trust that is generally attributed to family members and close friends. Some of these barriers are:
 
 - The Matrix: the systemic deception aimed at manufacturing your consent for your disempowerment and exploitation.
@@ -23,15 +22,15 @@ Recent exchanges with my parents highlighted how one's immediate social circle c
 - Conformity: the tendency to avoid social friction and fit in the average of your social network, your tribe.
 - Denial: an understandable defense mechanism against the immorality, cruelty and horror of much of reality.
 
-A topic that is plagued but all of these barriers in their full force is that of Palestine. Decades of investigative reporting, historical analysis, human rights work and activism, by countless brave individuals and organizations that have spoken the truth of what has been happening since the creation of the State of Israel in 1948 (and leading to it), have not yet managed to defeat widespread disinformation. The result is that public opinion has been fractured and mobilization for practical action remains limited to this day. It's such a heartbreaking tragedy.
+A topic that is plagued by all of these barriers in their full force is that of Palestine. Decades of investigative reporting, historical analysis, human rights work and activism, by countless brave individuals and organizations that have spoken the truth of what has been happening since the creation of the State of Israel in 1948 (and leading to it), have not yet managed to defeat widespread disinformation. The result is that public opinion has been fractured and mobilization for practical action remains limited to this day. It's such a heartbreaking tragedy.
 
 I am therefore doing my best to point my finger towards the truth, hoping to be your catalyst, if you need one, and that you will do the same for others.  
 
-Time for the red pill and go down the rabbit hole.
+Time to go down the rabbit hole.
 
 ## Hamas Attacks of October 2023
 
-The The Independent International Commission of Inquiry (the Commission) of the UN Human Rights Council ([OHCHR](https://www.ohchr.org/en/ohchr_homepage)) reported in June 2024 on the findings of their investigation of the events of October 7th 2023 in [A/HRC/56/CRP.3](https://www.ohchr.org/sites/default/files/documents/hrbodies/hrcouncil/sessions-regular/session56/a-hrc-56-crp-3.pdf). They collected evidence from open-source items, including photos, videos, social media content, official data, submitted documents, remote witness testimony. They noted that Israel barred the Commission access to the relevant sites in Israel and the occupied Palestinian territory (oPt), instructed medical personnel not to speak with the Commission, and particularly obstructed investigations into acts of sexual violence by denying meetings with survivors, and lack of forensic evidence. In examining the evidence, they applied cross-referencing and forensic evaluation. This report is the most comprehensive and reliable account of what happened that day I could find.
+The Independent International Commission of Inquiry (the Commission) of the UN Human Rights Council ([OHCHR](https://www.ohchr.org/en/ohchr_homepage)) reported in June 2024 on the findings of their investigation of the events of October 7th 2023 in [A/HRC/56/CRP.3](https://www.ohchr.org/sites/default/files/documents/hrbodies/hrcouncil/sessions-regular/session56/a-hrc-56-crp-3.pdf). They collected evidence from open-source items, including photos, videos, social media content, official data, submitted documents, remote witness testimony. They noted that Israel barred the Commission access to the relevant sites in Israel and the occupied Palestinian territory (oPt), instructed medical personnel not to speak with the Commission, and particularly obstructed investigations into acts of sexual violence by denying meetings with survivors, and lack of forensic evidence. In examining the evidence, they applied cross-referencing and forensic evaluation. This report is the most comprehensive and reliable account of what happened that day I could find.
 
 In addition, Al Jazeera Investigative Unit also conducted an in-depth investigation into the events of that day by examining hours of footage from CCTV, dashcams, personal phones and headcams of dead Hamas fighters, and published their findings in the documentary [October 7](https://www.ajiunit.com/investigation/october-7/).
 
@@ -59,9 +58,9 @@ A particularly puzzling fact is that the Israeli military response was significa
 
 ### What Didn't Happen
 
-The Israeli officials and Israeli news media largely focused their reporting on allegations made by military, security personnel and [ZAKA](https://en.wikipedia.org/wiki/ZAKA) first responders volunteers that have not been substantiated by any evidence. Particularly popular became the allegations that there was systematic beheading and killing of babies, children put killed in ovens, children tied to the back and burnt to death, systematic rape of women. 
+The Israeli officials and Israeli news media largely focused their reporting on allegations made by military, security personnel and [ZAKA](https://en.wikipedia.org/wiki/ZAKA) first responders volunteers that have not been substantiated by any evidence. Particularly popular became the allegations that there was systematic beheading and killing of babies, children being killed in ovens, children tied to the back and burnt to death, systematic rape of women. 
 
-The investigations into the alleged crimes against children did not yield any evidence. These claims were regularly repeated by Netanyahu, and notably by US President Biden and members of his administration (such as Secretary of State Blinken), despite knowing there was no evidence to support them beyond Israeli verbal accounts. Two babies dies, one after and emergency cesarean and one hit by a bullet passing through a door. 
+The investigations into the alleged crimes against children did not yield any evidence. These claims were regularly repeated by Netanyahu, and notably by US President Biden and members of his administration (such as Secretary of State Blinken), despite knowing there was no evidence to support them beyond Israeli verbal accounts. Two babies died, one after an emergency cesarean and one hit by a bullet passing through a door. 
 
 Regarding sexual violence, the Commission showed reasonable evidence that it occurred during the October 7 attacks. The [mission report](https://www.un.org/sexualviolenceinconflict/wp-content/uploads/2024/03/report/mission-report-official-visit-of-the-office-of-the-srsg-svc-to-israel-and-the-occupied-west-bank-29-january-14-february-2024/20240304-Israel-oWB-CRSV-report.pdf) by the Special Representative of the Secretary-General on Sexual Violence in Conflict (SRSG-SVC), following a mission to Israel and the occupied West Bank, found reasonable grounds to believe that conflict-related sexual violence occurred. However, the author emphasized that the report was not investigative in nature and urged Israel to allow a full investigative process and grant access to the Commission, which Israel has refused to do to this day. Neither report found sufficient evidence to support Israeli officials' and media claims that sexual violence was widespread and systematic. Substantiating such allegations would require significantly more corroborative evidence, including forensic analysis conducted by an independent UN investigation, rather than relying solely on accounts from Israeli officials and ZAKA volunteers. Israel since has blocked any serious independent investigation on the systematic rape allegations. 
 
@@ -103,7 +102,7 @@ Following World War II, Jewish survivors remained confined in displaced persons 
 
 The Holocaust's prominence in public discourse emerged only after 1967, propelled by the Six-Day War and the Zionist Greater Israel project. Before this, Holocaust scholarship struggled for recognition. Raul Hilberg's groundbreaking work [*The Destruction of the European Jews*](https://en.wikipedia.org/wiki/The_Destruction_of_the_European_Jews) faced years of publication rejection, illustrating how the Holocaust was not initially central to either Jewish identity or Zionist advocacy.
 
-In 1947, the British ended the Mandate in Palestine and referred the territory's future to the United Nations. The United Nations Special Committee on Palestine (UNSCOP) submitted a partition plan to the UN General Assembly, which passed [Resolution 181](https://documents.un.org/doc/resolution/gen/nr0/038/88/pdf/nr003888.pdf) later that year, despite the opposition of Palestinians and most of the Arab states forming the Arab League. Keep in mind that at the time, Palestinians occupied 90% of the land, while Jewish settlers who were mostly recent immigrants from Europe owned 7% of the private land. The UN proposed to allocate approximately 55% to the Israeli state and approximately 45% to the Arab state, with Jerusalem and Bethlehem as a separate international zone. The unfairness of such a partition implied mass disapprobation and displacement of the Palestinians from their towns and villages,  particularly given the openly stated Zionist objective to Judaize the territory as much as possible. This is what the partition plan looked like:
+In 1947, the British ended the Mandate in Palestine and referred the territory's future to the United Nations. The United Nations Special Committee on Palestine (UNSCOP) submitted a partition plan to the UN General Assembly, which passed [Resolution 181](https://documents.un.org/doc/resolution/gen/nr0/038/88/pdf/nr003888.pdf) later that year, despite the opposition of Palestinians and most of the Arab states forming the Arab League. Keep in mind that at the time, Palestinians occupied 90% of the land, while Jewish settlers who were mostly recent immigrants from Europe owned 7% of the private land. The UN proposed to allocate approximately 55% to the Israeli state and approximately 45% to the Arab state, with Jerusalem and Bethlehem as a separate international zone. The unfairness of such a partition implied mass dispossession and displacement of the Palestinians from their towns and villages, particularly given the openly stated Zionist objective to Judaize the territory as much as possible. This is what the partition plan looked like:
 
 <img src="index_files/partition_plan.png" alt="UN Partition Plan 1947" width="50%">
 
@@ -169,7 +168,7 @@ The 1967 period also marked a profound cultural transformation. Zionism evolved 
 
 Meanwhile, the [Palestine Liberation Organization (PLO)](https://en.wikipedia.org/wiki/Palestine_Liberation_Organization) emerged as the primary representative of the Palestinian people, advocating for national rights and self-determination. Many Fedayeen groups joined the PLO after 1967 while retaining operational autonomy in their armed struggle against Zionism and Israeli occupation. Initially based in Jordan, the PLO relocated to Lebanese Palestinian refugee camps following the [Black September](https://en.wikipedia.org/wiki/Black_September) events of 1970-1971, when the Jordanian army violently suppressed Palestinian armed groups. The PLO was born from the determination to reverse the Zionist colonization of Palestine and end the occupation. This created a fundamental tension within the various factions under the PLO umbrella, including its main political party Fatah: the tension between reversing historical injustice and accepting practical political reality. This manifested as competing strategies, guerrilla warfare, attacks on civilians, and diplomatic engagement, with diplomacy gaining prominence by the mid-1970s as the organization increasingly sought international legitimacy and political solutions.
 
-A crucial decision was made in 1971. Egypt president Sadat offered a peace treaty in exchange for the return of the Sinai Peninsula which was getting Israeli settlers, but the Israeli government led by Golda Meir and support by US Secretary of State Henry Kissinger rejected it, prioritizing expansion on occupied territories over security. Think about it, accepting this peace treaty with Egypt would have immensily increased Israel's security, but that was rejected and clearly lying the framework for the [Yom Kippur war](https://en.wikipedia.org/wiki/Yom_Kippur_War) in 1973 (to get back Sinai and Golan Heights respectively). 
+A crucial decision was made in 1971. Egyptian President Sadat offered a peace treaty in exchange for the return of the Sinai Peninsula which was getting Israeli settlers, but the Israeli government led by Golda Meir and support by US Secretary of State Henry Kissinger rejected it, prioritizing expansion on occupied territories over security. Think about it, accepting this peace treaty with Egypt would have immensely increased Israel's security, but that was rejected and clearly laying the framework for the [Yom Kippur war](https://en.wikipedia.org/wiki/Yom_Kippur_War) in 1973 (to get back Sinai and Golan Heights respectively). 
 
 This decision proved pivotal for future Israeli policy, favoring territorial acquisition over security and peace, particularly significant given Egypt's status as the most powerful Arab military force. Chomsky describes this decision as "fateful," as it cemented Israel's trajectory toward perpetual occupation and expansion, fundamentally undermining claims that its actions are primarily defensive. While adherence to international law would likely ensure much greater security and peace, it would make the Zionist Greater Israel project unrealizable.
 
@@ -213,13 +212,13 @@ The 1982 invasion of Lebanon, known as [Operation "Peace for Galilee"](https://e
 
 The [Sabra and Shatila massacres](https://en.wikipedia.org/wiki/Sabra_and_Shatila_massacre) took place in September 1982, when Lebanese Christian militias, with direct complicity from the Israeli military, killed thousands of Palestinian refugees in Beirut. Over the course of three days, civilians in the Sabra and Shatila camps were systematically slaughtered while Israeli forces surrounded and sealed off the area, preventing escape or outside intervention. The operation was officially justified as a search for "terrorists" allegedly hiding among the refugees, a claim frequently invoked to legitimize collective punishment and atrocities. The massacre stands as a stark illustration of the brutality and impunity that characterized Israeli actions, consolidating a pattern that unfortunately only escalated in the years that followed. 
 
-Even the american media had a hard time not be astonished by the scale of the aggression and violence perpetuated by Israel. Many reports from major news outlets were showing the destruction on TV, and retorically asking if this was an imperial war. Time Magazine exposed Sharon and Begin in a [front page article](https://content.time.com/time/covers/0,16641,19830221,00.html).
+Even the American media had a hard time not to be astonished by the scale of the aggression and violence perpetrated by Israel. Many reports from major news outlets were showing the destruction on TV, and rhetorically asking if this was an imperial war. Time Magazine exposed Sharon and Begin in a [front page article](https://content.time.com/time/covers/0,16641,19830221,00.html).
 
 The [First Intifada](https://en.wikipedia.org/wiki/First_Intifada) (1987–1993) was a mass Palestinian uprising against Israeli occupation and apartheid in the West Bank and Gaza Strip. It began as a grassroots movement characterized by widespread civil disobedience: general strikes, boycotts of Israeli goods, refusal to pay taxes, and large-scale demonstrations. While most actions were nonviolent, the Intifada also included violent confrontations and attacks by Palestinian armed groups targeting Israeli soldiers and, at times, civilians. The Israeli military, under Defense Minister Yitzhak Rabin, responded with brutal repression, mass arrests, systematic torture, expulsions, and the use of live ammunition against protesters, including children. As customary, casualty figures were heavily skewed: over 1,900 Palestinians were killed, many of them children, and an order of magnitude more were injured, while Israeli fatalities numbered around 160, mostly soldiers.
 
 Meanwhile, the Jewish settler population in the West Bank grew rapidly through the continuous establishment of new settlements and the systematic dispossession of Palestinians. As documented by [Benny Morris](https://www.goodreads.com/book/show/131324.Righteous_Victims), the settler population doubled roughly every four years, reaching about 130,000 by the mid-1990s. Following the 1991 Gulf War, Israel imposed severe [restrictions on Palestinian movement](https://www.btselem.org/freedom_of_movement) into Israel and East Jerusalem, ostensibly for security reasons, which effectively fragmented the West Bank, East Jerusalem, and the Gaza Strip into isolated enclaves, making travel between them extremely difficult for Palestinians.
 
-As documented by Rashid Khalidi in [*Palestinian Identity: The Construction of Modern National Consciousness*](https://www.goodreads.com/book/show/20249639), the Intifada marked a significant shift in Palestinian resistance, galvanizing international attention and support for their cause. The brutality of the response drew international condemnation and increased pressure on the United States to push for negotiations with the PLO, which gradually moved toward [accepting UN resolutions (181, 242, 338)and the two-state solution framework](https://www.palquest.org/en/historictext/9679/press-conference-statement-yasir-arafat-clarifying-his-speech-un-general-assembly). At the end of 1988 the UN General Assembly passed [Resolution 43/177](https://digitallibrary.un.org/record/53922?ln=en&v=pdf), recognizing the PLO as the "representative of the Palestinian people" and the proclamation of the State of Palestine over the territory boundaries of Resolution 242, prior to the 1967 Israeli occupation and calling for the implementation of resolution 181 (the partition plan). **The US and Israel were the only states which voted against**, effectively blocking the implementation of a clearly stated peace framework that had international support. 
+As documented by Rashid Khalidi in [*Palestinian Identity: The Construction of Modern National Consciousness*](https://www.goodreads.com/book/show/20249639), the Intifada marked a significant shift in Palestinian resistance, galvanizing international attention and support for their cause. The brutality of the response drew international condemnation and increased pressure on the United States to push for negotiations with the PLO, which gradually moved toward [accepting UN resolutions (181, 242, 338) and the two-state solution framework](https://www.palquest.org/en/historictext/9679/press-conference-statement-yasir-arafat-clarifying-his-speech-un-general-assembly). At the end of 1988 the UN General Assembly passed [Resolution 43/177](https://digitallibrary.un.org/record/53922?ln=en&v=pdf), recognizing the PLO as the "representative of the Palestinian people" and the proclamation of the State of Palestine over the territory boundaries of Resolution 242, prior to the 1967 Israeli occupation and calling for the implementation of resolution 181 (the partition plan). **The US and Israel were the only states which voted against**, effectively blocking the implementation of a clearly stated peace framework that had international support. 
 
 The result was the [Oslo Accords](https://en.wikipedia.org/wiki/Oslo_Accords) of 1993, a series of agreements between Israel and the PLO that [established the Palestinian Authority](https://peacemaker.un.org/sites/default/files/document/files/2024/05/il20ps940504agreement20on20the20gaza20strip20and20the20jericho20area2028cairo20agreement29.pdf) and set a framework for future negotiations. These accords were presented to the world as a realistic peace process, brokered by the Clinton administration. However, it was immediately clear that they represented a PLO capitulation and a victory for US-Israeli rejectionism. Although the accords referenced the gradual implementation of Resolutions 242 and 338, they ignored critical aspects, such as the right of self-determination for Palestinians and the right of return or compensation for refugees, both of which had international support and were key elements of the earlier UN peace framework. Instead, the accords focused on limited Palestinian self-rule in fragmented enclaves, lacking control over borders, resource (notably water), and infrastructure. The 1995 division of the [West Bank into Areas A, B, and C](https://en.wikipedia.org/wiki/West_Bank_areas_in_the_Oslo_II_Accord) entrenched this fragmentation:
 
@@ -401,6 +400,7 @@ In May 2021 another round of mowing the lawn took place with [Operation Guardian
 | Category | Value | Notes |
 |----------|--------|-------|
 | Palestinians Killed | ~ 350 | Majority civilians, ~60 children. |
+| Journalists and Medical Workers Killed | ~1600 | ~200 journalist, ~1400 medical workers. |
 | Israelis Killed | 16 | Including civilians and soldiers. |
 | Palestinians Injured | ~2,500 | Predominantly civilians, ~600 children. |
 | Israelis Injured | ~200 |  |
@@ -431,7 +431,7 @@ The UN OCHA curates a dataset of casualties in the occupied Palestinian territor
 
 ### Gaza
 
-Between October 7th 2023 until time of writing, there has been a military onslaught onto the Gaza Strip of unprecedented scale and brutality. Israeli Prime Minister Benjamin Netanyahu, with diplomatic, economic and military support from United States presidents Biden and Trump, and the US sphere of influence (EU, Canada, Australia, UK, etc.), has perpetuated a genocide in Gaza. 
+Between October 8th 2023 until time of writing, there has been a military onslaught onto the Gaza Strip of unprecedented scale and brutality. Israeli Prime Minister Benjamin Netanyahu, with diplomatic, economic and military support from United States presidents Biden and Trump, and the US sphere of influence (EU, Canada, Australia, UK, etc.), has perpetuated a genocide in Gaza. 
 
 As of October 7, 2025, according to [reports](https://app.powerbi.com/view?r=eyJrIjoiODAxNTYzMDYtMjQ3YS00OTMzLTkxMWQtOTU1NWEwMzE5NTMwIiwidCI6ImY2MTBjMGI3LWJkMjQtNGIzOS04MTBiLTNkYzI4MGFmYjU5MCIsImMiOjh9) by the World Health Organization (via data provided by the Gaza Ministry of Health), 68,858 Gaza citizens have been killed and 170,664 have been injured. At least 10% of the approximately 2.2 million people living in Gaza before the war have been either injured or killed. Recent analysis by public health experts suggests that the number of fatalities reported by the Gaza Ministry of Health, which faces many obstacles to making a full account of the deaths, may be a significant undercount of the violent deaths. 
 
@@ -439,14 +439,13 @@ As of October 7, 2025, according to [reports](https://app.powerbi.com/view?r=eyJ
 |----------|--------|-------|
 | Palestinians Killed in Gaza | ~70,000 | Official count likely significantly undercounted.  ~25% of all Palestinian deaths are children. |
 | Palestinians Injured in Gaza | ~170,000 |  |
-| Gaza Infrastructure Destroyed | ~80%+ | Homes, hospitals, schools, universities, mosques, churches systematically destroyed. |
+| Gaza Infrastructure Destroyed | ~80%+ |  |
 | Gaza Population Displaced | ~2 million | Nearly entire population displaced, multiple times. |
-| Israelis Killed (Military & Civilian) | ~400+ | Since October 7, 2023 operation began. |
-| Israelis Injured | ~2,000+ | Since October 7, 2023 operation began. |
+| Israelis Killed In Gaza | ~600  | ~ [500 soldiers](https://www.timesofisrael.com/authorities-name-44-soldiers-30-police-officers-killed-in-hamas-attack/) and ~70 civilians |
 
 ![Palestinian and Israeli casualties 2023-2025](index_files/casualties_2023-2025.png)
 
-*Palestinian and Israeli casualties from October 2023 to present, illustrating the devastating disparity in deaths and the genocidal scale of Israel's assault on Gaza. [Source](https://app.powerbi.com/view?r=eyJrIjoiODAxNTYzMDYtMjQ3YS00OTMzLTkxMWQtOTU1NWEwMzE5NTMwIiwidCI6ImY2MTBjMGI3LWJkMjQtNGIzOS04MTBiLTNkYzI4MGFmYjU5MCIsImMiOjh9)*
+*Palestinian casualties from October 8th 2023 to October 7th 2025, illustrating the genocidal scale of Israel's assault on Gaza. [Source](https://app.powerbi.com/view?r=eyJrIjoiODAxNTYzMDYtMjQ3YS00OTMzLTkxMWQtOTU1NWEwMzE5NTMwIiwidCI6ImY2MTBjMGI3LWJkMjQtNGIzOS04MTBiLTNkYzI4MGFmYjU5MCIsImMiOjh9)*
 
 ![Destruction in Rafah, Gaza](index_files/destruction_gaza.png)
 
@@ -479,13 +478,13 @@ This report meticulously documents patterns of systematic destruction, deliberat
 
 The systematic targeting of journalists and humanitarian workers has been particularly striking. Over 200 journalists and media workers have been killed in Gaza since October 2023, making it the deadliest conflict for journalists in recorded history. 1,400 humanitarian workers have also been killed, including UN staff, medics, and aid workers, often in clearly marked vehicles and facilities.
 
+> **Note:** Given the protracted suppression of independent investigations and journalistic reporting, it is highly likely that the Israeli military has been systematically destroying additional evidence of war crimes and genocide.
+
 [US military aid to Israel during 2023-2025](https://costsofwar.watson.brown.edu/paper/AidToIsrael) has been unprecedented, reaching a cumulative $21.7 billion, with an additional $10 billion allocated to US military operations in Yemen, Iran, and the wider Middle East region.
 
-Haaretz poll on support for Gaza palestinian expulsion: https://www.haaretz.com/israel-news/2025-06-03/ty-article/.premium/a-grim-poll-shows-most-jewish-israelis-support-expelling-gazans-its-brutal-and-true/00000197-3640-d9f1-abb7-7e742b300000
+In September 2025, Trump and Netanyahu announced a unilateral ["peace plan"](https://www.bbc.com/news/articles/c70155nked7o) that was [heavily criticized](https://www.ohchr.org/en/press-releases/2025/10/palestine-any-peace-plan-must-respect-international-law-beginning-self) for its blatant disregard of Palestinian rights, sovereignty over the occupied territories, and international law. Since then, negotiations with what remains of Hamas in Gaza have been ongoing, with attempts at establishing a ceasefire.
 
-In September 2025, Trump and Netanyahu announced a unilateral ["peace plan"](https://www.bbc.com/news/articles/c70155nked7o) which was [heavily criticized](https://www.ohchr.org/en/press-releases/2025/10/palestine-any-peace-plan-must-respect-international-law-beginning-self) for its blatant disregard of Palestinian rights, sovereignty over the occupied territories and international law. Since then negotiations with whatever remains of Hamas in Gaza have been ongoing, hostages on both sides have been released and ceasefire attempted. 
-
-The UN Special Rapporteur on the situation of human rights in the Palestinian territories o cupied since 1967, Francesca Albanese, released a [comprehensive report titled "Gaza Genocide: a collective crime"](https://www.ohchr.org/sites/default/files/documents/hrbodies/hrcouncil/coiopt/a-80-492-advance-unedited-version.pdf) in October 2025, which asserts that the ongoing genocide is sustained by the complicity of influential Third States through direct support, material aid, and diplomatic protection of Israel. It categorizes this support into four areas—diplomatic, military, economic, and "humanitarian"—demonstrating how these ties enable Israel to maintain its occupation and alleged genocidal campaign. The report concludes that these powerful states have failed to uphold their international legal obligations, thereby contributing to the crisis and underscoring a crisis in the international rule of law. The Rapporteur calls for urgent international action:
+The UN Special Rapporteur on the situation of human rights in the Palestinian territories occupied since 1967, Francesca Albanese, released a [comprehensive report titled *Gaza Genocide: a collective crime*](https://www.ohchr.org/sites/default/files/documents/hrbodies/hrcouncil/coiopt/a-80-492-advance-unedited-version.pdf) in October 2025, which asserts that the ongoing genocide is sustained by the complicity of influential Third States through direct support, material aid, and diplomatic protection of Israel. It categorizes this support into four areas—diplomatic, military, economic, and "humanitarian"—demonstrating how these ties enable Israel to maintain its occupation and alleged genocidal campaign. The report concludes that these powerful states have failed to uphold their international legal obligations, thereby contributing to the crisis and underscoring a crisis in the international rule of law. The Rapporteur calls for urgent international action:
 
 > *Recalling her previous recommendations, the Special Rapporteur reminds all States of their legal obligation not to participate in or be complicit with Israeli violations, and to instead prevent and address serious breaches of international law, particularly as set out in the UN Charter and Genocide Convention.*
 >
@@ -519,36 +518,55 @@ The UN Special Rapporteur on the situation of human rights in the Palestinian te
 
 ### The other territories
 
-TODO:
-- Basic geographical description, demographics, economy and rights of its people.
+The UN Human Rights Office [report on oPt](https://www.un.org/unispal/document/ohchr-press-release-17oct25/), estimates that in the past 2 years, in the West Bank alone, one thousand Palestinians have been killed, mostly by Israeli military forces, of which about 200 are children. According to this report the occupied Palestinian territory, among the 968 Palestinians killed, almost half were unarmed, and not involved in any violence or confrontation at the time of their killing. One hundred and seventy-four Palestinians, including 71 children, were killed while throwing stones or Molotov cocktails, often at well-equipped and protected ISF or ISF vehicles. Israeli airstrikes on Palestinian towns and refugee camps made up a considerable portion of the casualities, applying combat doctrines it has developed during its ongoing offensive in Gaza.
 
-The UN Human Rights Office [report on oPt](https://www.un.org/unispal/document/ohchr-press-release-17oct25/), estimates that in the past 2 years, in the West Bank alone, one thousand Palestinians have been killed, mostly by Israeli military forces, of which about 200 are children. According to this report the Occupied Palestinian Territory, among the 968 Palestinians killed by ISF, almost half (449) were unarmed, and not involved in any violence or confrontation at the time of their killing. One hundred and seventy-four Palestinians, including 71 children, were killed while throwing stones or Molotov cocktails, often at well-equipped and protected ISF or ISF vehicles. In both cases, the use of lethal force appears unnecessary and disproportionate.
+| Category | Value | Notes |
+|----------|--------|-------|
+| Palestinians Killed in West Bank | ~1,000 | ~20% children |
+| Palestinians Injured in West Bank | ~10,000 | Predominantly civilians. |     
+| Palestinians Displaced in West Bank | ~40,000 | |
 
-![West Bank Casualties Last 2 Years](index_files/west_bank_casualties_last_2_years.png)
+<img src="index_files/west_bank_casualties_last_2_years.png" alt="West Bank Casualties Last 2 Years" width="85%">
 
 *Source: [UN Human Rights Office report on oPt](https://www.un.org/unispal/document/ohchr-press-release-17oct25/)*
 
-Map of the West bank access restrictions July 2025: https://www.ochaopt.org/content/west-bank-access-restrictions-map-july-2025
+Increasingly, settler attacks have played a major role in the violence in the West Bank. According to the [UN OCHA](https://www.ochaopt.org/content/west-bank-impact-setter-attacks-january-2023-june-2025), between January 2023 and June 2025, there were thousands documented settler attacks resulting in 38 Palestinian deaths, 4,000 injuries, and 3,000 displaced people. These attacks often involve murder, physical assaults, property damage and destruction including arson, and intimidation tactics against Palestinian civilians, exacerbating tensions and contributing to the overall instability in the region.  
+Israeli apartheid intensified throughout the West Bank and East Jerusalem. The [July 2025 map of West Bank access restrictions published by UN OCHA](https://www.ochaopt.org/content/west-bank-access-restrictions-map-july-2025) reveals the extensive network of checkpoints, roadblocks, and closed roads that fragment Palestinian territories. The systematic expansion of Israeli settlements, militarization of occupied land, and severe movement restrictions imposed on Palestinians are staggering.
 
-Settler attacks: https://www.ochaopt.org/content/west-bank-impact-setter-attacks-january-2023-june-2025
+The number of prisoners and detainees in Israeli jails has surged to over 10,000, according to data from the Israel Prison Service (IPS). More than half have not been charged or tried and face indefinite detention. These figures exclude detainees from the Gaza Strip held by the Israeli military. Holding prisoners and detainees from the occupied Palestinian territory (oPt) inside Israel constitutes a blatant violation of the Fourth Geneva Convention, which prohibits the transfer of prisoners and detainees outside occupied territories. B'Tselem published a detailed and well documented report, titled [*Welcome to Hell* (2024)](https://www.btselem.org/sites/default/files/publications/202408_welcome_to_hell_eng.pdf) documenting the systematic torture, abuse, and denial of basic rights these detainees endure.
 
-OCHA OPT maps are a great resource.
+<img src="index_files/detainees.png" alt="Inmates held in Israeli prisons" width="70%">
 
+*Inmates held in Israeli prisons, the vast majority of whom are Palestinians. [Source: HaMoked](https://hamoked.org/prisoners-charts.php)*
 
-Detainees: 
-- chart https://hamoked.org/prisoners-charts.php 
-- opinion: https://www.btselem.org/sites/default/files/publications/202408_welcome_to_hell_eng.pdf
+I struggled to read it. 
 
-### Manufactured Consent
+## Manufactured Consent
 
-TODO: 
-- talk about AIPAC and other lobbying groups.
-- the indoctrination of the Israeli society qualitative and quantitative. 
-- the US and western media role in distorting the reality on the ground.
-- Hasbara (1984) after 1982 Lebanon war. Israel marketing and branding by Carl Spielvogel, and american advertising executive. https://www.bjpa.org/content/upload/bjpa/the_/THE%2019TH%20AMERICAN-ISRAEL%20DIALOGUE-HASBARA%20ISRAEL'S%20PUBLIC%20IMAGE%20PROBLEMS%20AND%20REMEDIES%201984%20VOL%2051%20NO%202-3.pdf
--jingoism
+Borrowing Edward Herman and Noam Chomsky's famous expression from their book [*Manufacturing Consent: The Political Economy of the Mass Media* (1988)](https://www.goodreads.com/book/show/12617.Manufacturing_Consent), I want to discuss how the Israeli state has made propaganda and political "donations" (in this context, a synonym for "bribes") the most powerful weapons in its military arsenal. This offensive has been waged primarily in the United States and other Western countries and succeeded at acquiring unwavering support for the past 70 years. 
 
-A particularly revealing document is the [*Global Language Dictionary*](https://www.transcend.org/tms/wp-content/uploads/2014/07/sf-israel-projects-2009-global-language-dictionary.pdf) (2009) by Frank Luntz for The Israel Project, a comprehensive training resource for Israeli propaganda specifically targeting the American public. The document's core principle is clear: dominate the narrative with defense from terror, not disputes over territory. It goes without saying that lying is a core skill taught throughout this manual. Some of the most revealing excerpts include:
+The cardinal element is the American Israel Public Affairs Committee ([AIPAC](https://www.aipac.org/)). Since 1954, AIPAC has been shaping US foreign policy and directing American resources to fund the occupation of Palestine through direct and indirect financing of political campaigns and extensive lobbying of politicians. Notably and absurdly, it is not registered as a foreign agent, claiming that it does not take direction from a foreign government. For example, in the 2024 federal election cycle, AIPAC spent money to support about 80% of the races for congressional seats, spending roughly $100 million.
+
+<img src="index_files/aipac.png" alt="AIPAC spending on congressional races" width="70%">
+
+*AIPAC spending on congressional races in 2024. [Source: The Intercept](https://theintercept.com/2024/10/24/aipac-spending-congress-elections-israel/)*
+
+And it doesn't stop at the houses of congress. AIPAC also exerts significant influence over the executive branch, the judiciary, state and local elections and, of course, the media. No wonder every single US president since Truman has been a staunch supporter of Israel, regardless of party affiliation. A book could be written on AIPAC alone, but I want to focus on the broader propaganda apparatus. 
+
+In 1984, two years after the invasion of Lebanon, the [American Jewish Congress](https://ajcongress.org/) sponsored a conference in Jerusalem titled [*Hasbara*](https://www.bjpa.org/content/upload/bjpa/the_/THE%2019TH%20AMERICAN-ISRAEL%20DIALOGUE-HASBARA%20ISRAEL'S%20PUBLIC%20IMAGE%20PROBLEMS%20AND%20REMEDIES%201984%20VOL%2051%20NO%202-3.pdf) (Hebrew for "explanation"). Participants included PR and advertising executives, media professionals, journalists, and leaders of major Jewish organizations. The conference's stated objective was to develop methodologies for presenting unpalatable policies, countering adversarial press coverage, and pre-emptively shaping media narratives. As one participant candidly put it:
+
+> *"Face it: We are in the game of changing people's minds, of making them think differently. To accomplish that we need propaganda."*
+
+The conference was chaired by advertising executive Carl Spielvogel, a re-branding specialist, who had been hired by the Israeli government to improve its international image following the 1982 Lebanon War. In his opening remarks, Spielvogel stated:
+
+> *"I would urge the creation of a Cabinet post dedicated exclusively to the communication and interpretation of Israeli policy. Again, the minister who holds this job would not be setting policy, but presenting it in the most attractive way to the rest of the world. If a Ministry of Communications were to be established, the appropriate minister would have to be supported by a staff of Israeli professionals, trained in the contemporary skills of communication."*
+
+The core narratives yielded by Hasbara methodologies are actually quite simple and needless to say, lies:
+
+- All Palestinian resistance is terrorism while Israeli aggression is self-defense.
+- Israeli settlements are legitimate and not an obstacle to peace.
+
+Another particularly revealing document is the [*Global Language Dictionary*](https://www.transcend.org/tms/wp-content/uploads/2014/07/sf-israel-projects-2009-global-language-dictionary.pdf) (2009) by Frank Luntz for The Israel Project, a comprehensive training resource for Israeli propaganda specifically targeting the American public. The document's core principle is clear: dominate the narrative with defense from terror, not disputes over territory. It goes without saying that lying is a core skill taught throughout this manual. Some of the most revealing excerpts include:
 
 > *"Remember: communication is not a test for who can remember the most facts. Listeners want simple messages that will answer their simple, silent question: 'What is in it for my country and for me to support Israel?'"*
 >
@@ -582,55 +600,45 @@ Perhaps most cynically, when addressing the Palestinian right of return, the man
 >
 > *"Most of all, Americans want a better future. They don't want to dwell on the past problems with Palestinian refugees anymore than they think America should give New York back to the American Indians. Talk about how sometimes you can't turn back the clock – you need to move forward."*
 
+[*The Occupation of the American Mind*](https://www.youtube.com/watch?v=dP0-YohJR-g) is a 2018 documentary featuring numerous high-profile experts discussing Israeli propaganda. Predictably, the film faced significant distribution challenges.
 
-Face it: We are in
-the game of changing people's minds,
-of making them think differently. To
-accomplish that we need propaganda
+The indoctrination of Israeli Jews from infancy is thorough and has created a deeply jingoistic and openly racist society. The documentary [*Israelism: The Awakening of Young American Jews*](https://www.israelismfilm.com/) provides a clear picture of the pervasive doctrines, dogmas, and myths instilled in young Jewish Americans. Through the [Birthright program](https://www.birthrightisrael.com/), young Jews can participate in a fully funded ten-day journey to Israel, designed to cement their attachment to the state and promote permanent immigration via the [Law of Return](https://en.wikipedia.org/wiki/Law_of_Return).  
+As an example of how detached from reality and moral foundation much of Israeli Jewish society is, a May 2024 [survey reported by Haaretz](https://www.haaretz.com/israel-news/2024-05-28/ty-article-magazine/.premium/yes-to-transfer-82-of-jewish-israelis-back-expelling-gazans/00000197-12a4-df22-a9d7-9ef6af930000) found that 82% of Jewish Israelis support the expulsion of Palestinians from the occupied territories. That's ethnic cleansing by popular demand. No wonder social media has been flooded with racist content posted by Israeli citizens celebrating the aborrent genocidal acts that IDF soldiers voluntarily recorded and shared. The assumed level of impunity is staggering.
 
+Many western media outlets have played a significant role in perpetuating Israel's propaganda, employing the same tactics that for decades have manufactured consent for US imperialist wars. The most relevant ways this is done are:
 
-Palestinian resistance = terrorism
-Israeli aggression = self-defense
+- Coverage: favoring Israeli perspectives and narratives, including selective reporting. 
+- Source reliance: heavy dependence on Israeli government, military, and allied sources, while marginalizing Palestinian institutions and independent journalists.
+- Language: *"Israeli hostages"* vs *"Palestinian prisoners"*, emotionally charged language used primarily to describe Israel's casualties (*"massacre"*, *"slaughter"*, *"horrific"*) while passive language is used for Palestinians (*"loss of life"*, *"killed"*), disregard for proportions, refrain from using the words *"genocide"*, *"war crime"*.
+- Omission of context: Refer to the *"Israel-Hamas war"* without historical context of occupation, apartheid, disproportionate aggression. 
+- Misinformation: unverfied claims such as *"behaded babies"*, *"systematic rape"* which were debunked but widely circulated to demonize and dehumanize Palestinians.
 
-Of Israeli ‘Hostages’ And Palestinian ‘Prisoners’
+Read more about this [here](https://www.theguardian.com/commentisfree/2023/oct/16/the-language-being-used-to-describe-palestinians-is-genocidal), [here](https://arxiv.org/html/2510.06453v1), [here](https://institute.aljazeera.net/en/ajr/article/3081) and [here](https://theintercept.com/2024/01/09/newspapers-israel-palestine-bias-new-york-times/). 
 
+Finally I wanted to mention the repression of student (and faculty) protests on University campuses. In the US, pro-Palestinian activism has been met with hostility and suppression, often under the guise of combating anti-Semitism (according ). Universities have faced pressure from the Biden and Trump administrations, the latter threatening to withhold federal funding from institutions perceived as harboring anti-Israel sentiment.  
+Columbia University Professor [Rashid Khalidi](https://en.wikipedia.org/wiki/Rashid_Khalidi) denounced Columbia University's actions and deal with the Trump administration by cancelling his 2025 Fall course on modern middle-east history. Specifically, in his open letter he wrote:
+> *"It is impossible to teach this course (and much else) in light of Columbia’s adoption of the International Holocaust Remembrance Alliance (IHRA) definition of antisemitism."*
+>
+> *"Under this definition of antisemitism, which absurdly conflates criticism of a nation-state, Israel, and a political ideology, Zionism, with the ancient evil of Jew-hatred, it is impossible with any honesty to teach about topics such as the history of the creation of Israel, and the ongoing Palestinian Nakba, culminating in the genocide being perpetrated by Israel in Gaza with the connivance and support of the US and much of western Europe."*
 
-Take a look at this 2018 documentary that does justice to the topic: [The Occupation of the American Mind](https://www.youtube.com/watch?v=dP0-YohJR-g)
-
-Look at what Rashid Khalidi recently wrote to denounce the Columbia University's: https://www.palestine-studies.org/en/node/1657663#
+## Reflections
 
 ### Does Israel Have the Right to Exist?
 
-Does Israel have the right to exist?
 This is perhaps the most commonly deployed question used to constrain public debate within the Zionist framework. Here is why it's fundamentally manipulative.
 
-States are power structures created by people to organize themselves. They are not moral agents. They are not living beings. People are. Does a specific political party have the right to exist? Does a particular corporation have the right to exist? No, they simply exist as constructs. People have the right to organize themselves and duties when doing so. What they create doesn't a priori have the right to exist. It depends on what they create and how! 
+States are power structures created by people to organize themselves. They are not moral agents. They are not living beings. People are. Does a specific political party have the right to exist? Does a particular corporation have the right to exist? No, they simply exist as constructs. People have the right to organize themselves and duties when doing so. What they create doesn't a priori have the right to exist. It all depends on what they create and how they do so. 
 
 The question conflates the existence of a state structure with the existence of people. Do the people who have organized themselves under the state of Israel have the right to exist? Of course. All people have the right to exist. But that right does not extend to anything they do while existing, nor does it legitimize the means by which their state was established.
 
-In the case of Israel, the state was established through the occupation of Palestine and the displacement and killing of nearly a million native Palestinians (the 1948-49 Nakba), in systematic violation of human rights. Did the world gain rights through this process? No, it suffered a net loss. 
+In the case of Israel, the state was established through the occupation of Palestine and the displacement and killing of nearly a million native Palestinians (the 1948-49 Nakba), in systematic violation of human rights. Did the world gain rights through this process? No, it suffered an enourmous net loss. 
 
-The question "Does Israel have the right to exist?" is designed to prevent us from asking the more relevant questions: "Did Israel have the right to be created through ethnic cleansing and occupation?" and "Given that the State of Israel was created, what sovereignty do you recognize? Are the occupied territories part of it?".
+The question *"Does Israel have the right to exist?"* is designed to prevent us from asking the more relevant questions: *"Did Israel have the right to be created through ethnic cleansing and occupation?"* and *"Given that the state of Israel was created, what sovereignty do you recognize? Are the occupied territories part of it?"*.
 
+### What Peace
 
+The imposition of will through incremental use of violence has been from the beginning the modus operandi of the Israeli State. This has created Hezobollah and Hamas, which mirrored incremental use of violence to resist. The choice of expansion over security has been a genocidal policy for the Palestinians and suicidal for Israel, which has long been a morally bankrupt pariah state.
 
+If reason prevails, the bare minimum that can be done towards peace is to give back to the Palestinians what is still there of what was robbed: their rights, their land, their resources and their independence. The internationally recognized borders of 1967 (80% Israel / 20% Palestine) are the practical basis for an agreement between largely amoral decision makers. In a different time and cultural framework, one democratic and unified state for all its citizen could arise. Unfortunately if this sole state was implemented today, would just be the Greater Israel Apartheid state.  
 
-
-
-
-## What is Peace
-
-
-
-- no justice no peace
--
-
-If reason prevails, the bare minimum that can be done towards peace is to give back to the Palestinians what is still there of what was robbed: their rights, their land, their resources and their independence. The internationally recognized borders of 1967 (80% Israel / 20% Palestine) are the practical basis for an agreement between largely amoral decision makers. In a different time and cultural framework (hopefully in a not too distant future), one democratic and unified state for all its citizen could arise. Unfortunately it seems that today such a unified state would just be the Greater Israel Apartheid state.
-
-## Growing Awareness
-
-How could I possibly contribute to the already mountainous body of video, images, and text that documents, analyzes, and prescribes solutions to the horrors inflicted on the native people of Palestine by Israel and its allies since the disgraceful decision to manufacture the State of Israel in 1948?
-
-What else could I add to the synthesis work of scholars like[Edward Said](https://en.wikipedia.org/wiki/Edward_Said), [Noam Chomsky](https://en.wikipedia.org/wiki/Noam_Chomsky), [Ilan Pappé](https://en.wikipedia.org/wiki/Ilan_Papp%C3%A9), [Norman Finkelstein](https://en.wikipedia.org/wiki/Norman_Finkelstein), and [Rashid Khalidi](https://en.wikipedia.org/wiki/Rashid_Khalidi), to the reporting work of so many journalists and individuals who have sacrificed so much to uphold the truth?
-
-
+I doubt that change within Israeli society alone is possible. Instead, change is more likely to come from its major backer, the United States. The proliferation of videos, photos documenting the reality in Gaza has contributed significantly to growing awareness, cutting through mainstream media propaganda that has struggled to ignore this evidence. If solidarity with Palestine and opposition to imperial occupation of the Middle East continues to gain momentum in the US, a critical threshold could be reached that forces Israel to accept a two-state solution based on international law and the pre-1967 borders. Pressure must increase. Joining the initiatives of movements such as the [Boycott, Divestment, Sanctions (BDS)](https://bdsmovement.net/) is a good way to do so. 
