@@ -126,7 +126,7 @@ The following table summarizes key statistics from historical research, includin
 | Villages Destroyed | ~530 | Palestinian villages and urban neighborhoods depopulated and demolished. |
 | Massacres | 70+ | Documented massacres of Palestinian civilians. |
 
-> **Note:** Forced dispossession, displacement and ethnic cleansing of Palestinians continued after the armistice and has never really stopped since. The Nakba and the international silence on the crimes committed were foundational to the racist and settler-colonial ideology on which the Jewish state was built.
+Forced dispossession, displacement and ethnic cleansing of Palestinians continued after the armistice and has not stopped since. The Nakba and the international silence on the crimes committed were foundational to the racist and settler-colonial ideology on which the Jewish state was built.
 
 ### Towards Greater Israel
 
