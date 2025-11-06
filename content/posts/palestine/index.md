@@ -350,12 +350,14 @@ The siege of the Gaza Strip and repeated violations of ceasefires persisted unti
 |----------|--------|-------|
 | Palestinians Killed | ~2,250 | 65% of these were civilians, 550 children. |
 | Israelis Killed | 73 | 67 soldiers and 6 civilians. |
-| Palestinians Injured | ~11,000 | Predominantly civilians; many with permanent disabilities. |
+| Palestinians Injured | ~11,000 | Predominantly civilians, many with permanent disabilities. |
 | Israelis Injured | ~1,600 | Including civilians and soldiers. |
 | Gaza Homes Destroyed | ~18,000 | Palestinian homes completely destroyed or severely damaged. |
 | Gaza Citizens Displaced | ~100,000 |  |
 
-Vast swathes of Gaza were reduced to rubble. Four hospitals were targeted and damaged, acts that constitute war crimes under international law. The main power plant was struck, drastically curtailing electricity and further limiting access to clean water for 1.2 million residents, another war crime. Rescue teams and ambulances also came under repeated attack. 
+Vast swathes of Gaza were reduced to rubble. Four hospitals were targeted and damaged, acts that constitute war crimes under international law. The main power plant was struck, drastically curtailing electricity and further limiting access to clean water for 1.2 million residents, another war crime. Rescue teams and ambulances also came under repeated attack.
+
+At the end of August 2014, Israel and the Palestinian Authority (PA) both accepted a ceasefire agreement, in theory. Noam Chomsky captures Israel's policy of ceasefire violations in [*"Ceasefires in which violations never cease"*](https://mondediplo.com/openpage/ceasefires-in-which-violations-never-cease). During the operation, the West Bank was not spared violence, thousands were injured by IDF fire, hundreds were incarcerated and tens were killed. As the operation ended, Israel immediately announced its largest appropriation of West Bank land in thirty years, seizing almost 1,000 acres in the Gush Etzion area. 
 
 Similarly to previous genocidal operations, also this one was favored by effectively the totality of Israeli Jewish, as captured in a [poll done by the Israel Democracy Institute](https://en.idi.org.il/press-releases/12789) shortly after the end of the operation:
 
@@ -363,21 +365,17 @@ Similarly to previous genocidal operations, also this one was favored by effecti
 
 For the record, each of these military operations, was publicly endorsed by US presidents and secretaries of state, who consistently reiterated the phrase *"Israel has the right to defend itself"*. This stance was voiced by George W. Bush ([2008](https://georgewbush-whitehouse.archives.gov/news/releases/2004/04/20040414-2.html)), Hillary Clinton ([2012](https://www.reuters.com/article/economy/clinton-says-israel-has-right-to-defend-itself-idUSN27340621/)), Barack Obama ([2012](https://www.theguardian.com/world/video/2012/nov/18/barack-obama-support-israels-video), [2014](https://www.youtube.com/watch?v=HGs3zn7F2iE)), and others.
 
-At the end of August 2014, Israel and the Palestinian Authority (PA) both accepted a ceasefire agreement, in theory. Noam Chomsky captures Israel's policy of ceasefire violations in ["Ceasefires in which violations never cease"](https://mondediplo.com/openpage/ceasefires-in-which-violations-never-cease). During the operation, the West Bank was not spared violence, thousands were injured by IDF fire, hundreds were incarcerated and tens were killed. As the operation ended, Israel immediately announced its largest appropriation of West Bank land in thirty years, seizing almost 1,000 acres in the Gush Etzion area. 
-
 The [UN Independent Commission of Inquiry report](https://www.ohchr.org/en/hr-bodies/hrc/co-i-gaza-conflict/report-co-i-gaza) and the [Human Rights Watch report](https://www.hrw.org/world-report/2015/country-chapters/israel/palestine#) in 2015 on the dire humanitarian situation and human rights abuses faced by Palestinians in the occupied territories and within Israel proper. Besides the bombing, [**the blockade of Gaza**](https://imeu.org/resources/resources/putting-palestinians-on-a-diet-israels-siege-blockade-of-gaza/223), which continued since 2007, had devastating effects:
 
-- 80% of Gaza’s 1.8 million residents depended on humanitarian aid for survival.
-- Half of the population are children.
-- Unemployment affected half of the working-age population.
-- 90% of available water was unsafe for drinking.
-- Only 30% of electricity needs were met, as the sole power plant had been destroyed.
-- 60% of children suffered from anemia caused by malnutrition.
-- 1 in 10 children under five experienced stunted growth.
+> - 80% of Gaza's 1.8 million residents depended on humanitarian aid for survival.
+> - Half of the population are children.
+> - Unemployment affected half of the working-age population.
+> - 90% of available water was unsafe for drinking.
+> - Only 30% of electricity needs were met, as the sole power plant had been destroyed.
+> - 60% of children suffered from anemia caused by malnutrition.
+> - 1 in 10 children under five experienced stunted growth.
 
-In 2017, Hamas revised its charter to **formally accept the establishment of a Palestinian state based on the 1967 borders**, signaling a significant shift from its previous position. This move was widely interpreted as an implicit recognition of Israel within its pre-1967 boundaries and an endorsement of the international consensus for a two-state solution. [Read more](https://www.aljazeera.com/news/2017/5/2/hamas-accepts-palestinian-state-with-1967-borders). However the US and Israel continued to reject any negotiations based on these borders and pushed the opposite agenda.
-
-At the end of 2017 the Trump administration formally recognized Jerusalem as the capital of Israel and announced the relocation of the US embassy from Tel Aviv. This broke with decades of US policy and international consensus, sparking mass protests across Palestine. 
+In 2017, Hamas [revised its charter](https://www.aljazeera.com/news/2017/5/2/hamas-accepts-palestinian-state-with-1967-borders) to **formally accept the establishment of a Palestinian state based on the 1967 borders**, signaling a significant shift from its previous position. This move was widely interpreted as an implicit recognition of Israel within its pre-1967 boundaries and an endorsement of the international consensus for a two-state solution. However the US and Israel continued to reject any negotiations based on these borders and pushed the opposite agenda. At the end of 2017 the Trump administration formally recognized Jerusalem as the capital of Israel and announced the relocation of the US embassy from Tel Aviv. This broke with decades of US policy and international consensus, sparking mass protests across Palestine. 
 
 Beginning in March 2018, Palestinians in Gaza launched the [Great March of Return](https://www.ochaopt.org/content/approaching-first-anniversary-great-march-return-protests-gaza#), a series of weekly mass protests along the fence separating Gaza from Israel. The demonstrators called for the right of return for Palestinian refugees and an end to the ongoing blockade of Gaza. These largely unarmed protests were met with lethal force by the Israeli military, which used live ammunition against protesters, including medics, journalists, children, and persons with disabilities. 
 
