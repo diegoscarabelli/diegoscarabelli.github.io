@@ -1,6 +1,6 @@
 ---
-date: "2025-10-23"
-lastmod: "2025-10-23"
+date: "2025-11-06"
+lastmod: "2025-11-06"
 author: "Diego Scarabelli"
 title: "\"Terror, not territory\" - Anatomy of a Pain Machine"
 description: "History and Reflections on the Occupation of Palestine, Israel's Apartheid State and its Incremental Genocide of Palestinians."
