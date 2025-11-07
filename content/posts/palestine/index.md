@@ -518,7 +518,7 @@ The UN Special Rapporteur on the situation of human rights in the Palestinian te
 >
 > — Francesca Albanese, UN Special Rapporteur, *Gaza Genocide: a collective crime* (October 2025)
 
-### The other territories
+### West Bank
 
 The UN Human Rights Office [report on oPt](https://www.un.org/unispal/document/ohchr-press-release-17oct25/), estimates that in the past 2 years, in the West Bank alone, ~1,000 Palestinians have been killed, mostly by Israeli military forces, of which about 200 are children. According to this report, almost half were unarmed, and not involved in any violence or confrontation at the time of their killing. One 174 Palestinians, including 71 children, were killed while throwing stones or Molotov cocktails, often at well-equipped and protected ISF vehicles. Israeli airstrikes on Palestinian towns and refugee camps made up a considerable portion of the casualities, applying combat doctrines it developed during its offensives in Gaza.
 
