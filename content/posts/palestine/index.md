@@ -3,7 +3,7 @@ date: "2025-11-06"
 lastmod: "2025-11-06"
 author: "Diego Scarabelli"
 title: "\"Terror, not territory\" - Anatomy of a Pain Machine"
-description: "History and Reflections on the Occupation of Palestine, Israel's Apartheid State and its Incremental Genocide of Palestinians."
+description: "History and reflections on the occupation of Palestine, Israel's apartheid state and its incremental genocide of Palestinians."
 comments: true
 categories:
 - Geopolitics
