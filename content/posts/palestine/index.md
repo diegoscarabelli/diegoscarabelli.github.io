@@ -563,10 +563,10 @@ The conference was chaired by advertising executive Carl Spielvogel, a re-brandi
 
 The core narratives yielded by Hasbara methodologies are actually quite simple and needless to say, lies:
 
-- All Palestinian resistance is terrorism while Israeli aggression is self-defense.
-- Israeli settlements are legitimate and not an obstacle to peace.
+- **All Palestinian resistance is terrorism while Israeli aggression is self-defense.**
+- **Israeli settlements are legitimate and not an obstacle to peace.**
 
-Another particularly revealing document is the [*Global Language Dictionary*](https://www.transcend.org/tms/wp-content/uploads/2014/07/sf-israel-projects-2009-global-language-dictionary.pdf) (2009) by Frank Luntz for The Israel Project, a comprehensive training resource for Israeli propaganda specifically targeting the American public. The document's core principle is clear: dominate the narrative with defense from terror, not disputes over territory. It goes without saying that lying is a core skill taught throughout this manual. Some of the most revealing excerpts include:
+Another particularly revealing document is the [*Global Language Dictionary*](https://www.transcend.org/tms/wp-content/uploads/2014/07/sf-israel-projects-2009-global-language-dictionary.pdf) (2009) by Frank Luntz for The Israel Project, a comprehensive training resource for Israeli propaganda specifically targeting the American public. The document's core principle is clear: **dominate the narrative with defense from terror, not disputes over territory**. It goes without saying that lying is a core skill taught throughout this manual. Some of the most revealing excerpts include:
 
 > *"Remember: communication is not a test for who can remember the most facts. Listeners want simple messages that will answer their simple, silent question: 'What is in it for my country and for me to support Israel?'"*
 >
@@ -600,10 +600,12 @@ Perhaps most cynically, when addressing the Palestinian right of return, the man
 >
 > *"Most of all, Americans want a better future. They don't want to dwell on the past problems with Palestinian refugees anymore than they think America should give New York back to the American Indians. Talk about how sometimes you can't turn back the clock – you need to move forward."*
 
-[*The Occupation of the American Mind*](https://www.youtube.com/watch?v=dP0-YohJR-g) is a 2018 documentary featuring numerous high-profile experts discussing Israeli propaganda. Predictably, the film faced significant distribution challenges.
+[*The Occupation of the American Mind*](https://www.youtube.com/watch?v=dP0-YohJR-g) is a 2018 documentary featuring numerous experts discussing Israeli propaganda. Predictably, the film faced significant distribution challenges.
 
-The indoctrination of Israeli Jews from infancy is thorough and has created a deeply jingoistic and openly racist society. The documentary [*Israelism: The Awakening of Young American Jews*](https://www.israelismfilm.com/) provides a clear picture of the pervasive doctrines, dogmas, and myths instilled in young Jewish Americans. Through the [Birthright program](https://www.birthrightisrael.com/), young Jews can participate in a fully funded ten-day journey to Israel, designed to cement their attachment to the state and promote permanent immigration via the [Law of Return](https://en.wikipedia.org/wiki/Law_of_Return).  
-As an example of how detached from reality and moral foundation much of Israeli Jewish society is, a May 2024 [survey reported by Haaretz](https://www.haaretz.com/israel-news/2024-05-28/ty-article-magazine/.premium/yes-to-transfer-82-of-jewish-israelis-back-expelling-gazans/00000197-12a4-df22-a9d7-9ef6af930000) found that 82% of Jewish Israelis support the expulsion of Palestinians from the occupied territories. That's ethnic cleansing by popular demand. No wonder social media has been flooded with racist content posted by Israeli citizens celebrating the aborrent genocidal acts that IDF soldiers voluntarily recorded and shared. The assumed level of impunity is staggering.
+<br>
+
+The indoctrination of Israeli Jews from infancy is thorough and has created a deeply jingoistic and openly racist society. The documentary [*Israelism: The Awakening of Young American Jews*](https://www.israelismfilm.com/) provides a clear picture of the pervasive doctrines, dogmas, and myths instilled in young Jewish Israeli and Americans. Through the [Birthright program](https://www.birthrightisrael.com/), young American Jews can participate in a fully funded ten-day journey to Israel, designed to cement their attachment to the state and promote permanent immigration via the [Law of Return](https://en.wikipedia.org/wiki/Law_of_Return).  
+As an example of how detached from reality and moral foundation much of Israeli Jewish society is, a May 2024 [survey reported by Haaretz](https://www.haaretz.com/israel-news/2024-05-28/ty-article-magazine/.premium/yes-to-transfer-82-of-jewish-israelis-back-expelling-gazans/00000197-12a4-df22-a9d7-9ef6af930000) found that **82% of Jewish Israelis support the expulsion of Palestinians from the occupied territories.** That's ethnic cleansing by popular demand. No wonder social media has been flooded with racist content posted by Israeli citizens celebrating the aborrent genocidal acts that IDF soldiers voluntarily recorded and shared, which I am not going to link here. The assumed level of impunity is staggering.
 
 Many western media outlets have played a significant role in perpetuating Israel's propaganda, employing the same tactics that for decades have manufactured consent for US imperialist wars. The most relevant ways this is done are:
 
@@ -615,8 +617,10 @@ Many western media outlets have played a significant role in perpetuating Israel
 
 Read more about this [here](https://www.theguardian.com/commentisfree/2023/oct/16/the-language-being-used-to-describe-palestinians-is-genocidal), [here](https://arxiv.org/html/2510.06453v1), [here](https://institute.aljazeera.net/en/ajr/article/3081) and [here](https://theintercept.com/2024/01/09/newspapers-israel-palestine-bias-new-york-times/). 
 
-Finally I wanted to mention the repression of student (and faculty) protests on University campuses. In the US, pro-Palestinian activism has been met with hostility and suppression, often under the guise of combating antisemitism (according ). Universities have faced pressure from the Biden and Trump administrations, the latter threatening to withhold federal funding from institutions perceived as harboring anti-Israel sentiment.  
-Columbia University Professor [Rashid Khalidi](https://en.wikipedia.org/wiki/Rashid_Khalidi) denounced Columbia University's actions and deal with the Trump administration by cancelling his 2025 Fall course on modern middle-east history. Specifically, in his open letter he wrote:
+<br>
+
+Finally I wanted to mention the repression of student (and faculty) protests on University campuses. In the US, pro-Palestinian activism has been met with hostility and suppression, often under the guise of combating antisemitism. Universities have faced pressure from the Biden and Trump administrations, the latter threatening to [withhold federal funding](https://www.ed.gov/about/news/press-release/doj-hhs-ed-and-gsa-announce-initial-cancelation-of-grants-and-contracts-columbia-university-worth-400-million) from institutions perceived as harboring anti-Israel sentiment.  
+Columbia University Professor [Rashid Khalidi](https://en.wikipedia.org/wiki/Rashid_Khalidi) denounced Columbia University's actions and its deal with the Trump administration by cancelling his 2025 Fall course on modern middle-east history. Specifically, in his [open letter](https://www.theguardian.com/commentisfree/2025/aug/01/columbia-historian-rashid-khalidi-open-letter) he wrote:
 > *"It is impossible to teach this course (and much else) in light of Columbia’s adoption of the International Holocaust Remembrance Alliance (IHRA) definition of antisemitism."*
 >
 > *"Under this definition of antisemitism, which absurdly conflates criticism of a nation-state, Israel, and a political ideology, Zionism, with the ancient evil of Jew-hatred, it is impossible with any honesty to teach about topics such as the history of the creation of Israel, and the ongoing Palestinian Nakba, culminating in the genocide being perpetrated by Israel in Gaza with the connivance and support of the US and much of western Europe."*
