@@ -22,7 +22,7 @@ Recent exchanges with my parents highlighted how one's immediate social circle c
 - Conformity: the tendency to avoid social friction and fit in the average of your social network, your tribe.
 - Denial: an understandable defense mechanism against the immorality, cruelty and horror of much of reality.
 
-A topic that is plagued by all of these barriers in their full force is that of Palestine. Decades of investigative reporting, historical analysis, human rights work and activism, by countless brave individuals and organizations that have spoken the truth of what has been happening since the creation of the State of Israel in 1948 (and leading to it), have not yet managed to defeat widespread disinformation. The result is that public opinion has been fractured and mobilization for practical action remains limited to this day. It's such a heartbreaking tragedy.
+A topic that is plagued by all of these barriers in their full force is that of Palestine. Decades of investigative reporting, historical analysis, human rights work and activism, by countless brave individuals and organizations that have spoken the truth about what has been happening since the creation of the State of Israel in 1948 (and leading to it), have not yet managed to defeat widespread disinformation. The result is that public opinion has been fractured and mobilization for practical action remains limited to this day. It's such a heartbreaking tragedy.
 
 This essay aggregates factual context and analysis which I hope can be that catalyst, if you need one, which dissolves the consent for the Pain Machine. Let's go down the rabbit hole.
 
