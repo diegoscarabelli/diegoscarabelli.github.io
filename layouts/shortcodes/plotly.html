@@ -1,0 +1,11 @@
+{{- $file := .Get "file" -}}
+{{- $height := .Get "height" | default "500px" -}}
+
+<div style="width: 100%; height: {{ $height }};">
+  <iframe 
+    src="{{ $file }}" 
+    style="width: 100%; height: 100%; border: none;"
+    frameborder="0"
+    scrolling="no">
+  </iframe>
+</div>
