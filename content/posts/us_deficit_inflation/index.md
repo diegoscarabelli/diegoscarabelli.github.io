@@ -250,7 +250,6 @@ plot_dual_axis_series(metrics_container,
 ```
 
     💾 Saved interactive plot to: index_files/deficit_vs_price_wage_quarterly.html
-    📝 In markdown, use: {{< plotly file=\"index_files/deficit_vs_price_wage_quarterly.html\" height=\"650px\" >}}
 
 
 
@@ -429,7 +428,6 @@ plot_dual_axis_series(
 ```
 
     💾 Saved interactive plot to: index_files/deficit_vs_inflation_annually.html
-    📝 In markdown, use: {{< plotly file=\"index_files/deficit_vs_inflation_annually.html\" height=\"650px\" >}}
 
 
 
@@ -615,7 +613,6 @@ lags, ccf = calculate_and_plot_cross_correlation(
       Lag:  9, CCF: 0.1151, Points used: 56
       Lag: 10, CCF: 0.1616, Points used: 55
     💾 Saved interactive plot to: index_files/ccf_deficit_inflation_levels.html
-    📝 In markdown, use: {{< plotly file=\"index_files/ccf_deficit_inflation_levels.html\" >}}
 
 
 
@@ -820,7 +817,6 @@ plot_dual_axis_series(
 ```
 
     💾 Saved interactive plot to: index_files/deficit_inflation_differenced_comparison.html
-    📝 In markdown, use: {{< plotly file=\"index_files/deficit_inflation_differenced_comparison.html\" height=\"650px\" >}}
 
 
 
@@ -977,7 +973,6 @@ lags, ccf_coeffs = calculate_and_plot_cross_correlation(
       Lag:  9, CCF: 0.0620, Points used: 55
       Lag: 10, CCF: 0.1047, Points used: 54
     💾 Saved interactive plot to: index_files/ccf_deficit_inflation_differenced.html
-    📝 In markdown, use: {{< plotly file=\"index_files/ccf_deficit_inflation_differenced.html\" >}}
 
 
 
@@ -1064,7 +1059,6 @@ plot_dual_axis_series(
 ```
 
     💾 Saved interactive plot to: index_files/inflation_vs_log_inflation.html
-    📝 In markdown, use: {{< plotly file=\"index_files/inflation_vs_log_inflation.html\" height=\"650px\" >}}
 
 
 
