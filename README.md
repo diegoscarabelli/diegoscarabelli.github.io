@@ -84,7 +84,6 @@ def save_html_plot(fig, output_dir: str = "index_files") -> str:
         config={'displayModeBar': True, 'responsive': True},
         include_plotlyjs='cdn'
     )
-    print(f"💾 Saved interactive plot to: {html_file}")
     
     return html_file
 ```
@@ -93,35 +92,35 @@ Call `save_html_plot(fig)` after creating each Plotly figure.
 
 **Deployment Steps for Interactive Plots:**
 
-1. **Execute notebook** - Run all cells in Jupyter to generate HTML plot files
+1. **Execute notebook:** Run all cells in Jupyter to generate HTML plot files in `index_files/`.
 2. **Run deployment script:**
    ```bash
-   python scripts/deploy_notebook.py us_deficit_inflation
+   python scripts/deploy_notebook.py <post-name>
    ```
-   This automatically:
-   - Converts notebook to markdown (preserving code but replacing plot outputs with SVG references)
-   - Copies HTML files to `static/posts/<post-name>/index_files/`
-   - Replaces SVG references with Plotly shortcodes
+   The script automates the deployment process by:
+   - Converting the notebook to Markdown using `nbconvert`.
+   - Copying HTML plot files from `content/posts/<post-name>/index_files/` to `static/posts/<post-name>/index_files/`.
+   - Replacing SVG image references with Plotly shortcodes in the generated Markdown.
 
 3. **Test locally:**
    ```bash
    hugo server -D
    ```
-4. **Commit and push** - GitHub Actions deploys automatically
+4. **Commit and push:** GitHub Actions deploys automatically.
 
 **Alternative: Static SVG Deployment**
 
 For simpler deployment without interactivity:
 
-1. Set `SAVE_HTML_PLOTS = False` in notebook imports
-2. Execute notebook cells
-3. Run `jupyter nbconvert --to markdown index.ipynb`
-4. Deploy normally—SVG images are automatically generated and served as page bundle resources
+1. Set `SAVE_HTML_PLOTS = False` in notebook imports.
+2. Execute notebook cells.
+3. Run `jupyter nbconvert --to markdown index.ipynb`.
+4. Deploy normally. SVG images are automatically generated and served as page bundle resources.
 
 **Technical Notes:**
 - Hugo page bundles serve SVG/image files as resources; HTML files require `static/` directory
 - The [`plotly.html` shortcode](layouts/shortcodes/plotly.html) uses responsive iframes
-- Plotly.js loads via CDN (Content Delivery Network) to keep HTML files small—the library is fetched from a public server rather than embedded in each file
+- Plotly.js loads via CDN (Content Delivery Network) to keep HTML files small; the library is fetched from a public server rather than embedded in each file
 - Plot names are auto-generated as `plot_1.html`, `plot_2.html`, etc.
 
 ## Directory Structure

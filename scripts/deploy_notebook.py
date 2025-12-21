@@ -31,9 +31,10 @@ def deploy_notebook(post_name: str):
     """
     Deploy a Jupyter notebook with interactive plots to Hugo.
     
-    Args:
-        post_name: Name of the post directory (e.g., 'us_deficit_inflation')
+    :param post_name: Name of the post directory (e.g., 'us_deficit_inflation')
+    :returns: None
     """
+    
     # Define paths
     repo_root = Path(__file__).parent.parent
     post_dir = repo_root / "content" / "posts" / post_name
@@ -104,7 +105,7 @@ def deploy_notebook(post_name: str):
         # Replace each SVG with corresponding HTML plot
         for i, match in enumerate(svg_matches, 1):
             html_filename = f"plot_{i}.html"
-            shortcode = f'{{{{< plotly file="index_files/{html_filename}" height="650px" >}}}}'
+            shortcode = f'{{{{< plotly file="index_files/{html_filename}" >}}}}'
             content = content.replace(match, shortcode, 1)
             print(f"   ✅ Replaced {match}")
             print(f"      → {shortcode}")

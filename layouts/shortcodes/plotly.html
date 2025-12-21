@@ -1,11 +1,21 @@
 {{- $file := .Get "file" -}}
-{{- $height := .Get "height" | default "500px" -}}
 
-<div style="width: 100%; height: {{ $height }};">
+<div class="plotly-container" style="width: 100%; overflow: hidden;">
   <iframe 
     src="{{ $file }}" 
-    style="width: 100%; height: 100%; border: none;"
+    style="border: none; display: block; transform-origin: top left;"
     frameborder="0"
-    scrolling="no">
+    scrolling="no"
+    onload="
+      var content = this.contentWindow.document.body;
+      var contentWidth = content.scrollWidth;
+      var contentHeight = content.scrollHeight;
+      var containerWidth = this.parentElement.offsetWidth;
+      var scale = containerWidth / contentWidth;
+      this.style.width = contentWidth + 'px';
+      this.style.height = contentHeight + 'px';
+      this.style.transform = 'scale(' + scale + ')';
+      this.parentElement.style.height = (contentHeight * scale) + 'px';
+    ">
   </iframe>
 </div>
