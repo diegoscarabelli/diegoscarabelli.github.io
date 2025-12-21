@@ -1,6 +1,6 @@
 ---
 date: "2025-05-30"
-lastmod: "2025-06-03"
+lastmod: "2025-12-20"
 author: "Diego Scarabelli"
 title: "Is the US Fiscal Deficit Correlated to Price Inflation?"
 description: "In other words: when there is a fiscal deficit, is there price inflation, possibly with a time lag? If the deficit increases or decreases, does inflation follow?"
@@ -42,6 +42,7 @@ The available data does not provide statistically significant evidence of cross-
 %autoreload 3
 
 # Standard library imports
+import os
 from dataclasses import dataclass, field
 from typing import Dict, List, Optional
 
@@ -57,6 +58,13 @@ from statsmodels.tsa.stattools import adfuller, kpss
 pio.renderers.default = "svg"  # or "png", "jpeg", "pdf"
 # # Set the default theme to plotly_dark for the entire session
 # pio.templates.default = "plotly_dark"
+
+# Global counter for plot naming
+plot_counter = 0
+
+# Global flag to control HTML plot saving for rendering in Hugo site
+SAVE_HTML_PLOTS = True
+
 ```
 
 ### Data Ingestion
@@ -95,10 +103,11 @@ for metric_cfg in metrics_config:
     metric_units = metric_cfg["units"]
     metric_frequency = metric_cfg["frequency"]
     
-    fred_url = f"https://fred.stlouisfed.org/series/{metric_name}/downloaddata/{metric_name}.csv"
+    fred_url = f"https://fred.stlouisfed.org/graph/fredgraph.csv?id={metric_name}"
     
     print(f"Downloading data for {metric_name} from {fred_url}...")
-    df_metric_data = pd.read_csv(fred_url, parse_dates=["DATE"])
+    df_metric_data = pd.read_csv(fred_url, parse_dates=["observation_date"])
+    df_metric_data = df_metric_data.rename(columns={"observation_date": "DATE", metric_name: "VALUE"})
     
     # Rename columns
     df_metric_data = df_metric_data.rename(columns={"DATE": "timestamp", "VALUE": "value"})
@@ -135,12 +144,12 @@ for key in metrics_container.keys():
     print(key)
 ```
 
-    Downloading data for FYFSGDA188S from https://fred.stlouisfed.org/series/FYFSGDA188S/downloaddata/FYFSGDA188S.csv...
+    Downloading data for FYFSGDA188S from https://fred.stlouisfed.org/graph/fredgraph.csv?id=FYFSGDA188S...
     Successfully processed FYFSGDA188S. Shape: (96, 4)
-    Downloading data for PCEPILFE from https://fred.stlouisfed.org/series/PCEPILFE/downloaddata/PCEPILFE.csv...
-    Successfully processed PCEPILFE. Shape: (796, 4)
-    Downloading data for ECIWAG from https://fred.stlouisfed.org/series/ECIWAG/downloaddata/ECIWAG.csv...
-    Successfully processed ECIWAG. Shape: (97, 4)
+    Downloading data for PCEPILFE from https://fred.stlouisfed.org/graph/fredgraph.csv?id=PCEPILFE...
+    Successfully processed PCEPILFE. Shape: (801, 4)
+    Downloading data for ECIWAG from https://fred.stlouisfed.org/graph/fredgraph.csv?id=ECIWAG...
+    Successfully processed ECIWAG. Shape: (99, 4)
     Metrics container keys:
     FYFSGDA188S_annually_percent_gdp
     PCEPILFE_quarterly_index
@@ -149,6 +158,39 @@ for key in metrics_container.keys():
 
 ### Visual Inspection
 Alright, we've successfully grabbed our data from FRED. Before we dive into any heavy-duty analysis, let's quickly plot these time series. This will give us a first look at what we're dealing with and help us spot any obvious patterns or quirks in the raw data.
+
+
+```python
+def save_html_plot(fig, output_dir: str = "index_files") -> str:
+    """
+    Save a Plotly figure as an HTML file with auto-generated name.
+    
+    :param fig: Plotly figure object to save
+    :param output_dir: Directory to save the HTML file (default: "index_files")
+    :returns: Path to the saved HTML file
+    """
+    
+    global plot_counter
+    
+    if not SAVE_HTML_PLOTS:
+        return None
+    
+    # Create output directory if it doesn't exist
+    os.makedirs(output_dir, exist_ok=True)
+    
+    plot_counter += 1
+    plot_name = f"plot_{plot_counter}"
+    html_file = f"{output_dir}/{plot_name}.html"
+    
+    fig.write_html(
+        html_file,
+        config={'displayModeBar': True, 'responsive': True},
+        include_plotlyjs='cdn'
+    )
+    
+    return html_file
+
+```
 
 
 ```python
@@ -210,6 +252,8 @@ def plot_dual_axis_series(metrics_container: Dict[str, FredMetric], y1_keys: Lis
         ),
         legend=dict(x=0.00, y=1.16, bgcolor="rgba(255,255,255,0.5)")
     )
+    
+    save_html_plot(fig)
     fig.show()
 ```
 
@@ -222,7 +266,7 @@ plot_dual_axis_series(metrics_container,
 
 
     
-![svg](index_files/index_10_0.svg)
+{{< plotly file="index_files/plot_1.html" >}}
     
 
 
@@ -392,12 +436,11 @@ plot_dual_axis_series(
     y1_keys=[deficit_key],
     y2_keys=[inflation_key, "ECIWAG_annually_percent"]
 )
-    
 ```
 
 
     
-![svg](index_files/index_21_0.svg)
+{{< plotly file="index_files/plot_2.html" >}}
     
 
 
@@ -516,6 +559,8 @@ def calculate_and_plot_cross_correlation(
         y1=0,
         line=dict(color="Black", width=1, dash="dash")
     )
+    
+    save_html_plot(fig_ccf)
     fig_ccf.show()
 
     return lags_array, ccf_values
@@ -523,46 +568,43 @@ def calculate_and_plot_cross_correlation(
 
 
 ```python
-print(f"Calculating cross-correlation for: {deficit_key} and {inflation_key}\n")
-lags, ccf_coeffs = calculate_and_plot_cross_correlation(
-    metrics_container, 
-    deficit_key, 
-    inflation_key,
-    max_lag=10 
+lags, ccf = calculate_and_plot_cross_correlation(
+    metrics_container=metrics_container,
+    key1=deficit_key,
+    key2=inflation_key,
+    max_lag=10
 )
 ```
 
-    Calculating cross-correlation for: FYFSGDA188S_annually_percent_gdp and PCEPILFE_annually_percent
-    
     Cross-correlation between FYFSGDA188S_annually_percent_gdp and PCEPILFE_annually_percent:
     Method: Variable segment length (full overlap). Max lag considered: 10.
     Original number of data points (N): 65.
     Negative lags indicate FYFSGDA188S_annually_percent_gdp leads PCEPILFE_annually_percent.
-      Lag: -10, CCF: 0.2830, Points used: 55
-      Lag: -9, CCF: 0.3056, Points used: 56
-      Lag: -8, CCF: 0.2742, Points used: 57
-      Lag: -7, CCF: 0.2384, Points used: 58
-      Lag: -6, CCF: 0.1896, Points used: 59
-      Lag: -5, CCF: 0.1223, Points used: 60
-      Lag: -4, CCF: 0.0234, Points used: 61
-      Lag: -3, CCF: -0.0418, Points used: 62
-      Lag: -2, CCF: -0.0274, Points used: 63
-      Lag: -1, CCF: 0.0220, Points used: 64
-      Lag:  1, CCF: -0.0648, Points used: 64
-      Lag:  2, CCF: -0.0426, Points used: 63
-      Lag:  3, CCF: -0.0237, Points used: 62
-      Lag:  4, CCF: -0.0077, Points used: 61
-      Lag:  5, CCF: 0.0176, Points used: 60
-      Lag:  6, CCF: 0.0474, Points used: 59
-      Lag:  7, CCF: 0.0505, Points used: 58
-      Lag:  8, CCF: 0.0734, Points used: 57
-      Lag:  9, CCF: 0.1157, Points used: 56
-      Lag: 10, CCF: 0.1622, Points used: 55
+      Lag: -10, CCF: 0.2829, Points used: 55
+      Lag: -9, CCF: 0.3055, Points used: 56
+      Lag: -8, CCF: 0.2741, Points used: 57
+      Lag: -7, CCF: 0.2383, Points used: 58
+      Lag: -6, CCF: 0.1895, Points used: 59
+      Lag: -5, CCF: 0.1221, Points used: 60
+      Lag: -4, CCF: 0.0223, Points used: 61
+      Lag: -3, CCF: -0.0423, Points used: 62
+      Lag: -2, CCF: -0.0265, Points used: 63
+      Lag: -1, CCF: 0.0217, Points used: 64
+      Lag:  1, CCF: -0.0645, Points used: 64
+      Lag:  2, CCF: -0.0427, Points used: 63
+      Lag:  3, CCF: -0.0245, Points used: 62
+      Lag:  4, CCF: -0.0083, Points used: 61
+      Lag:  5, CCF: 0.0171, Points used: 60
+      Lag:  6, CCF: 0.0468, Points used: 59
+      Lag:  7, CCF: 0.0499, Points used: 58
+      Lag:  8, CCF: 0.0728, Points used: 57
+      Lag:  9, CCF: 0.1151, Points used: 56
+      Lag: 10, CCF: 0.1616, Points used: 55
 
 
 
     
-![svg](index_files/index_24_1.svg)
+{{< plotly file="index_files/plot_3.html" >}}
     
 
 
@@ -642,8 +684,8 @@ adf_report(metrics_container[inflation_key].data["value"], inflation_key)
 ```
 
     ADF Test for FYFSGDA188S_annually_percent_gdp:
-      Test Statistic: -3.3105
-      p-value: 0.0144
+      Test Statistic: -3.3172
+      p-value: 0.0141
       #Lags Used: 1
       #Observations: 63
         Critical Value (1%): -3.5387
@@ -762,7 +804,7 @@ plot_dual_axis_series(
 
 
     
-![svg](index_files/index_35_0.svg)
+{{< plotly file="index_files/plot_4.html" >}}
     
 
 
@@ -776,7 +818,7 @@ adf_report(metrics_container[diff_inflation_key].data["value"], diff_inflation_k
 ```
 
     ADF Test for diff_FYFSGDA188S_annually_percent_gdp:
-      Test Statistic: -7.2650
+      Test Statistic: -7.2509
       p-value: 0.0000
       #Lags Used: 1
       #Observations: 62
@@ -785,7 +827,7 @@ adf_report(metrics_container[diff_inflation_key].data["value"], diff_inflation_k
         Critical Value (10%): -2.5923
     ----------------------------------------
     ADF Test for diff_PCEPILFE_annually_percent:
-      Test Statistic: -3.3138
+      Test Statistic: -3.3132
       p-value: 0.0143
       #Lags Used: 4
       #Observations: 59
@@ -834,7 +876,7 @@ kpps_report(metrics_container[diff_inflation_key].data["value"], diff_inflation_
 ```
 
     KPSS Test for diff_FYFSGDA188S_annually_percent_gdp (regression='c'):
-      KPSS Statistic: 0.0666
+      KPSS Statistic: 0.0663
       p-value: 0.1000
       #Lags Used: 7
       Critical Values:
@@ -844,7 +886,7 @@ kpps_report(metrics_container[diff_inflation_key].data["value"], diff_inflation_
         1%: 0.7390
     ----------------------------------------
     KPSS Test for diff_PCEPILFE_annually_percent (regression='c'):
-      KPSS Statistic: 0.1544
+      KPSS Statistic: 0.1545
       p-value: 0.1000
       #Lags Used: 5
       Critical Values:
@@ -855,13 +897,13 @@ kpps_report(metrics_container[diff_inflation_key].data["value"], diff_inflation_
     ----------------------------------------
 
 
-    /var/folders/lk/21hq1pz55xn204vhrhz_npp40000gn/T/ipykernel_19399/2369050582.py:12: InterpolationWarning:
+    /var/folders/lk/21hq1pz55xn204vhrhz_npp40000gn/T/ipykernel_39965/2369050582.py:12: InterpolationWarning:
     
     The test statistic is outside of the range of p-values available in the
     look-up table. The actual p-value is greater than the p-value returned.
     
     
-    /var/folders/lk/21hq1pz55xn204vhrhz_npp40000gn/T/ipykernel_19399/2369050582.py:12: InterpolationWarning:
+    /var/folders/lk/21hq1pz55xn204vhrhz_npp40000gn/T/ipykernel_39965/2369050582.py:12: InterpolationWarning:
     
     The test statistic is outside of the range of p-values available in the
     look-up table. The actual p-value is greater than the p-value returned.
@@ -882,7 +924,7 @@ lags, ccf_coeffs = calculate_and_plot_cross_correlation(
     metrics_container, 
     diff_deficit_key, 
     diff_inflation_key,
-    max_lag=10 
+    max_lag=10
 )
 ```
 
@@ -892,31 +934,31 @@ lags, ccf_coeffs = calculate_and_plot_cross_correlation(
     Method: Variable segment length (full overlap). Max lag considered: 10.
     Original number of data points (N): 64.
     Negative lags indicate diff_FYFSGDA188S_annually_percent_gdp leads diff_PCEPILFE_annually_percent.
-      Lag: -10, CCF: 0.0185, Points used: 54
-      Lag: -9, CCF: 0.1427, Points used: 55
-      Lag: -8, CCF: -0.0100, Points used: 56
-      Lag: -7, CCF: 0.0025, Points used: 57
-      Lag: -6, CCF: 0.0688, Points used: 58
-      Lag: -5, CCF: 0.0186, Points used: 59
-      Lag: -4, CCF: -0.0087, Points used: 60
-      Lag: -3, CCF: -0.2224, Points used: 61
-      Lag: -2, CCF: -0.1029, Points used: 62
-      Lag: -1, CCF: 0.2776, Points used: 63
-      Lag:  1, CCF: -0.1843, Points used: 63
-      Lag:  2, CCF: -0.0327, Points used: 62
-      Lag:  3, CCF: -0.0506, Points used: 61
-      Lag:  4, CCF: -0.0229, Points used: 60
-      Lag:  5, CCF: 0.0092, Points used: 59
-      Lag:  6, CCF: 0.0778, Points used: 58
-      Lag:  7, CCF: -0.0712, Points used: 57
-      Lag:  8, CCF: -0.1027, Points used: 56
-      Lag:  9, CCF: 0.0619, Points used: 55
-      Lag: 10, CCF: 0.1049, Points used: 54
+      Lag: -10, CCF: 0.0190, Points used: 54
+      Lag: -9, CCF: 0.1424, Points used: 55
+      Lag: -8, CCF: -0.0103, Points used: 56
+      Lag: -7, CCF: 0.0024, Points used: 57
+      Lag: -6, CCF: 0.0693, Points used: 58
+      Lag: -5, CCF: 0.0182, Points used: 59
+      Lag: -4, CCF: -0.0127, Points used: 60
+      Lag: -3, CCF: -0.2237, Points used: 61
+      Lag: -2, CCF: -0.0957, Points used: 62
+      Lag: -1, CCF: 0.2763, Points used: 63
+      Lag:  1, CCF: -0.1823, Points used: 63
+      Lag:  2, CCF: -0.0316, Points used: 62
+      Lag:  3, CCF: -0.0508, Points used: 61
+      Lag:  4, CCF: -0.0230, Points used: 60
+      Lag:  5, CCF: 0.0093, Points used: 59
+      Lag:  6, CCF: 0.0779, Points used: 58
+      Lag:  7, CCF: -0.0711, Points used: 57
+      Lag:  8, CCF: -0.1028, Points used: 56
+      Lag:  9, CCF: 0.0620, Points used: 55
+      Lag: 10, CCF: 0.1047, Points used: 54
 
 
 
     
-![svg](index_files/index_44_1.svg)
+{{< plotly file="index_files/plot_5.html" >}}
     
 
 
@@ -998,7 +1040,7 @@ plot_dual_axis_series(
 
 
     
-![svg](index_files/index_51_0.svg)
+{{< plotly file="index_files/plot_6.html" >}}
     
 
 
@@ -1012,8 +1054,8 @@ kpps_report(metrics_container[log_inflation_key].data["value"], log_inflation_ke
 ```
 
     ADF Test for log_PCEPILFE_annually_percent:
-      Test Statistic: -1.8947
-      p-value: 0.3345
+      Test Statistic: -1.8984
+      p-value: 0.3328
       #Lags Used: 2
       #Observations: 62
         Critical Value (1%): -3.5405
@@ -1021,8 +1063,8 @@ kpps_report(metrics_container[log_inflation_key].data["value"], log_inflation_ke
         Critical Value (10%): -2.5923
     ----------------------------------------
     KPSS Test for log_PCEPILFE_annually_percent (regression='c'):
-      KPSS Statistic: 0.3807
-      p-value: 0.0855
+      KPSS Statistic: 0.3799
+      p-value: 0.0858
       #Lags Used: 4
       Critical Values:
         10%: 0.3470
@@ -1061,7 +1103,7 @@ kpps_report(metrics_container[diff_log_inflation_key].data["value"], diff_log_in
 ```
 
     ADF Test for diff_log_PCEPILFE_annually_percent:
-      Test Statistic: -6.3787
+      Test Statistic: -6.3404
       p-value: 0.0000
       #Lags Used: 1
       #Observations: 62
@@ -1070,9 +1112,9 @@ kpps_report(metrics_container[diff_log_inflation_key].data["value"], diff_log_in
         Critical Value (10%): -2.5923
     ----------------------------------------
     KPSS Test for diff_log_PCEPILFE_annually_percent (regression='c'):
-      KPSS Statistic: 0.1806
+      KPSS Statistic: 0.1739
       p-value: 0.1000
-      #Lags Used: 4
+      #Lags Used: 3
       Critical Values:
         10%: 0.3470
         5%: 0.4630
@@ -1081,7 +1123,7 @@ kpps_report(metrics_container[diff_log_inflation_key].data["value"], diff_log_in
     ----------------------------------------
 
 
-    /var/folders/lk/21hq1pz55xn204vhrhz_npp40000gn/T/ipykernel_19399/2369050582.py:12: InterpolationWarning:
+    /var/folders/lk/21hq1pz55xn204vhrhz_npp40000gn/T/ipykernel_39965/2369050582.py:12: InterpolationWarning:
     
     The test statistic is outside of the range of p-values available in the
     look-up table. The actual p-value is greater than the p-value returned.
