@@ -96,8 +96,8 @@ def deploy_notebook(post_name: str):
     with open(markdown_path, 'r', encoding='utf-8') as f:
         content = f.read()
     
-    # Pattern to match SVG image references: ![svg](index_files/index_X_Y.svg)
-    svg_pattern = re.compile(r'!\[svg\]\(index_files/index_\d+_\d+\.svg\)')
+    # Pattern to match SVG image references like: ![svg](index_files/anything.svg)
+    svg_pattern = re.compile(r'!\[svg\]\(index_files/[^)]+\.svg\)')
     svg_matches = svg_pattern.findall(content)
     
     if svg_matches:
