@@ -96,7 +96,8 @@ Call `save_html_plot(fig)` after creating each Plotly figure.
 2. **Run deployment script:**
    ```bash
    python scripts/deploy_notebook.py <post-name>
-   ```
+   # e.g., for content/posts/us_deficit_inflation/
+   python scripts/deploy_notebook.py us_deficit_inflation
    The script automates the deployment process by:
    - Converting the notebook to Markdown using `nbconvert`.
    - Copying HTML plot files from `content/posts/<post-name>/index_files/` to `static/posts/<post-name>/index_files/`.
