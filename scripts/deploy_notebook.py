@@ -102,9 +102,17 @@ def deploy_notebook(post_name: str):
     
     if svg_matches:
         print(f"   Found {len(svg_matches)} SVG references")
-        # Replace each SVG with corresponding HTML plot
+        # Replace each SVG with corresponding HTML plot, validating that the HTML file exists
         for i, match in enumerate(svg_matches, 1):
             html_filename = f"plot_{i}.html"
+            source_html_path = html_source_dir / html_filename
+            static_html_path = static_target_dir / html_filename
+            
+            if not source_html_path.exists() and not static_html_path.exists():
+                print(f"   ⚠️  Skipping replacement for {match}")
+                print(f"      → Expected HTML file not found: {source_html_path} or {static_html_path}")
+                continue
+            
             shortcode = f'{{{{< plotly file="index_files/{html_filename}" >}}}}'
             content = content.replace(match, shortcode, 1)
             print(f"   ✅ Replaced {match}")
