@@ -8,7 +8,7 @@ This solution enables fully interactive Plotly plots on your Hugo-based GitHub P
 
 ### 1. Hugo Shortcode
 
-Created `/layouts/shortcodes/plotly.html` that embeds HTML plot files:
+Createdif you check the webpage yourself that embeds HTML plot files:
 
 ```html
 {{- $file := .Get "file" -}}

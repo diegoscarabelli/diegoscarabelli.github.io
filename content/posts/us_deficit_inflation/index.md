@@ -1,6 +1,6 @@
 ---
 date: "2025-05-30"
-lastmod: "2025-06-03"
+lastmod: "2025-12-20"
 author: "Diego Scarabelli"
 title: "Is the US Fiscal Deficit Correlated to Price Inflation?"
 description: "In other words: when there is a fiscal deficit, is there price inflation, possibly with a time lag? If the deficit increases or decreases, does inflation follow?"
@@ -61,11 +61,11 @@ pio.renderers.default = "svg"  # or "png", "jpeg", "pdf"
 
 # Global counter for plot naming
 plot_counter = 0
+
+# Global flag to control HTML plot saving for rendering in Hugo site
+SAVE_HTML_PLOTS = True
+
 ```
-
-    The autoreload extension is already loaded. To reload it, use:
-      %reload_ext autoreload
-
 
 ### Data Ingestion
 
@@ -144,34 +144,53 @@ for key in metrics_container.keys():
     print(key)
 ```
 
-    Downloading data for FYFSGDA188S from https://fred.stlouisfed.org/graph/fredgraph.csv?id=FYFSGDA188S...
-    Successfully processed FYFSGDA188S. Shape: (96, 4)
-    Downloading data for PCEPILFE from https://fred.stlouisfed.org/graph/fredgraph.csv?id=PCEPILFE...
-    Successfully processed PCEPILFE. Shape: (801, 4)
-    Downloading data for ECIWAG from https://fred.stlouisfed.org/graph/fredgraph.csv?id=ECIWAG...
-    Successfully processed ECIWAG. Shape: (99, 4)
-    Metrics container keys:
-    FYFSGDA188S_annually_percent_gdp
-    PCEPILFE_quarterly_index
-    ECIWAG_quarterly_index
-
-
 ### Visual Inspection
 Alright, we've successfully grabbed our data from FRED. Before we dive into any heavy-duty analysis, let's quickly plot these time series. This will give us a first look at what we're dealing with and help us spot any obvious patterns or quirks in the raw data.
 
 
 ```python
-def plot_dual_axis_series(metrics_container: Dict[str, FredMetric], y1_keys: List[str], y2_keys: List[str], save_html: bool = True, plot_name: str = None):
+def save_html_plot(fig, output_dir: str = "index_files") -> str:
+    """
+    Save a Plotly figure as an HTML file with auto-generated name.
+    
+    :param fig: Plotly figure object to save
+    :param output_dir: Directory to save the HTML file (default: "index_files")
+    :returns: Path to the saved HTML file
+    """
+    
+    global plot_counter
+    
+    if not SAVE_HTML_PLOTS:
+        return None
+    
+    # Create output directory if it doesn't exist
+    os.makedirs(output_dir, exist_ok=True)
+    
+    plot_counter += 1
+    plot_name = f"plot_{plot_counter}"
+    html_file = f"{output_dir}/{plot_name}.html"
+    
+    fig.write_html(
+        html_file,
+        config={'displayModeBar': True, 'responsive': True},
+        include_plotlyjs='cdn'
+    )
+    print(f"💾 Saved interactive plot to: {html_file}")
+    
+    return html_file
+
+```
+
+
+```python
+def plot_dual_axis_series(metrics_container: Dict[str, FredMetric], y1_keys: List[str], y2_keys: List[str]):
     """
     Plot multiple time series on a dual y-axis plot using Plotly.
     
     :param metrics_container: Dictionary containing FredMetric instances with data
     :param y1_keys: Keys of metrics_container corresponding to metrics to plot on y1 (left axis)
     :param y2_keys: Keys of metrics_container corresponding to metrics to plot on y2 (right axis)
-    :param save_html: If True, save the plot as an HTML file
-    :param plot_name: Optional custom name for the HTML file (without extension)
     """
-    global plot_counter
 
     fig = go.Figure()
 
@@ -223,21 +242,7 @@ def plot_dual_axis_series(metrics_container: Dict[str, FredMetric], y1_keys: Lis
         legend=dict(x=0.00, y=1.16, bgcolor="rgba(255,255,255,0.5)")
     )
     
-    # Save as HTML if requested
-    if save_html:
-        if plot_name is None:
-            plot_counter += 1
-            plot_name = f"plot_{plot_counter}"
-        
-        html_file = f"index_files/{plot_name}.html"
-        fig.write_html(
-            html_file,
-            config={'displayModeBar': True, 'responsive': True},
-            include_plotlyjs='cdn'
-        )
-        print(f"💾 Saved interactive plot to: {html_file}")
-        print(f"📝 In markdown, use: {{{{< plotly file=\\\"index_files/{plot_name}.html\\\" height=\\\"650px\\\" >}}}}")
-    
+    save_html_plot(fig)
     fig.show()
 ```
 
@@ -245,18 +250,8 @@ def plot_dual_axis_series(metrics_container: Dict[str, FredMetric], y1_keys: Lis
 ```python
 plot_dual_axis_series(metrics_container,
                       y1_keys=["FYFSGDA188S_annually_percent_gdp"],
-                      y2_keys=["PCEPILFE_quarterly_index", "ECIWAG_quarterly_index"],
-                      plot_name="deficit_vs_price_wage_quarterly")
+                      y2_keys=["PCEPILFE_quarterly_index", "ECIWAG_quarterly_index"])
 ```
-
-    💾 Saved interactive plot to: index_files/deficit_vs_price_wage_quarterly.html
-
-
-
-    
-{{< plotly file="index_files/deficit_vs_price_wage_quarterly.html" height="650px" >}}
-    
-
 
 The time series relevant to our analysis, `FYFSGDA188S` (fiscal deficit) and `PCEPILFE` (price inflation index), cover different time ranges and have unmatched frequencies. Due to the limited availability of `PCEPILFE` data, our analysis focuses on the period from 1959 to the present. To enable cross-correlation analysis, we must also downsample the `PCEPILFE` data to an annual frequency to match that of `FYFSGDA188S`.
 
@@ -317,16 +312,6 @@ for key in metrics_container.keys():
     print(key)
 ```
 
-    Added PCEPILFE_annually_index to metrics_container. Shape: (66, 4)
-    Added ECIWAG_annually_index to metrics_container. Shape: (24, 4)
-    Metrics container keys:
-    FYFSGDA188S_annually_percent_gdp
-    PCEPILFE_quarterly_index
-    ECIWAG_quarterly_index
-    PCEPILFE_annually_index
-    ECIWAG_annually_index
-
-
 As mentioned earlier, matching time series frequency is important. However, this process further reduces the number of data points available for analysis, already limited, down to just over sixty, constrained by the PCEPILFE series.  
 This level of scarcity is concerning! Hopefully, we can still extract something statistically significant from the available data.
 
@@ -379,18 +364,6 @@ for key in metrics_container.keys():
     print(key)
 ```
 
-    Added PCEPILFE_annually_percent to metrics_container. Shape: (65, 4)
-    Added ECIWAG_annually_percent to metrics_container. Shape: (23, 4)
-    Metrics container keys:
-    FYFSGDA188S_annually_percent_gdp
-    PCEPILFE_quarterly_index
-    ECIWAG_quarterly_index
-    PCEPILFE_annually_index
-    ECIWAG_annually_index
-    PCEPILFE_annually_percent
-    ECIWAG_annually_percent
-
-
 We must truncate `FYFSGDA188S_annually_percent_gdp` to match the start date of `PCEPILFE_annually_percent`, since our objective is to cross-correlate the two series. We will not use `ECIWAG_annually_percent` for this analysis, but I find it useful to visualize alongside price inflation.
 
 
@@ -412,9 +385,6 @@ metrics_container[deficit_key].data = truncated_df
 print(f"Truncated {deficit_key} to start at {t_min}. New shape: {truncated_df.shape}")
 ```
 
-    Truncated FYFSGDA188S_annually_percent_gdp to start at 1960-01-01 00:00:00. New shape: (65, 4)
-
-
 Let's plot the annually resampled and year-over-year change metrics alongside the fiscal deficit to visually compare their annual variations. This helps reveal any patterns or relationships between fiscal deficits, price inflation, and wage growth over time.
 
 
@@ -422,19 +392,9 @@ Let's plot the annually resampled and year-over-year change metrics alongside th
 plot_dual_axis_series(
     metrics_container,
     y1_keys=[deficit_key],
-    y2_keys=[inflation_key, "ECIWAG_annually_percent"],
-    plot_name="deficit_vs_inflation_annually"
+    y2_keys=[inflation_key, "ECIWAG_annually_percent"]
 )
 ```
-
-    💾 Saved interactive plot to: index_files/deficit_vs_inflation_annually.html
-
-
-
-    
-{{< plotly file="index_files/deficit_vs_inflation_annually.html" height="650px" >}}
-    
-
 
 ### Cross-Correlation of Undifferenced (Level) Series
 
@@ -448,9 +408,7 @@ def calculate_and_plot_cross_correlation(
     metrics_container: dict, 
     key1: str, 
     key2: str, 
-    max_lag: int = 10,
-    save_html: bool = True,
-    plot_name: str = None
+    max_lag: int = 10
 ) -> tuple:
     """
     Calculates and plots the Pearson product-moment correlation coefficients between two time series using the 
@@ -465,11 +423,8 @@ def calculate_and_plot_cross_correlation(
     :param key1: Key for the first series in metrics_container.
     :param key2: Key for the second series in metrics_container.
     :param max_lag: Maximum lag to consider for the range of lags.
-    :param save_html: If True, save the plot as an HTML file
-    :param plot_name: Optional custom name for the HTML file (without extension)
     :returns: Tuple (lags, ccf_values) or (None, None) if an error occurs.
     """
-    global plot_counter
     
     y1 = metrics_container[key1].data.value.values
     y2 = metrics_container[key2].data.value.values
@@ -557,21 +512,7 @@ def calculate_and_plot_cross_correlation(
         line=dict(color="Black", width=1, dash="dash")
     )
     
-    # Save as HTML if requested
-    if save_html:
-        if plot_name is None:
-            plot_counter += 1
-            plot_name = f"plot_{plot_counter}"
-        
-        html_file = f"index_files/{plot_name}.html"
-        fig_ccf.write_html(
-            html_file,
-            config={'displayModeBar': True, 'responsive': True},
-            include_plotlyjs='cdn'
-        )
-        print(f"💾 Saved interactive plot to: {html_file}")
-        print(f"📝 In markdown, use: {{{{< plotly file=\\\"index_files/{plot_name}.html\\\" >}}}}")
-    
+    save_html_plot(fig_ccf)
     fig_ccf.show()
 
     return lags_array, ccf_values
@@ -583,43 +524,9 @@ lags, ccf = calculate_and_plot_cross_correlation(
     metrics_container=metrics_container,
     key1=deficit_key,
     key2=inflation_key,
-    max_lag=10,
-    plot_name="ccf_deficit_inflation_levels"
+    max_lag=10
 )
 ```
-
-    Cross-correlation between FYFSGDA188S_annually_percent_gdp and PCEPILFE_annually_percent:
-    Method: Variable segment length (full overlap). Max lag considered: 10.
-    Original number of data points (N): 65.
-    Negative lags indicate FYFSGDA188S_annually_percent_gdp leads PCEPILFE_annually_percent.
-      Lag: -10, CCF: 0.2829, Points used: 55
-      Lag: -9, CCF: 0.3055, Points used: 56
-      Lag: -8, CCF: 0.2741, Points used: 57
-      Lag: -7, CCF: 0.2383, Points used: 58
-      Lag: -6, CCF: 0.1895, Points used: 59
-      Lag: -5, CCF: 0.1221, Points used: 60
-      Lag: -4, CCF: 0.0223, Points used: 61
-      Lag: -3, CCF: -0.0423, Points used: 62
-      Lag: -2, CCF: -0.0265, Points used: 63
-      Lag: -1, CCF: 0.0217, Points used: 64
-      Lag:  1, CCF: -0.0645, Points used: 64
-      Lag:  2, CCF: -0.0427, Points used: 63
-      Lag:  3, CCF: -0.0245, Points used: 62
-      Lag:  4, CCF: -0.0083, Points used: 61
-      Lag:  5, CCF: 0.0171, Points used: 60
-      Lag:  6, CCF: 0.0468, Points used: 59
-      Lag:  7, CCF: 0.0499, Points used: 58
-      Lag:  8, CCF: 0.0728, Points used: 57
-      Lag:  9, CCF: 0.1151, Points used: 56
-      Lag: 10, CCF: 0.1616, Points used: 55
-    💾 Saved interactive plot to: index_files/ccf_deficit_inflation_levels.html
-
-
-
-    
-{{< plotly file="index_files/ccf_deficit_inflation_levels.html" height="500px" >}}
-    
-
 
 
 ⚠️ **Important**
@@ -695,26 +602,6 @@ def adf_report(series: pd.Series, name: str) -> None:
 adf_report(metrics_container[deficit_key].data["value"], deficit_key)
 adf_report(metrics_container[inflation_key].data["value"], inflation_key)
 ```
-
-    ADF Test for FYFSGDA188S_annually_percent_gdp:
-      Test Statistic: -3.3172
-      p-value: 0.0141
-      #Lags Used: 1
-      #Observations: 63
-        Critical Value (1%): -3.5387
-        Critical Value (5%): -2.9086
-        Critical Value (10%): -2.5919
-    ----------------------------------------
-    ADF Test for PCEPILFE_annually_percent:
-      Test Statistic: -1.6917
-      p-value: 0.4354
-      #Lags Used: 5
-      #Observations: 59
-        Critical Value (1%): -3.5464
-        Critical Value (5%): -2.9119
-        Critical Value (10%): -2.5937
-    ----------------------------------------
-
 
 The low p-value of the ADF test for `FYFSGDA188S_annually_percent_gdp` indicates that it is highly unlikely that the series has a unit root. In contrast, the higher p-value for `PCEPILFE_annually_percent` does not rule out the presence of a unit root.
 
@@ -796,10 +683,6 @@ for param in params:
     add_diff_metric(metrics_container, **param)
 ```
 
-    Added diff_FYFSGDA188S_annually_percent_gdp to metrics_container. Shape: (64, 4)
-    Added diff_PCEPILFE_annually_percent to metrics_container. Shape: (64, 4)
-
-
 
 ```python
 diff_deficit_key = "diff_FYFSGDA188S_annually_percent_gdp"
@@ -811,19 +694,9 @@ diff_inflation_key = "diff_PCEPILFE_annually_percent"
 plot_dual_axis_series(
     metrics_container,
     y1_keys=[diff_deficit_key],
-    y2_keys=[diff_inflation_key],
-    plot_name="deficit_inflation_differenced_comparison"
+    y2_keys=[diff_inflation_key]
 )
 ```
-
-    💾 Saved interactive plot to: index_files/deficit_inflation_differenced_comparison.html
-
-
-
-    
-{{< plotly file="index_files/deficit_inflation_differenced_comparison.html" height="650px" >}}
-    
-
 
 The plots show two series that don't seem to show a trend but there might be some heteroscedasticity, which the ADF test won't detect, but the KPSS test will. 
 
@@ -833,26 +706,6 @@ The plots show two series that don't seem to show a trend but there might be som
 adf_report(metrics_container[diff_deficit_key].data["value"], diff_deficit_key)
 adf_report(metrics_container[diff_inflation_key].data["value"], diff_inflation_key)
 ```
-
-    ADF Test for diff_FYFSGDA188S_annually_percent_gdp:
-      Test Statistic: -7.2509
-      p-value: 0.0000
-      #Lags Used: 1
-      #Observations: 62
-        Critical Value (1%): -3.5405
-        Critical Value (5%): -2.9094
-        Critical Value (10%): -2.5923
-    ----------------------------------------
-    ADF Test for diff_PCEPILFE_annually_percent:
-      Test Statistic: -3.3132
-      p-value: 0.0143
-      #Lags Used: 4
-      #Observations: 59
-        Critical Value (1%): -3.5464
-        Critical Value (5%): -2.9119
-        Critical Value (10%): -2.5937
-    ----------------------------------------
-
 
 The ADF test this time returned very convincing p-values, strongly suggesting that both series do not have a unit root. This means the series are likely stationary in mean, and shocks to the series are not persistent over time.
 
@@ -892,42 +745,6 @@ kpps_report(metrics_container[diff_deficit_key].data["value"], diff_deficit_key)
 kpps_report(metrics_container[diff_inflation_key].data["value"], diff_inflation_key)
 ```
 
-    KPSS Test for diff_FYFSGDA188S_annually_percent_gdp (regression='c'):
-      KPSS Statistic: 0.0663
-      p-value: 0.1000
-      #Lags Used: 7
-      Critical Values:
-        10%: 0.3470
-        5%: 0.4630
-        2.5%: 0.5740
-        1%: 0.7390
-    ----------------------------------------
-    KPSS Test for diff_PCEPILFE_annually_percent (regression='c'):
-      KPSS Statistic: 0.1545
-      p-value: 0.1000
-      #Lags Used: 5
-      Critical Values:
-        10%: 0.3470
-        5%: 0.4630
-        2.5%: 0.5740
-        1%: 0.7390
-    ----------------------------------------
-
-
-    /var/folders/lk/21hq1pz55xn204vhrhz_npp40000gn/T/ipykernel_93309/2369050582.py:12: InterpolationWarning:
-    
-    The test statistic is outside of the range of p-values available in the
-    look-up table. The actual p-value is greater than the p-value returned.
-    
-    
-    /var/folders/lk/21hq1pz55xn204vhrhz_npp40000gn/T/ipykernel_93309/2369050582.py:12: InterpolationWarning:
-    
-    The test statistic is outside of the range of p-values available in the
-    look-up table. The actual p-value is greater than the p-value returned.
-    
-    
-
-
 As expected, the KPSS test indicates that the differenced series are not stationary. Financial time series often show periods of higher volatility followed by lower volatility (which can be modelled using [ARCH/GARCH](https://en.wikipedia.org/wiki/Autoregressive_conditional_heteroskedasticity)). 
 
 Nevertheless, it is meaningful to examine the cross-correlation of these two series, after removing their unit roots. 
@@ -941,45 +758,9 @@ lags, ccf_coeffs = calculate_and_plot_cross_correlation(
     metrics_container, 
     diff_deficit_key, 
     diff_inflation_key,
-    max_lag=10,
-    plot_name="ccf_deficit_inflation_differenced"
+    max_lag=10
 )
 ```
-
-    Calculating cross-correlation for: diff_FYFSGDA188S_annually_percent_gdp and diff_PCEPILFE_annually_percent
-    
-    Cross-correlation between diff_FYFSGDA188S_annually_percent_gdp and diff_PCEPILFE_annually_percent:
-    Method: Variable segment length (full overlap). Max lag considered: 10.
-    Original number of data points (N): 64.
-    Negative lags indicate diff_FYFSGDA188S_annually_percent_gdp leads diff_PCEPILFE_annually_percent.
-      Lag: -10, CCF: 0.0190, Points used: 54
-      Lag: -9, CCF: 0.1424, Points used: 55
-      Lag: -8, CCF: -0.0103, Points used: 56
-      Lag: -7, CCF: 0.0024, Points used: 57
-      Lag: -6, CCF: 0.0693, Points used: 58
-      Lag: -5, CCF: 0.0182, Points used: 59
-      Lag: -4, CCF: -0.0127, Points used: 60
-      Lag: -3, CCF: -0.2237, Points used: 61
-      Lag: -2, CCF: -0.0957, Points used: 62
-      Lag: -1, CCF: 0.2763, Points used: 63
-      Lag:  1, CCF: -0.1823, Points used: 63
-      Lag:  2, CCF: -0.0316, Points used: 62
-      Lag:  3, CCF: -0.0508, Points used: 61
-      Lag:  4, CCF: -0.0230, Points used: 60
-      Lag:  5, CCF: 0.0093, Points used: 59
-      Lag:  6, CCF: 0.0779, Points used: 58
-      Lag:  7, CCF: -0.0711, Points used: 57
-      Lag:  8, CCF: -0.1028, Points used: 56
-      Lag:  9, CCF: 0.0620, Points used: 55
-      Lag: 10, CCF: 0.1047, Points used: 54
-    💾 Saved interactive plot to: index_files/ccf_deficit_inflation_differenced.html
-
-
-
-    
-{{< plotly file="index_files/ccf_deficit_inflation_differenced.html" height="500px" >}}
-    
-
 
 The resulting cross-correlation, more meaningful for negative lags, is minimal and noisy, again strongly indicating weak to no relationship between the two series for any lag. 
 
@@ -1040,9 +821,6 @@ metrics_container["log_" + inflation_key] = FredMetric(
 print(f"Created log_{inflation_key}. Shape: {df_log.shape}")
 ```
 
-    Created log_PCEPILFE_annually_percent. Shape: (65, 4)
-
-
 
 ```python
 log_inflation_key = "log_PCEPILFE_annually_percent"
@@ -1053,19 +831,9 @@ log_inflation_key = "log_PCEPILFE_annually_percent"
 plot_dual_axis_series(
     metrics_container,
     y1_keys=[inflation_key],
-    y2_keys=[log_inflation_key],
-    plot_name="inflation_vs_log_inflation"
+    y2_keys=[log_inflation_key]
 )
 ```
-
-    💾 Saved interactive plot to: index_files/inflation_vs_log_inflation.html
-
-
-
-    
-{{< plotly file="index_files/inflation_vs_log_inflation.html" height="650px" >}}
-    
-
 
 The two series are very similar, this is because the 
 Unit root and stationary tests.
@@ -1075,27 +843,6 @@ Unit root and stationary tests.
 adf_report(metrics_container[log_inflation_key].data["value"], log_inflation_key)
 kpps_report(metrics_container[log_inflation_key].data["value"], log_inflation_key)
 ```
-
-    ADF Test for log_PCEPILFE_annually_percent:
-      Test Statistic: -1.8984
-      p-value: 0.3328
-      #Lags Used: 2
-      #Observations: 62
-        Critical Value (1%): -3.5405
-        Critical Value (5%): -2.9094
-        Critical Value (10%): -2.5923
-    ----------------------------------------
-    KPSS Test for log_PCEPILFE_annually_percent (regression='c'):
-      KPSS Statistic: 0.3799
-      p-value: 0.0858
-      #Lags Used: 4
-      Critical Values:
-        10%: 0.3470
-        5%: 0.4630
-        2.5%: 0.5740
-        1%: 0.7390
-    ----------------------------------------
-
 
 Differencing the log-transformed series.
 
@@ -1111,9 +858,6 @@ params = dict(
 add_diff_metric(metrics_container, **params)
 ```
 
-    Added diff_log_PCEPILFE_annually_percent to metrics_container. Shape: (64, 4)
-
-
 
 ```python
 diff_log_inflation_key = "diff_log_PCEPILFE_annually_percent"
@@ -1124,34 +868,5 @@ diff_log_inflation_key = "diff_log_PCEPILFE_annually_percent"
 adf_report(metrics_container[diff_log_inflation_key].data["value"], diff_log_inflation_key)
 kpps_report(metrics_container[diff_log_inflation_key].data["value"], diff_log_inflation_key)
 ```
-
-    ADF Test for diff_log_PCEPILFE_annually_percent:
-      Test Statistic: -6.3404
-      p-value: 0.0000
-      #Lags Used: 1
-      #Observations: 62
-        Critical Value (1%): -3.5405
-        Critical Value (5%): -2.9094
-        Critical Value (10%): -2.5923
-    ----------------------------------------
-    KPSS Test for diff_log_PCEPILFE_annually_percent (regression='c'):
-      KPSS Statistic: 0.1739
-      p-value: 0.1000
-      #Lags Used: 3
-      Critical Values:
-        10%: 0.3470
-        5%: 0.4630
-        2.5%: 0.5740
-        1%: 0.7390
-    ----------------------------------------
-
-
-    /var/folders/lk/21hq1pz55xn204vhrhz_npp40000gn/T/ipykernel_93309/2369050582.py:12: InterpolationWarning:
-    
-    The test statistic is outside of the range of p-values available in the
-    look-up table. The actual p-value is greater than the p-value returned.
-    
-    
-
 
 As suspected, applying a logarithmic transformation does not alter the outcome of the stationarity tests for the `PCEPILFE` series likely due to persistent heteroscedasticity.
