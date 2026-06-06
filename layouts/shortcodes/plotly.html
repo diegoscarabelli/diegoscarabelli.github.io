@@ -1,6 +1,8 @@
 {{- $file := .Get "file" -}}
 {{- $responsive := eq (.Get "responsive") "true" -}}
+{{- $caption := .Get "caption" | .Page.RenderString -}}
 
+{{- if $caption -}}<figure>{{- end }}
 <div class="plotly-container" style="width: 100%; overflow: hidden;">
   <iframe
     src="{{ $file }}"
@@ -53,3 +55,7 @@
     ">
   </iframe>
 </div>
+{{- if $caption }}
+  <figcaption class="image-caption">{{ $caption | safeHTML }}</figcaption>
+</figure>
+{{- end }}
