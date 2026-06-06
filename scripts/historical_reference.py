@@ -10,8 +10,10 @@ over the displayed window.
 
 Output: static/posts/rent-vs-buy/historical_reference.html
 
-Run from the repo root:
-    /Users/diegoscarabelli/.system2/venv/bin/python scripts/historical_reference.py
+Dependencies: pandas, plotly, yfinance, requests. Run from the repo root with
+any Python that has them installed, e.g.:
+
+    python scripts/historical_reference.py
 """
 from __future__ import annotations
 
@@ -34,10 +36,16 @@ CASE_SHILLER_SERIES = {
 
 
 def fetch_fred(series_id: str) -> pd.Series:
-    """Download a FRED CSV and return it as a monthly series."""
+    """Download a FRED CSV and return it as a monthly series.
+
+    FRED encodes missing observations as '.' which pandas reads as object dtype.
+    Coerce to numeric and drop NaNs so downstream normalisation/CAGR math gets
+    a clean float series.
+    """
     url = f"https://fred.stlouisfed.org/graph/fredgraph.csv?id={series_id}"
     df = pd.read_csv(url, parse_dates=["observation_date"])
-    return df.set_index("observation_date")[series_id]
+    s = pd.to_numeric(df.set_index("observation_date")[series_id], errors="coerce")
+    return s.dropna()
 
 
 def fetch_sp500_tr() -> pd.Series:
