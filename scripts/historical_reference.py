@@ -85,6 +85,11 @@ def fetch_sp500_tr() -> pd.Series:
 def cagr(series: pd.Series) -> float:
     """Annualised compound growth between the first and last observations."""
     span_years = (series.index[-1] - series.index[0]).days / 365.25
+    if span_years <= 0:
+        raise ValueError(
+            f"Cannot compute CAGR: series spans {span_years:.3f} years "
+            f"({series.index[0]:%Y-%m} to {series.index[-1]:%Y-%m})."
+        )
     return (series.iloc[-1] / series.iloc[0]) ** (1 / span_years) - 1
 
 
