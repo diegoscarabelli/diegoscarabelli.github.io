@@ -23,6 +23,10 @@ math:
 
 You often hear: *buy a house, because rent is throwing money away.* That framing ignores opportunity cost: the money you put into the down payment, mortgage principal payments, property tax, insurance, and maintenance could have been invested in other assets, like the stock market. Considering all the factors and their impact on this decision is non-trivial.
 
+For context, here's how the two have actually behaved over the past 20 years:
+
+{{< plotly file="/posts/rent-vs-buy/historical_reference.html" responsive="true" caption="Stock and home-price returns over the past 20 years (log-scale index, start = 100). Sources: S&P 500 total return from Yahoo Finance (`^SP500TR`); city home prices from S&P CoreLogic Case-Shiller via FRED (`SFXRSA`, `NYXRSA`, `LXXRSA`, `BOXRSA`). The window starts near the 2006 housing peak, so the city CAGRs absorb the 2008 bust and slow recovery. Past performance is not a forecast — the dashboard below lets you set the rates you actually want to assume." >}}
+
 I built a thoughtful simulation using [system2](https://github.com/diegoscarabelli/system2) to answer this question with sound math and clear explanations. It's tailored for the US, with dropdowns for your state (50 + DC), filing status, and federal bracket, all driving the tax calculations. Nine sliders let you dial in the financial details: home price, rent, mortgage rate, down payment, returns, time horizon, and more.
 
 Hover the **ⓘ** icon next to any field to see what it means. The methodology section below walks through every assumption, simplification, and equation.
