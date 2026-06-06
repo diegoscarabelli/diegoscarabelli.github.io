@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build a self-contained Plotly HTML chart showing the past 20 years of:
+"""Build a Plotly HTML chart showing the past 20 years of:
 
     - S&P 500 Total Return (Yahoo Finance ^SP500TR)
     - Case-Shiller home price indices for SF, NY, LA, Boston (FRED)
@@ -7,6 +7,11 @@
 All series are aligned to the latest common start month, normalised to 100
 at that point, and the legend reports the annualised total return (CAGR)
 over the displayed window.
+
+The generated HTML inlines all chart data but loads plotly.js from the CDN
+(`include_plotlyjs="cdn"` below), matching the convention used by the
+rent-vs-buy dashboard. The file therefore requires network access at view
+time but is byte-cheap to ship.
 
 Output: static/posts/rent-vs-buy/historical_reference.html
 
@@ -83,7 +88,12 @@ def cagr(series: pd.Series) -> float:
 
 
 def build_chart() -> str:
-    """Assemble all series, normalise, and return a self-contained HTML string."""
+    """Assemble all series, normalise, and return the chart as an HTML string.
+
+    The returned document inlines all chart data; plotly.js is loaded from
+    the CDN at view time (see `include_plotlyjs="cdn"` at the bottom of this
+    function).
+    """
     raw: dict[str, pd.Series] = {"S&P 500 (total return)": fetch_sp500_tr()}
     for label, sid in CASE_SHILLER_SERIES.items():
         raw[label] = fetch_fred(sid)
@@ -125,6 +135,9 @@ def build_chart() -> str:
 
     window_label = f"{common_start:%b %Y} – {common_end:%b %Y}"
     fig.update_layout(
+        # Without an explicit height Plotly's `height:100%` div collapses inside
+        # the iframe (no intrinsic body height) and the chart renders near-zero.
+        height=600,
         title=dict(
             text=f"S&P 500 vs Case-Shiller home prices, {window_label} (indexed to 100)",
             x=0.5,
@@ -137,7 +150,7 @@ def build_chart() -> str:
             gridcolor="#e5e5e5",
         ),
         xaxis=dict(title=None, gridcolor="#e5e5e5"),
-        legend=dict(orientation="h", yanchor="top", y=-0.18, xanchor="center", x=0.5),
+        legend=dict(orientation="h", yanchor="top", y=-0.15, xanchor="center", x=0.5),
         margin=dict(l=60, r=20, t=60, b=80),
         paper_bgcolor="#fafafa",
         plot_bgcolor="#ffffff",
@@ -148,6 +161,9 @@ def build_chart() -> str:
     return fig.to_html(
         include_plotlyjs="cdn",
         full_html=True,
+        # Default is "100%" which collapses to zero inside the iframe body
+        # (no intrinsic height), so layout.height never gets a chance to apply.
+        default_height="600px",
         config={"displayModeBar": False, "responsive": True},
     )
 
