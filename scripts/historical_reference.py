@@ -10,8 +10,8 @@ over the displayed window.
 
 Output: static/posts/rent-vs-buy/historical_reference.html
 
-Dependencies: pandas, plotly, yfinance, requests. Run from the repo root with
-any Python that has them installed, e.g.:
+Dependencies: pandas, plotly, yfinance. Run from the repo root with any Python
+that has them installed, e.g.:
 
     python scripts/historical_reference.py
 """
@@ -51,8 +51,12 @@ def fetch_fred(series_id: str) -> pd.Series:
 def fetch_sp500_tr() -> pd.Series:
     """Monthly S&P 500 Total Return from Yahoo Finance.
 
-    yfinance returns a MultiIndex (Price, Ticker) frame; collapse to a single
-    series of month-end closes indexed by month-start to match FRED.
+    Returns a single series of month-start-dated closes to match FRED.
+
+    yfinance's column layout depends on version and parameters: for a single
+    ticker it sometimes returns a flat `(field)` index and sometimes a
+    `(field, ticker)` MultiIndex. Handle both rather than depending on a
+    specific shape.
     """
     df = yf.download(
         "^SP500TR",
@@ -61,7 +65,11 @@ def fetch_sp500_tr() -> pd.Series:
         progress=False,
         auto_adjust=False,
     )
-    close = df["Close"]["^SP500TR"]
+    close = df["Close"]
+    if isinstance(close, pd.DataFrame):
+        # MultiIndex case: columns are tickers under the "Close" field.
+        close = close.iloc[:, 0]
+    close = pd.to_numeric(close, errors="coerce").dropna()
     # Yahoo stamps each monthly row with the month-start date already; force it
     # explicitly so the index lines up with FRED's month-start convention.
     close.index = close.index.to_period("M").to_timestamp()
