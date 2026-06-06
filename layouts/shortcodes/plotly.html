@@ -1,23 +1,46 @@
 {{- $file := .Get "file" -}}
+{{- $responsive := eq (.Get "responsive") "true" -}}
 
 <div class="plotly-container" style="width: 100%; overflow: hidden;">
-  <iframe 
-    src="{{ $file }}" 
-    style="border: none; display: block; transform-origin: top left;"
+  <iframe
+    src="{{ $file }}"
+    style="border: none; display: block; width: 100%; transform-origin: top left;"
     frameborder="0"
     scrolling="no"
     sandbox="allow-scripts allow-same-origin"
     loading="lazy"
     onload="
-      var content = this.contentWindow.document.body;
-      var contentWidth = content.scrollWidth;
-      var contentHeight = content.scrollHeight;
-      var containerWidth = this.parentElement.offsetWidth;
-      var scale = containerWidth / contentWidth;
-      this.style.width = contentWidth + 'px';
-      this.style.height = contentHeight + 'px';
-      this.style.transform = 'scale(' + scale + ')';
-      this.parentElement.style.height = (contentHeight * scale) + 'px';
+      var iframe = this;
+      var body = iframe.contentWindow.document.body;
+      var container = iframe.parentElement;
+      var responsive = {{ $responsive }};
+      var apply = function() {
+        var containerWidth = container.offsetWidth;
+        iframe.style.width = containerWidth + 'px';
+        iframe.style.transform = 'none';
+        var h = body.scrollHeight;
+        if (!responsive) {
+          var w = body.scrollWidth;
+          if (w > containerWidth) {
+            var s = containerWidth / w;
+            iframe.style.width = w + 'px';
+            iframe.style.transform = 'scale(' + s + ')';
+            iframe.style.height = h + 'px';
+            container.style.height = (h * s) + 'px';
+            return;
+          }
+        }
+        iframe.style.height = h + 'px';
+        container.style.height = h + 'px';
+      };
+      apply();
+      requestAnimationFrame(apply);
+      setTimeout(apply, 200);
+      var resizeRaf;
+      window.addEventListener('resize', function() {
+        if (resizeRaf) cancelAnimationFrame(resizeRaf);
+        resizeRaf = requestAnimationFrame(apply);
+      });
     ">
   </iframe>
 </div>
