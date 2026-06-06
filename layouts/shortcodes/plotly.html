@@ -36,11 +36,20 @@
       apply();
       requestAnimationFrame(apply);
       setTimeout(apply, 200);
-      var resizeRaf;
-      window.addEventListener('resize', function() {
-        if (resizeRaf) cancelAnimationFrame(resizeRaf);
-        resizeRaf = requestAnimationFrame(apply);
-      });
+      /* Share a single window resize listener across all plotly embeds on the
+         page (posts may host multiple). The first embed registers the
+         listener; subsequent embeds just register their apply() callback. */
+      (window.__plotlyApplyFns = window.__plotlyApplyFns || []).push(apply);
+      if (!window.__plotlyResizeBound) {
+        window.__plotlyResizeBound = true;
+        var rafId;
+        window.addEventListener('resize', function() {
+          if (rafId) cancelAnimationFrame(rafId);
+          rafId = requestAnimationFrame(function() {
+            window.__plotlyApplyFns.forEach(function(fn) { fn(); });
+          });
+        });
+      }
     ">
   </iframe>
 </div>

@@ -1468,11 +1468,11 @@
         `<td>${fmtUSDfull(y0NW)}</td>` +
         `</tr>`;
 
-      // Years 1..10
+      // Year 1..N rows (N = horizon)
       s.years.forEach((y, idx) => {
         const isLast = idx === s.years.length - 1;
         const netOutDisplay = (isLast && s.scenario !== 'B')
-          ? y.netAnnualOut - s.summary.saleCredit   // show sale credit netted into the year-10 row
+          ? y.netAnnualOut - s.summary.saleCredit   // show sale credit netted into the year-N (final) row
           : y.netAnnualOut;
         const cumNetDisplay = (isLast && s.scenario !== 'B') ? s.summary.totalNet10 : y.cumNetOut;
         const nwDisplay = (isLast && s.scenario !== 'B') ? s.summary.netWorthY10 : y.netWorth;
@@ -1744,6 +1744,10 @@
           if (info) b.setAttribute('aria-label', info);
         }
         b.addEventListener('click', e => {
+          /* Many info-btns sit inside <label>s; without preventDefault the
+             click would also activate the labelled control (focus a select,
+             move a slider thumb) on top of toggling the tooltip. */
+          e.preventDefault();
           e.stopPropagation();
           const wasActive = b.classList.contains('active');
           document.querySelectorAll('.info-btn.active').forEach(x => x.classList.remove('active'));
