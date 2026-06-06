@@ -1,0 +1,2020 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Home Buy vs Rent — Cost Analysis</title>
+  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js" onerror="window.__plotlyLoadError = true"></script>
+  <script>
+    /* Global error trapper — catches uncaught exceptions and unhandled
+       promise rejections, pushes them into a panel injected at top of body.
+       Inserted BEFORE the main script so it captures errors thrown there. */
+    window.__errors = [];
+    function __renderErrorPanel() {
+      let p = document.getElementById('__error_panel');
+      if (!p) {
+        p = document.createElement('div');
+        p.id = '__error_panel';
+        p.style.cssText = 'position:relative;z-index:9999;background:#fde6e0;border:2px solid #c43820;border-radius:6px;padding:0.85rem 1rem;margin:1rem 1.25rem;font-family:ui-monospace,Menlo,monospace;font-size:12px;color:#6b1a09;white-space:pre-wrap;max-height:50vh;overflow:auto';
+        if (document.body) document.body.insertBefore(p, document.body.firstChild);
+        else document.addEventListener('DOMContentLoaded', () => document.body.insertBefore(p, document.body.firstChild));
+      }
+      p.textContent = 'Runtime errors (' + window.__errors.length + '):\n\n' +
+        window.__errors.map((e, i) => (i+1) + '. ' + e).join('\n\n');
+    }
+    window.addEventListener('error', (ev) => {
+      const msg = (ev.message || 'Error') + '\n  at ' + (ev.filename || '?') + ':' + (ev.lineno || '?') + ':' + (ev.colno || '?') + (ev.error && ev.error.stack ? '\n  ' + ev.error.stack.split('\n').slice(0, 6).join('\n  ') : '');
+      window.__errors.push(msg);
+      __renderErrorPanel();
+    });
+    window.addEventListener('unhandledrejection', (ev) => {
+      window.__errors.push('Unhandled promise rejection: ' + (ev.reason && ev.reason.stack ? ev.reason.stack : ev.reason));
+      __renderErrorPanel();
+    });
+    window.addEventListener('DOMContentLoaded', () => {
+      if (window.__plotlyLoadError) {
+        window.__errors.push('Plotly CDN failed to load. The artifact viewer may be blocking external scripts.');
+        __renderErrorPanel();
+      }
+    });
+  </script>
+  <style>
+    :root {
+      --amber:       #ffb444;   /* System2 brand anchor (Scenario A — Buy) */
+      --coral:       #c43820;   /* deep coral (accents: active modebar, warnings) */
+      --slate:       #5a6c7d;   /* neutral cool (Scenario B — Rent) */
+      --cream:       #fff5d6;
+      --light-amber: #ffd680;
+      --bg:          #fafafa;
+      --panel:       #ffffff;
+      --border:      #e5e5e5;
+      --text:        #222;
+      --muted:       #666;
+      --soft:        #999;
+      --warn-bg:     #fff4e0;
+      --warn-border: #f4b740;
+      --warn-text:   #7a4a00;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 1rem 1.25rem 2rem;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      font-size: 14px;
+      line-height: 1.45;
+    }
+    h1 {
+      margin: 0 0 0.25rem;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #222;
+    }
+    .subtitle {
+      margin: 0 0 1rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+    .subtitle code {
+      background: #eee;
+      padding: 0.1em 0.3em;
+      border-radius: 3px;
+      color: #333;
+      font-size: 0.85em;
+    }
+
+    /* ===== Controls panel ===== */
+    .controls {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.85rem 1rem;
+      margin-bottom: 1rem;
+    }
+    .slider-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.85rem 1.25rem;
+    }
+    .control {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+    .control-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-size: 0.85rem;
+    }
+    .control-head label { color: var(--muted); }
+    .control-head .value { font-weight: 600; color: var(--text); font-variant-numeric: tabular-nums; }
+    .control input[type="range"] {
+      width: 100%;
+      accent-color: var(--amber);
+    }
+    .control .range-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.7rem;
+      color: var(--soft);
+      font-variant-numeric: tabular-nums;
+    }
+    .advanced {
+      margin-top: 0.75rem;
+      padding-top: 0.6rem;
+      border-top: 1px dashed var(--border);
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+      flex-wrap: wrap;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+    .advanced label { cursor: pointer; }
+    .advanced input[type="checkbox"] { vertical-align: middle; margin-right: 0.35rem; accent-color: var(--amber); }
+
+    /* ===== Tax-context (state picker) row ===== */
+    .tax-context {
+      display: flex;
+      gap: 1.5rem;
+      align-items: baseline;
+      flex-wrap: wrap;
+      margin-bottom: 0.85rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 1px dashed var(--border);
+      font-size: 0.85rem;
+    }
+    .tax-context label { color: var(--muted); display: inline-flex; align-items: center; gap: 0.4rem; }
+    .tax-context select {
+      font: inherit;
+      color: var(--text);
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 0.25rem 0.4rem;
+      min-width: 14rem;
+      cursor: pointer;
+      accent-color: var(--amber);
+    }
+    .tax-context select:focus { outline: 2px solid var(--amber); outline-offset: 1px; }
+    .tax-context .summary-pill {
+      color: var(--soft);
+      font-size: 0.78rem;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* ===== Warnings ===== */
+    .warnings {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      margin-bottom: 1rem;
+    }
+    .warn {
+      padding: 0.5rem 0.75rem;
+      background: var(--warn-bg);
+      border: 1px solid var(--warn-border);
+      border-left-width: 4px;
+      color: var(--warn-text);
+      font-size: 0.85rem;
+      border-radius: 4px;
+    }
+    .warn-fail {
+      background: #fde6e0;
+      border-color: var(--coral);
+      color: #6b1a09;
+    }
+    .warn-info {
+      background: #e9eef5;
+      border-color: var(--slate);
+      color: #2a3a4a;
+    }
+
+    /* ===== Summary cards (2 scenarios: Buy + Rent) ===== */
+    .summary {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.85rem;
+      margin-bottom: 1.1rem;
+    }
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-top-width: 4px;
+      border-radius: 6px;
+      padding: 0.85rem 1rem;
+    }
+    .card.scenA { border-top-color: var(--amber); }   /* Buy */
+    .card.scenB { border-top-color: var(--slate); }   /* Rent */
+    .card h3 {
+      margin: 0 0 0.25rem;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+    }
+    .card .tag {
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+    .scenA .tag { color: var(--amber); }   /* Buy */
+    .scenB .tag { color: var(--slate); }   /* Rent */
+    .card .lead {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #111;
+      margin: 0.3rem 0 0.1rem;
+      font-variant-numeric: tabular-nums;
+    }
+    .card .lead-label {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--soft);
+    }
+    .card .row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.82rem;
+      margin: 0.18rem 0;
+      color: var(--muted);
+      font-variant-numeric: tabular-nums;
+    }
+    .card .row .v { color: var(--text); font-weight: 500; }
+    .card .row.divider {
+      border-top: 1px dashed var(--border);
+      margin-top: 0.4rem;
+      padding-top: 0.4rem;
+    }
+    .card .row.win .v { color: #1a7a3a; font-weight: 600; }
+    .card .row.lose .v { color: #a04030; }
+    .card .badge {
+      display: inline-block;
+      margin-left: 0.5rem;
+      font-size: 0.65rem;
+      padding: 0.1rem 0.4rem;
+      border-radius: 3px;
+      background: #1a7a3a;
+      color: #fff;
+      vertical-align: middle;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+
+    /* ===== Chart panels ===== */
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.75rem 0.9rem 0.9rem;
+      margin-bottom: 1.1rem;
+    }
+    .panel h2 {
+      margin: 0 0 0.25rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #333;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .panel .desc {
+      font-size: 0.78rem;
+      color: var(--soft);
+      margin: 0 0 0.6rem;
+    }
+    .toggle-group {
+      display: inline-flex;
+      gap: 0;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      font-size: 0.78rem;
+    }
+    .toggle-group button {
+      background: var(--panel);
+      border: none;
+      padding: 0.25rem 0.65rem;
+      cursor: pointer;
+      color: var(--muted);
+      font-family: inherit;
+    }
+    .toggle-group button.active {
+      background: var(--amber);
+      color: #fff;
+      font-weight: 600;
+    }
+    .chart {
+      width: 100%;
+      height: 360px;
+    }
+
+    /* ===== Cash flow table ===== */
+    .tabs {
+      display: inline-flex;
+      gap: 0;
+      margin-bottom: 0.5rem;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .tabs button {
+      background: var(--panel);
+      border: none;
+      padding: 0.3rem 0.85rem;
+      cursor: pointer;
+      font-size: 0.85rem;
+      color: var(--muted);
+      font-family: inherit;
+    }
+    .tabs button.active.scenA { background: var(--amber); color: #fff; font-weight: 600; }   /* Buy */
+    .tabs button.active.scenB { background: var(--slate); color: #fff; font-weight: 600; }   /* Rent */
+    table.cashflow {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.78rem;
+      font-variant-numeric: tabular-nums;
+    }
+    table.cashflow th, table.cashflow td {
+      padding: 0.32rem 0.5rem;
+      text-align: right;
+      border-bottom: 1px solid var(--border);
+    }
+    table.cashflow th:first-child, table.cashflow td:first-child {
+      text-align: left;
+    }
+    table.cashflow th {
+      background: #f4f4f4;
+      color: var(--muted);
+      font-weight: 600;
+    }
+    table.cashflow tr:hover { background: #fafafa; }
+    table.cashflow td.year { font-weight: 600; color: #333; }
+    table.cashflow .pos { color: #1a7a3a; }
+    table.cashflow .neg { color: #a04030; }
+
+    /* ===== Sensitivity matrix (Buy + Rent small-multiples) ===== */
+    .matrix-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.85rem;
+      margin-bottom: 0.85rem;
+    }
+    .matrix-cell-label {
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-align: center;
+      margin-bottom: 0.25rem;
+    }
+    .matrix-chart {
+      width: 100%;
+      height: 280px;
+    }
+    .winner-region {
+      width: 100%;
+      height: 320px;
+    }
+
+    /* ===== Footer ===== */
+    footer {
+      margin-top: 1.25rem;
+      padding-top: 0.6rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.78rem;
+      color: var(--soft);
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    footer code {
+      background: #eee;
+      padding: 0.1em 0.3em;
+      border-radius: 3px;
+      color: #333;
+    }
+
+    /* ===== Info-button tooltips ===== */
+    .info-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 12px;
+      height: 12px;
+      margin-left: 0.3em;
+      border-radius: 50%;
+      background: transparent;
+      color: #aaa;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 10px;
+      font-style: italic;
+      font-weight: 600;
+      line-height: 1;
+      text-align: center;
+      cursor: help;
+      user-select: none;
+      vertical-align: middle;
+      border: 1px solid #ccc;
+      transition: color 0.15s, border-color 0.15s;
+      position: relative;
+    }
+    .info-btn:hover, .info-btn:focus, .info-btn.active {
+      color: var(--muted);
+      border-color: var(--muted);
+      outline: none;
+    }
+    .info-btn::after {
+      content: attr(data-info);
+      position: absolute;
+      bottom: calc(100% + 8px);
+      left: 50%;
+      transform: translateX(-50%);
+      background: #2a2a2a;
+      color: #fff;
+      padding: 10px 14px;
+      border-radius: 6px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 1.5;
+      width: 300px;
+      max-width: 90vw;
+      white-space: normal;
+      text-align: left;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+      pointer-events: none;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.15s, visibility 0.15s;
+      z-index: 1000;
+    }
+    .info-btn::before {
+      content: "";
+      position: absolute;
+      bottom: calc(100% + 2px);
+      left: 50%;
+      transform: translateX(-50%);
+      border: 6px solid transparent;
+      border-top-color: #2a2a2a;
+      pointer-events: none;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.15s, visibility 0.15s;
+      z-index: 1000;
+    }
+    .info-btn:hover::after, .info-btn:focus::after, .info-btn.active::after,
+    .info-btn:hover::before, .info-btn:focus::before, .info-btn.active::before {
+      opacity: 1;
+      visibility: visible;
+    }
+    /* Right-edge tooltip flip: when the info button is near the right edge, anchor right */
+    .info-btn.flip-right::after { left: auto; right: 0; transform: none; }
+    .info-btn.flip-right::before { left: auto; right: 10px; transform: none; }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 900px) {
+      .slider-grid { grid-template-columns: repeat(2, 1fr); }
+      .summary { grid-template-columns: 1fr; }
+      .matrix-grid { grid-template-columns: 1fr; }
+      .info-btn::after { width: 240px; font-size: 11px; }
+    }
+  </style>
+</head>
+<body>
+  <h1>Home Buy vs Rent — Cost Analysis</h1>
+  <div class="subtitle">
+    Configurable buy-vs-rent calculator over a horizon you set
+    (default <span class="horizon-yr">10</span> years). Compares three strategies: all-cash purchase,
+    financed purchase, and renting while keeping capital invested. All math runs client-side,
+    no data leaves the page. See <code>methodology.md</code> for assumptions and tax-law notes.
+  </div>
+
+  <!-- Controls panel -->
+  <div class="controls">
+    <div class="tax-context">
+      <label for="taxState">
+        State
+        <span class="info-btn" tabindex="0" data-info="State for tax-rule purposes. Drives the state-level mortgage-interest-deduction cap, state ordinary marginal rate (applied to itemized deductions), state-component of the combined LTCG rate, state standard deduction, property tax effective rate, and the property-tax-growth regime (California uses Prop 13's 2%/yr assessed-value cap; every other state reassesses with market). Default California preserves the canonical reference scenario; switch to model any U.S. jurisdiction. See methodology 'State tax data sources' for caveats and per-state simplifications."> i </span>
+        <select id="taxState"></select>
+      </label>
+      <label for="filingStatus">
+        Filing
+        <span class="info-btn" tabindex="0" data-info="Federal filing status. Drives the federal standard deduction (MFJ $30,800, Single $15,750, HoH $23,625 for 2026) and the §121 primary-residence capital-gains exclusion (MFJ $500K, Single $250K, HoH $250K — IRS §121(b) treats HoH like Single). The standard deduction affects whether itemized mortgage interest + SALT actually saves you any federal tax versus the standard-deduction baseline. The §121 exclusion reduces the cap-gains tax owed at year-N sale."> i </span>
+        <select id="filingStatus"></select>
+      </label>
+      <label for="federalMarginal">
+        Fed bracket
+        <span class="info-btn" tabindex="0" data-info="Top federal marginal income tax bracket. Used for: (1) valuing itemized deductions against the standard deduction baseline (savings = max(0, itemized − std) × marginal); (2) deriving the federal LTCG rate (20% when marginal ≥ 37%, 15% otherwise — a model simplification; actual LTCG depends on taxable income thresholds not modeled here). The 32% default reflects an upper-middle-bracket MFJ household. Adjust the bracket to match your modeled household's income."> i </span>
+        <select id="federalMarginal"></select>
+      </label>
+      <span class="summary-pill" id="taxState-summary">—</span>
+    </div>
+
+    <div class="slider-grid">
+      <div class="control">
+        <div class="control-head">
+          <label for="price">House price <span class="info-btn" tabindex="0" data-info="Purchase price of the home for Scenario A (Buy). Drives year-0 deployment (down × price + closing + commission), loan amount ((1−down) × price), property tax base (price × state effective rate, grown per state regime), insurance and maintenance (scale with appreciated market value = price × (1+apprec)^t), and year-N sale proceeds. Scenario B (Rent) is independent of this slider."> i </span></label>
+          <span class="value" id="price-val">$1.0M</span>
+        </div>
+        <input type="range" id="price" min="100000" max="10000000" step="1000" value="1000000">
+        <div class="range-labels"><span>$0.1M</span><span>$10M</span></div>
+      </div>
+
+      <div class="control">
+        <div class="control-head">
+          <label for="rent">Rent / month <span class="info-btn" tabindex="0" data-info="Starting monthly rent in Scenario B (Rent). The first-year monthly rent for a property comparable to the Buy scenario. Escalates annually by the rent-escalation slider rate. Set to whatever the local market for your target property suggests."> i </span></label>
+          <span class="value" id="rent-val">$4,000</span>
+        </div>
+        <input type="range" id="rent" min="1000" max="20000" step="500" value="4000">
+        <div class="range-labels"><span>$1K</span><span>$20K</span></div>
+      </div>
+
+      <div class="control">
+        <div class="control-head">
+          <label for="rentEsc">Rent escalation / yr <span class="info-btn" tabindex="0" data-info="Annual percent increase in rent. Applied as a flat compounding rate (e.g. year 5 rent = year 1 × 1.04^4 at the 4% default). The actual cadence is lumpy in practice (some years flat, some years +8%); the long-run urban-metro historical average is ~3-4%/yr depending on market and period."> i </span></label>
+          <span class="value" id="rentEsc-val">4.0%</span>
+        </div>
+        <input type="range" id="rentEsc" min="0" max="10" step="0.5" value="4">
+        <div class="range-labels"><span>0%</span><span>10%</span></div>
+      </div>
+
+      <div class="control">
+        <div class="control-head">
+          <label for="mort">Mortgage rate <span class="info-btn" tabindex="0" data-info="30-year fixed-rate jumbo mortgage interest rate for Scenario A (Buy) when down<100%. Locked at year 0 and held flat (no refinancing modeled). Default 6.35% reflects current jumbo (>$766,550 conforming) market. Mortgage interest is tax-deductible up to the federal $750K principal cap and any state cap (modeled as separate layers). Not relevant at down=100% (no loan)."> i </span></label>
+          <span class="value" id="mort-val">6.35%</span>
+        </div>
+        <input type="range" id="mort" min="3" max="9" step="0.05" value="6.35">
+        <div class="range-labels"><span>3%</span><span>9%</span></div>
+      </div>
+
+      <div class="control">
+        <div class="control-head">
+          <label for="down">Down payment <span class="info-btn" tabindex="0" data-info="Percent of home purchase price paid in cash at closing for Scenario A (Buy). Stock is sold to fund the down payment + closing costs, triggering combined LTCG tax. Below 20% triggers a warning (jumbo loans typically don't permit it without piggyback financing not modeled here). Set to 100% to model an all-cash purchase (no mortgage)."> i </span></label>
+          <span class="value" id="down-val">20%</span>
+        </div>
+        <input type="range" id="down" min="0" max="100" step="5" value="20">
+        <div class="range-labels"><span>0%</span><span>100%</span></div>
+      </div>
+
+      <div class="control">
+        <div class="control-head">
+          <label for="apprec">House appreciation / yr <span class="info-btn" tabindex="0" data-info="Annual percent increase in home market value. Applied as compounding (year-N value = purchase × (1+rate)^N). Drives Scenario A (Buy) home equity and the year-N sale proceeds. Default 5% reflects a long-run urban-metro average since 1990 (volatile in any given year). Not relevant to Scenario B (Rent — no house owned)."> i </span></label>
+          <span class="value" id="apprec-val">5.0%</span>
+        </div>
+        <input type="range" id="apprec" min="0" max="10" step="0.5" value="5">
+        <div class="range-labels"><span>0%</span><span>10%</span></div>
+      </div>
+
+      <div class="control">
+        <div class="control-head">
+          <label for="stock">Stock return / yr <span class="info-btn flip-right" tabindex="0" data-info="Annual percent return on the starting portfolio. Applied as flat compounding (no volatility, no drawdowns modeled). Default 9% reflects long-run S&P 500 total return including dividends. Matters most for Scenario B (Rent — the full portfolio compounds untouched) and for the opportunity-cost-adjusted wealth metric. Range extended to 40% for exploring extreme bull cases."> i </span></label>
+          <span class="value" id="stock-val">9.0%</span>
+        </div>
+        <input type="range" id="stock" min="0" max="40" step="0.5" value="9">
+        <div class="range-labels"><span>0%</span><span>40%</span></div>
+      </div>
+
+      <div class="control">
+        <div class="control-head">
+          <label for="capital">Starting portfolio <span class="info-btn flip-right" tabindex="0" data-info="Stock portfolio value at year 0, before any housing deployment. Sets the upper bound on what Scenario A (Buy) can liquidate to fund deployment + cap-gains tax. At the default $1M with the default $1.0M price and 20% down, Buy's year-0 outflow consumes ~29% of the portfolio. At 100% down (all-cash) it would exceed the portfolio (~$1.39M required) and the coverage warning fires. Increase if your portfolio is larger; decrease to model a smaller asset base. The model treats the stock as 100% gain for cap-gains-tax purposes, so the tax bill at year 0 scales linearly with deployment regardless of portfolio size."> i </span></label>
+          <span class="value" id="capital-val">$1.0M</span>
+        </div>
+        <input type="range" id="capital" min="100000" max="50000000" step="100000" value="1000000">
+        <div class="range-labels"><span>$0.1M</span><span>$50M</span></div>
+      </div>
+
+      <div class="control">
+        <div class="control-head">
+          <label for="horizon">Horizon (years) <span class="info-btn flip-right" tabindex="0" data-info="Number of years to model. House sale (Scenario A — Buy) happens at the end of this horizon. All 'Year-N' references throughout the dashboard track this slider. Maintenance schedule scales realistically: 0.4% yrs 1-5, 0.8% yrs 6-10, 1.2% yrs 11-15, 1.6% yrs 16-20. Because the base ledger compounds the portfolio untouched after year 0, year-N wealth scales identically across scenarios as horizon extends — the Buy scenario catches up via home appreciation × leverage."> i </span></label>
+          <span class="value" id="horizon-val">10</span>
+        </div>
+        <input type="range" id="horizon" min="3" max="20" step="1" value="10">
+        <div class="range-labels"><span>3 yrs</span><span>20 yrs</span></div>
+      </div>
+    </div>
+
+    <div class="advanced">
+      <label><input type="checkbox" id="buyerCommish"> Buyer pays buyer-agent commission (2.5%)</label>
+      <span style="color: var(--soft); font-size: 0.78rem;">
+        Default off = seller concession. Toggle on to add ~$120K to year-0 buy outflow.
+      </span>
+    </div>
+  </div>
+
+  <!-- Warnings -->
+  <div id="warnings" class="warnings"></div>
+
+  <!-- Headline: summary cards -->
+  <div class="summary">
+    <div class="card scenA" id="card-A">
+      <h3><span class="tag">A</span> Buy <span id="badge-A"></span></h3>
+      <div class="lead-label">Year-<span class="horizon-yr">10</span> wealth (opportunity-cost adjusted) <span class="info-btn" tabindex="0" data-info="Headline decision metric. Starts from Year-N net worth, then subtracts the future value of every annual housing outflow as if each dollar had instead stayed invested at the stock-return slider rate. Formula: adjusted wealth_N = net worth_N − Σ net_out(t) × (1 + stock_return)^(N−t). Year-0 outflow is excluded from this adjustment because the portfolio already starts lower by that amount, so its lost compounding is already captured."> i </span></div>
+      <div class="lead" id="A-true-nw">—</div>
+      <div class="row divider"><span>Year-<span class="horizon-yr">10</span> net worth (before operating-cost opportunity cost) <span class="info-btn" tabindex="0" data-info="Base net worth: portfolio value plus net home-sale proceeds/equity at year N. Treats annual housing costs as externally funded, so it does not charge those outflows for the investment returns they would otherwise have earned. Shown for transparency alongside the headline opportunity-cost-adjusted figure."> i </span></span><span class="v" id="A-nw">—</span></div>
+      <div class="row"><span>Operating-outflow opportunity cost <span class="info-btn" tabindex="0" data-info="Future value, at year N, of the annual housing outflows that could otherwise have remained invested. Uses the tax-savings-adjusted net annual outflow from the year-by-year table: Buy = mortgage P&I + property tax + insurance + maintenance − tax savings (at down=100% the mortgage component is 0). Rent = annual rent. Excludes year-0 deployment/tax because that is already reflected in the lower starting portfolio."> i </span></span><span class="v" id="A-opp">—</span></div>
+      <div class="row divider"><span>Year-0 outflow (down + closing + cap-gains tax) <span class="info-btn" tabindex="0" data-info="Cash 'out the door' at year 0 to enter Scenario A (Buy). Equals down × price + 1.5% closing costs + the combined LTCG tax on the stock you sell to fund both. The remaining (1−down) × price is borrowed from the lender at the mortgage rate; at down=100% there is no loan. Scales linearly with the price and down-payment sliders."> i </span></span><span class="v" id="A-y0">—</span></div>
+      <div class="row"><span>Gross <span class="horizon-yr">10</span>-yr housing cost <span class="info-btn" tabindex="0" data-info="Total raw cash spent on housing over N years. For Buy: year-0 outflow + each year's mortgage payment, property tax, insurance, and maintenance, minus federal and state itemized-deduction tax savings (computed against the standard deduction baseline). For Rent: each year's escalating rent. Does NOT credit the home equity remaining at year N — that's the difference between Gross and Net cost."> i </span></span><span class="v" id="A-gross">—</span></div>
+      <div class="row"><span>Net <span class="horizon-yr">10</span>-yr cost (incl. final-yr sale credit) <span class="info-btn" tabindex="0" data-info="Gross cost minus the cash you'd net from selling the house at year N. Sale proceeds = sale price − 6% sale costs (realtor commissions, escrow, transfer tax) − capital-gains tax on (gain − §121 exclusion) at the combined LTCG rate − any remaining mortgage balance. Shows what housing actually cost net of recovering home equity. The Buy scenario often shows small or negative net cost at long horizons because home appreciation recoups most operating cost."> i </span></span><span class="v" id="A-net">—</span></div>
+      <div class="row"><span>Yr-<span class="horizon-yr">10</span> portfolio <span class="info-btn" tabindex="0" data-info="Stock portfolio value at the end of year N. Starts at the starting-portfolio slider value, immediately reduced by the year-0 outflow (Buy only), then compounded at the stock-return rate for N years. Annual housing costs are not drawn from the portfolio in the base ledger; the adjusted-wealth metric separately subtracts the opportunity cost of those annual outflows."> i </span></span><span class="v" id="A-port">—</span></div>
+      <div class="row"><span>Yr-<span class="horizon-yr">10</span> home equity <span class="info-btn" tabindex="0" data-info="Home market value at year N minus any remaining mortgage balance. At down<100% this is the appreciated home value minus the amortizing mortgage balance (which decreases each year as principal is paid down). At down=100% there is no loan, so equity equals the appreciated home value. This is GROSS equity — actual cash realized on sale would be lower due to 6% sale costs and capital-gains tax above the §121 exclusion."> i </span></span><span class="v" id="A-eq">—</span></div>
+    </div>
+
+    <div class="card scenB" id="card-B">
+      <h3><span class="tag">B</span> Rent <span id="badge-B"></span></h3>
+      <div class="lead-label">Year-<span class="horizon-yr">10</span> wealth (opportunity-cost adjusted) <span class="info-btn" tabindex="0" data-info="Headline decision metric. Starts from Year-N net worth, then subtracts the future value of every annual housing outflow as if each dollar had instead stayed invested at the stock-return slider rate. Formula: adjusted wealth_N = net worth_N − Σ net_out(t) × (1 + stock_return)^(N−t). Year-0 outflow is excluded from this adjustment because the portfolio already starts lower by that amount, so its lost compounding is already captured."> i </span></div>
+      <div class="lead" id="B-true-nw">—</div>
+      <div class="row divider"><span>Year-<span class="horizon-yr">10</span> net worth (before operating-cost opportunity cost) <span class="info-btn" tabindex="0" data-info="Base net worth: portfolio value plus net home-sale proceeds/equity at year N. Treats annual housing costs as externally funded, so it does not charge those outflows for the investment returns they would otherwise have earned. Shown for transparency alongside the headline opportunity-cost-adjusted figure."> i </span></span><span class="v" id="B-nw">—</span></div>
+      <div class="row"><span>Operating-outflow opportunity cost <span class="info-btn" tabindex="0" data-info="Future value, at year N, of the annual housing outflows that could otherwise have remained invested. For Rent this is the FV of N years of escalating rent. Excludes year-0 deployment/tax because there is no year-0 outflow in this scenario."> i </span></span><span class="v" id="B-opp">—</span></div>
+      <div class="row divider"><span>Year-0 outflow <span class="info-btn" tabindex="0" data-info="Cash 'out the door' at year 0 to enter Scenario B (Rent). Always $0 — no house purchased, no stock liquidated. The full starting portfolio stays invested."> i </span></span><span class="v" id="B-y0">$0</span></div>
+      <div class="row"><span>Gross <span class="horizon-yr">10</span>-yr housing cost <span class="info-btn" tabindex="0" data-info="Total raw cash spent on housing over N years. For Rent: each year's escalating rent (starting rent × (1 + rent_escalation)^t). No tax deductions on rent."> i </span></span><span class="v" id="B-gross">—</span></div>
+      <div class="row"><span>Net <span class="horizon-yr">10</span>-yr cost (no sale) <span class="info-btn" tabindex="0" data-info="For Rent, Net cost equals Gross cost — there's no house to sell, so no sale credit. The full sum of N years of rent is the true housing cost."> i </span></span><span class="v" id="B-net">—</span></div>
+      <div class="row"><span>Yr-<span class="horizon-yr">10</span> portfolio <span class="info-btn" tabindex="0" data-info="Stock portfolio value at the end of year N. For Rent: starts at the starting-portfolio slider value and compounds untouched at the stock-return rate for N years (no year-0 deployment). Annual rent outflows are not drawn from the portfolio in the base ledger; the adjusted-wealth metric separately subtracts the opportunity cost of those annual outflows."> i </span></span><span class="v" id="B-port">—</span></div>
+      <div class="row"><span>Yr-<span class="horizon-yr">10</span> home equity <span class="info-btn" tabindex="0" data-info="$0 — no house owned in this scenario."> i </span></span><span class="v" id="B-eq">$0</span></div>
+    </div>
+  </div>
+
+  <!-- Cumulative cost chart -->
+  <div class="panel">
+    <h2>
+      <span>Cumulative housing cost (year 0 → year <span class="horizon-yr">10</span>)</span>
+      <span class="toggle-group" id="cost-toggle">
+        <button data-mode="gross" class="active">Gross</button>
+        <button data-mode="net">Net of sale credit</button>
+      </span>
+    </h2>
+    <div class="desc">
+      Total cash flowed out over <span class="horizon-yr">10</span> years per scenario. <strong>Gross</strong>: deployment +
+      cap-gains tax + cumulative operating costs (mortgage P&amp;I, property tax, insurance,
+      maintenance, rent), net of federal &amp; state tax savings. <strong>Net of sale credit</strong>:
+      gross minus the year-<span class="horizon-yr">10</span> sale proceeds (Buy only), after sale costs and cap-gains tax
+      above the §121 exclusion.
+    </div>
+    <div id="cost-chart" class="chart"></div>
+  </div>
+
+  <!-- Wealth trajectory chart -->
+  <div class="panel">
+    <h2>Opportunity-cost-adjusted wealth trajectory</h2>
+    <div class="desc">
+      Year-by-year wealth after subtracting the future value of annual housing outflows that
+      could otherwise have stayed invested at the stock-return slider rate. Year-0 deployment
+      is not subtracted again — it already lowers the starting portfolio. At year <span class="horizon-yr">10</span>,
+      Buy realizes the home sale net of sale costs and cap-gains tax above the §121 exclusion.
+    </div>
+    <div id="wealth-chart" class="chart"></div>
+  </div>
+
+  <!-- Year-by-year table -->
+  <div class="panel">
+    <h2>
+      <span>Year-by-year cash flow</span>
+      <span class="tabs" id="table-tabs">
+        <button data-scen="A" class="active scenA">A — Buy</button>
+        <button data-scen="B" class="scenB">B — Rent</button>
+      </span>
+    </h2>
+    <div class="desc">
+      Per-year flows for the active scenario. <em>Out</em> = cash leaving your pocket (positive numbers
+      are outflows; year-<span class="horizon-yr">10</span> sale credit is shown as negative on the "out" column). <em>Savings</em> =
+      tax savings (federal mortgage interest deduction, CA mortgage interest deduction, CA
+      property-tax deduction). <em>NW</em> is the base portfolio+equity ledger before operating-cost
+      opportunity cost; <em>Adj wealth</em> subtracts the future value of each year's net outflow.
+    </div>
+    <div id="cashflow-table"></div>
+  </div>
+
+  <!-- Sensitivity matrices -->
+  <div class="panel">
+    <h2><span>Sensitivity: year-<span class="horizon-yr">10</span> opportunity-cost-adjusted wealth across 3 × 3 grid</span></h2>
+    <div class="desc">
+      Two small-multiples, one per scenario (Buy + Rent), each cell shaded warm-shades single-hue
+      (darker = higher adjusted wealth, per-scenario scale). Axes are independent of the sliders:
+      stock return 6 / 9 / 12 % × house appreciation 3 / 5 / 7 %. All other inputs reflect the
+      current slider state. The black outline marks the nearest grid cell to the current slider's
+      (stock_return, house_appreciation) location. Below: a binary winner-region matrix coloring
+      each cell by which scenario has the highest opportunity-cost-adjusted wealth.
+    </div>
+    <div class="matrix-grid">
+      <div>
+        <div class="matrix-cell-label"><strong style="color:var(--amber)">A — Buy</strong></div>
+        <div id="matrix-A" class="matrix-chart"></div>
+      </div>
+      <div>
+        <div class="matrix-cell-label"><strong style="color:var(--slate)">B — Rent</strong></div>
+        <div id="matrix-B" class="matrix-chart"></div>
+      </div>
+    </div>
+    <div class="matrix-cell-label">Winner region (which scenario wins each cell)</div>
+    <div id="matrix-winner" class="winner-region"></div>
+  </div>
+
+  <footer>
+    <span>
+      Source: client-side computation, no external data. Plotly via CDN. Tax constants are
+      2026 values held flat across the horizon. See methodology note for the full list of
+      simplifications.
+    </span>
+    <span>Source available: methodology and validation in companion <code>methodology.md</code>.</span>
+  </footer>
+
+  <script>
+    /* ===================================================================
+     * CONSTANTS (immutable model inputs)
+     * =================================================================== */
+    const C = {
+      PRICE:           4_799_000,
+      CAPITAL_Y0:     15_000_000,
+      FED_MARGINAL:        0.32,
+      FED_LTCG:            0.20,   // Top federal LT capital-gains bracket.  Triggers above the $94K MFJ 0% / $583K MFJ 15% thresholds; this model assumes top-bracket income.
+      NIIT:                0.038,  // Always-on for top-bracket scenarios (MAGI > $250K MFJ).
+      PROP13_GROWTH:       0.02,   // California Prop 13 assessed-value cap (2%/yr); applied only when STATES[code].ptaxRegime === 'prop13'.
+      FED_STD_2026:    30_800,    // Federal MFJ standard deduction (2026 projected from 2025's $30,000 + inflation).
+      // Legacy anchor constants retained for self-tests and as the fallback when
+      // state.taxState is not specified.  They correspond to the California
+      // reference scenario; the live model reads STATES[state.taxState] instead.
+      CA_MARGINAL:         0.133,
+      LTCG_COMBINED:       0.371,   // = FED_LTCG + NIIT + STATES.CA.ltcg
+      CA_STD_2026:     11_080,
+      PTAX_RATE:           0.011,
+      PTAX_GROWTH:         0.02,    // Equivalent to PROP13_GROWTH; kept for any external caller still passing it.
+      INS_RATE:            0.0035,
+      // Maintenance schedule extends to year 20 to support the horizon slider (3-20 yrs).
+      // Progression: new construction warranty (0.4%, yrs 1-5), settled (0.8%, yrs 6-10),
+      // mid-life systems (1.2%, yrs 11-15), major systems replacement (1.6%, yrs 16-20).
+      // Long-run average ~1%/yr matches industry rule of thumb. Documented in methodology.
+      MAINT_RATE_1_5:      0.004,
+      MAINT_RATE_6_10:     0.008,
+      MAINT_RATE_11_15:    0.012,
+      MAINT_RATE_16_20:    0.016,
+      CLOSING_PCT:         0.015,
+      SALE_PCT:            0.06,
+      BUYER_AGENT_PCT:     0.025,
+      FED_INT_CAP:       750_000,
+      CA_INT_CAP:      1_000_000,
+      SEC121_EXCL:       500_000,
+      STOCK_BASIS_FR:      0.0,     // 100% gain assumption (long-held positions, year-0 liquidation fully LTCG-taxable)
+      HORIZON_YEARS:      10,
+      LOAN_TERM_MONTHS:  360,
+    };
+
+    /* ===================================================================
+     * STATE TAX DATA — 50 states + DC
+     * ===================================================================
+     * Per-state tax constants used to drive the model.  All values are
+     * documented simplifications; see methodology.md "State tax data sources"
+     * for caveats.
+     *
+     *   marginal             top state income marginal rate (MFJ ordinary).
+     *                        Used to compute the value of state-level
+     *                        itemized deductions (mortgage interest + ptax).
+     *   ltcg                 state component of the combined LTCG rate
+     *                        for **stock** capital gains (used at year-0
+     *                        deployment).  Most states tax LT capital
+     *                        gains as ordinary income (so ltcg == marginal).
+     *                        Notable exceptions: MA flat 5% LT, WA 7% on
+     *                        cap gains above $270K only (no general income tax).
+     *   ltcg_re              state component of the combined LTCG rate
+     *                        for **real estate** sales (used at year-N
+     *                        home sale).  Optional — defaults to ltcg
+     *                        when omitted.  Documented exception:
+     *                        WA explicitly excludes real estate sales
+     *                        from its capital gains tax per RCW
+     *                        82.87.050(8), so WA.ltcg_re = 0 even though
+     *                        WA.ltcg = 0.07.  All other states tax real
+     *                        estate gains the same as stock.
+     *   std                  MFJ standard deduction.  For states that use a
+     *                        personal exemption instead, the MFJ exemption
+     *                        couple amount is used as a proxy so the
+     *                        itemized-vs-standard comparison still works.
+     *                        Zero where neither exists (e.g. PA, FL, TX).
+     *   mortCap              state-level mortgage interest deduction
+     *                        principal cap.  Default $750K (TCJA conformity).
+     *                        Documented exception: California still allows
+     *                        $1M (pre-TCJA federal rule, CA non-conformity).
+     *   ptaxRate             representative effective property tax rate on
+     *                        owner-occupied housing (state-wide ACS 2024).
+     *                        Exception: California uses 1.1% to reflect
+     *                        high-burden CA county jurisdictions (where
+     *                        school and special-district levies push the
+     *                        rate well above the 0.69% state-wide ACS
+     *                        average), preserving the canonical reference
+     *                        scenario.
+     *   ptaxRegime           how property tax base grows over time:
+     *                          'prop13'  — assessed value capped at +2%/yr
+     *                                      regardless of market (CA only).
+     *                          'market'  — base reassessed annually with
+     *                                      market value (default).
+     *
+     * Data sources (2025 unless noted):
+     *   - Top marginal income tax rate + MFJ std deduction: Tax Foundation,
+     *     "2025 State Individual Income Tax Rates and Brackets",
+     *     taxfoundation.org/data/all/state/state-income-tax-rates/.
+     *   - Property tax effective rate: U.S. Census Bureau ACS 2024
+     *     aggregates (B25090 / B25082), consolidated in the Tax Foundation
+     *     "Property Taxes by State 2026" series.
+     *   - DC property tax: Tax Foundation 2025 Facts & Figures estimate.
+     *   - Mortgage interest deduction caps: federal TCJA $750K assumed for
+     *     all states except CA per Cal. R&T §17072 (allows $1M).
+     */
+    const STATES = {
+      AL: { name: "Alabama",      marginal: 0.0500, ltcg: 0.0500, std:  8500, mortCap: 750000, ptaxRate: 0.00372, ptaxRegime: "market" },
+      AK: { name: "Alaska",       marginal: 0.0000, ltcg: 0.0000, std:     0, mortCap: 750000, ptaxRate: 0.00900, ptaxRegime: "market" },
+      AZ: { name: "Arizona",      marginal: 0.0250, ltcg: 0.0250, std: 30000, mortCap: 750000, ptaxRate: 0.00426, ptaxRegime: "market" },
+      AR: { name: "Arkansas",     marginal: 0.0390, ltcg: 0.0390, std:  4820, mortCap: 750000, ptaxRate: 0.00541, ptaxRegime: "market" },
+      CA: { name: "California",   marginal: 0.1330, ltcg: 0.1330, std: 11080, mortCap: 1000000, ptaxRate: 0.01100, ptaxRegime: "prop13" },
+      CO: { name: "Colorado",     marginal: 0.0440, ltcg: 0.0440, std: 30000, mortCap: 750000, ptaxRate: 0.00519, ptaxRegime: "market" },
+      CT: { name: "Connecticut",  marginal: 0.0699, ltcg: 0.0699, std: 24000, mortCap: 750000, ptaxRate: 0.01355, ptaxRegime: "market" },
+      DE: { name: "Delaware",     marginal: 0.0660, ltcg: 0.0660, std:  6500, mortCap: 750000, ptaxRate: 0.00513, ptaxRegime: "market" },
+      DC: { name: "District of Columbia", marginal: 0.1075, ltcg: 0.1075, std: 30000, mortCap: 750000, ptaxRate: 0.00550, ptaxRegime: "market" },
+      FL: { name: "Florida",      marginal: 0.0000, ltcg: 0.0000, std:     0, mortCap: 750000, ptaxRate: 0.00760, ptaxRegime: "market" },
+      GA: { name: "Georgia",      marginal: 0.0539, ltcg: 0.0539, std: 24000, mortCap: 750000, ptaxRate: 0.00767, ptaxRegime: "market" },
+      HI: { name: "Hawaii",       marginal: 0.1100, ltcg: 0.0725, std:  8800, mortCap: 750000, ptaxRate: 0.00308, ptaxRegime: "market" },
+      ID: { name: "Idaho",        marginal: 0.05695, ltcg: 0.05695, std: 30000, mortCap: 750000, ptaxRate: 0.00433, ptaxRegime: "market" },
+      IL: { name: "Illinois",     marginal: 0.0495, ltcg: 0.0495, std:  5700, mortCap: 750000, ptaxRate: 0.01793, ptaxRegime: "market" },
+      IN: { name: "Indiana",      marginal: 0.0300, ltcg: 0.0300, std:  2000, mortCap: 750000, ptaxRate: 0.00756, ptaxRegime: "market" },
+      IA: { name: "Iowa",         marginal: 0.0380, ltcg: 0.0380, std:     0, mortCap: 750000, ptaxRate: 0.01249, ptaxRegime: "market" },
+      KS: { name: "Kansas",       marginal: 0.0558, ltcg: 0.0558, std:  8240, mortCap: 750000, ptaxRate: 0.01201, ptaxRegime: "market" },
+      KY: { name: "Kentucky",     marginal: 0.0400, ltcg: 0.0400, std:  6540, mortCap: 750000, ptaxRate: 0.00723, ptaxRegime: "market" },
+      LA: { name: "Louisiana",    marginal: 0.0300, ltcg: 0.0300, std: 25000, mortCap: 750000, ptaxRate: 0.00557, ptaxRegime: "market" },
+      ME: { name: "Maine",        marginal: 0.0715, ltcg: 0.0715, std: 30000, mortCap: 750000, ptaxRate: 0.00903, ptaxRegime: "market" },
+      MD: { name: "Maryland",     marginal: 0.0575, ltcg: 0.0575, std:  5450, mortCap: 750000, ptaxRate: 0.00902, ptaxRegime: "market" },
+      MA: { name: "Massachusetts", marginal: 0.0900, ltcg: 0.0500, std:  8800, mortCap: 750000, ptaxRate: 0.00948, ptaxRegime: "market" },
+      MI: { name: "Michigan",     marginal: 0.0425, ltcg: 0.0425, std: 11600, mortCap: 750000, ptaxRate: 0.01129, ptaxRegime: "market" },
+      MN: { name: "Minnesota",    marginal: 0.0985, ltcg: 0.0985, std: 29900, mortCap: 750000, ptaxRate: 0.00987, ptaxRegime: "market" },
+      MS: { name: "Mississippi",  marginal: 0.0440, ltcg: 0.0440, std:  4600, mortCap: 750000, ptaxRate: 0.00541, ptaxRegime: "market" },
+      MO: { name: "Missouri",     marginal: 0.0470, ltcg: 0.0470, std: 30000, mortCap: 750000, ptaxRate: 0.00849, ptaxRegime: "market" },
+      MT: { name: "Montana",      marginal: 0.0590, ltcg: 0.0590, std: 30000, mortCap: 750000, ptaxRate: 0.00592, ptaxRegime: "market" },
+      NE: { name: "Nebraska",     marginal: 0.0520, ltcg: 0.0520, std: 17200, mortCap: 750000, ptaxRate: 0.01379, ptaxRegime: "market" },
+      NV: { name: "Nevada",       marginal: 0.0000, ltcg: 0.0000, std:     0, mortCap: 750000, ptaxRate: 0.00504, ptaxRegime: "market" },
+      NH: { name: "New Hampshire", marginal: 0.0000, ltcg: 0.0000, std:    0, mortCap: 750000, ptaxRate: 0.01350, ptaxRegime: "market" },
+      NJ: { name: "New Jersey",   marginal: 0.1075, ltcg: 0.1075, std:  2000, mortCap: 750000, ptaxRate: 0.01675, ptaxRegime: "market" },
+      NM: { name: "New Mexico",   marginal: 0.0590, ltcg: 0.0590, std: 30000, mortCap: 750000, ptaxRate: 0.00610, ptaxRegime: "market" },
+      NY: { name: "New York",     marginal: 0.1090, ltcg: 0.1090, std: 16050, mortCap: 750000, ptaxRate: 0.01227, ptaxRegime: "market" },
+      NC: { name: "North Carolina", marginal: 0.0425, ltcg: 0.0425, std: 25500, mortCap: 750000, ptaxRate: 0.00624, ptaxRegime: "market" },
+      ND: { name: "North Dakota", marginal: 0.0250, ltcg: 0.0250, std: 30000, mortCap: 750000, ptaxRate: 0.00941, ptaxRegime: "market" },
+      OH: { name: "Ohio",         marginal: 0.0350, ltcg: 0.0350, std:  4800, mortCap: 750000, ptaxRate: 0.01276, ptaxRegime: "market" },
+      OK: { name: "Oklahoma",     marginal: 0.0475, ltcg: 0.0475, std: 12700, mortCap: 750000, ptaxRate: 0.00780, ptaxRegime: "market" },
+      OR: { name: "Oregon",       marginal: 0.0990, ltcg: 0.0990, std:  5600, mortCap: 750000, ptaxRate: 0.00789, ptaxRegime: "market" },
+      PA: { name: "Pennsylvania", marginal: 0.0307, ltcg: 0.0307, std:     0, mortCap: 750000, ptaxRate: 0.01137, ptaxRegime: "market" },
+      RI: { name: "Rhode Island", marginal: 0.0599, ltcg: 0.0599, std: 21800, mortCap: 750000, ptaxRate: 0.00997, ptaxRegime: "market" },
+      SC: { name: "South Carolina", marginal: 0.0620, ltcg: 0.0620, std: 30000, mortCap: 750000, ptaxRate: 0.00438, ptaxRegime: "market" },
+      SD: { name: "South Dakota", marginal: 0.0000, ltcg: 0.0000, std:     0, mortCap: 750000, ptaxRate: 0.00998, ptaxRegime: "market" },
+      TN: { name: "Tennessee",    marginal: 0.0000, ltcg: 0.0000, std:     0, mortCap: 750000, ptaxRate: 0.00462, ptaxRegime: "market" },
+      TX: { name: "Texas",        marginal: 0.0000, ltcg: 0.0000, std:     0, mortCap: 750000, ptaxRate: 0.01245, ptaxRegime: "market" },
+      UT: { name: "Utah",         marginal: 0.0455, ltcg: 0.0455, std:     0, mortCap: 750000, ptaxRate: 0.00452, ptaxRegime: "market" },
+      VT: { name: "Vermont",      marginal: 0.0875, ltcg: 0.0875, std: 14850, mortCap: 750000, ptaxRate: 0.01399, ptaxRegime: "market" },
+      VA: { name: "Virginia",     marginal: 0.0575, ltcg: 0.0575, std: 17000, mortCap: 750000, ptaxRate: 0.00754, ptaxRegime: "market" },
+      WA: { name: "Washington",   marginal: 0.0000, ltcg: 0.0700, ltcg_re: 0.0000, std:     0, mortCap: 750000, ptaxRate: 0.00737, ptaxRegime: "market" },
+      WV: { name: "West Virginia", marginal: 0.0482, ltcg: 0.0482, std:  4000, mortCap: 750000, ptaxRate: 0.00483, ptaxRegime: "market" },
+      WI: { name: "Wisconsin",    marginal: 0.0765, ltcg: 0.0765, std: 25110, mortCap: 750000, ptaxRate: 0.01188, ptaxRegime: "market" },
+      WY: { name: "Wyoming",      marginal: 0.0000, ltcg: 0.0000, std:     0, mortCap: 750000, ptaxRate: 0.00582, ptaxRegime: "market" },
+    };
+    /* HI LTCG note: Hawaii caps LT capital gains at 7.25% via the alternative
+       capital gains tax (HRS §235-51), well below its 11% top marginal rate. */
+
+    /* ===================================================================
+     * FILING STATUS LOOKUP
+     * ===================================================================
+     * Per-status federal standard deduction and §121 home-sale exclusion.
+     * MFJ values pinned to v14 anchor (FED_STD_2026 = $30,800) for self-test
+     * stability; Single/HoH use IRS 2026 Rev. Proc. 2025-32 values.
+     *
+     *   fedStd     federal standard deduction
+     *   sec121     §121 primary-residence cap-gains exclusion
+     *
+     * Federal marginal-bracket → federal LTCG mapping (model simplification):
+     *   marginal ≥ 0.37  →  LTCG 20%
+     *   marginal ≤ 0.35  →  LTCG 15%
+     * This is the threshold for top-bracket taxpayers; users below the 35%
+     * bracket may actually face 0% LTCG depending on taxable income, but
+     * for top-of-bracket income (which this model implicitly assumes from
+     * the high portfolio default), 15% is the floor and 20% is the cap.
+     */
+    const FILING_STATUS = {
+      MFJ:    { name: "Married filing jointly", fedStd: 30800, sec121: 500000 },
+      Single: { name: "Single",                 fedStd: 15750, sec121: 250000 },
+      HoH:    { name: "Head of household",      fedStd: 23625, sec121: 250000 },
+    };
+
+    /* Federal marginal-bracket dropdown options (2025/2026 top brackets). */
+    const FED_MARGINAL_OPTIONS = [
+      { value: 0.22, label: "22%" },
+      { value: 0.24, label: "24%" },
+      { value: 0.32, label: "32%" },
+      { value: 0.35, label: "35%" },
+      { value: 0.37, label: "37%" },
+    ];
+
+    /* Sensitivity matrix axes — fixed regardless of slider state. */
+    const MATRIX_STOCK_RETURNS  = [0.06, 0.09, 0.12];
+    const MATRIX_APPRECIATIONS  = [0.03, 0.05, 0.07];
+
+    /* Scenario brand palette: Buy = amber, Rent = slate.
+       Coral retired from scenario use (reserved for accents — active modebar, warnings). */
+    const COLORS = {
+      A: '#ffb444',      // System2 amber (Buy)
+      B: '#5a6c7d',      // warm slate (Rent)
+    };
+    const WARM_SHADES_COLORSCALE = [
+      [0.00, '#fff5d6'],
+      [0.33, '#ffd680'],
+      [0.66, '#ffb444'],
+      [1.00, '#c43820'],
+    ];
+
+    /* ===================================================================
+     * DOM REFS
+     * =================================================================== */
+    const $ = id => document.getElementById(id);
+    const refs = {
+      taxState: $('taxState'), taxStateSummary: $('taxState-summary'),
+      filingStatus: $('filingStatus'),
+      federalMarginal: $('federalMarginal'),
+      price:   $('price'),   priceVal:   $('price-val'),
+      rent:    $('rent'),    rentVal:    $('rent-val'),
+      rentEsc: $('rentEsc'), rentEscVal: $('rentEsc-val'),
+      mort:    $('mort'),    mortVal:    $('mort-val'),
+      down:    $('down'),    downVal:    $('down-val'),
+      apprec:  $('apprec'),  apprecVal:  $('apprec-val'),
+      stock:   $('stock'),   stockVal:   $('stock-val'),
+      capital: $('capital'), capitalVal: $('capital-val'),
+      horizon: $('horizon'), horizonVal: $('horizon-val'),
+      buyerCommish: $('buyerCommish'),
+      warnings: $('warnings'),
+      costToggle: $('cost-toggle'),
+      tableTabs: $('table-tabs'),
+      cashflowTable: $('cashflow-table'),
+    };
+
+    /* UI mode state. */
+    const ui = {
+      costMode: 'gross',    // 'gross' or 'net'
+      tableScenario: 'A',   // 'A' (Buy) or 'B' (Rent)
+    };
+
+    /* ===================================================================
+     * FORMATTING HELPERS
+     * =================================================================== */
+    const fmtUSD = v => {
+      if (!Number.isFinite(v)) return '—';
+      const sign = v < 0 ? '-' : '';
+      const abs = Math.abs(v);
+      if (abs >= 1e6) return `${sign}$${(abs/1e6).toFixed(2)}M`;
+      if (abs >= 1e3) return `${sign}$${(abs/1e3).toFixed(0)}K`;
+      return `${sign}$${abs.toFixed(0)}`;
+    };
+    const fmtUSDfull = v => {
+      if (!Number.isFinite(v)) return '—';
+      return v.toLocaleString('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 });
+    };
+    const fmtPct = (v, dp=1) => `${(v*100).toFixed(dp)}%`;
+
+    /* ===================================================================
+     * FINANCE HELPERS
+     * =================================================================== */
+
+    /**
+     * Build a 360-month amortization schedule for a fixed-rate loan.
+     * Returns per-year aggregates for years 1..10:
+     *   { interestPaid, principalPaid, balanceEnd, avgBalance, monthlyPayment }
+     * If loanAmount <= 0, returns an empty-loan schedule (all zeros).
+     */
+    function amortize(loanAmount, annualRate, termMonths = C.LOAN_TERM_MONTHS, displayYears = C.HORIZON_YEARS) {
+      const years = [];
+      if (loanAmount <= 0 || annualRate <= 0) {
+        for (let y = 1; y <= displayYears; y++) {
+          years.push({ interestPaid: 0, principalPaid: 0, balanceEnd: 0, avgBalance: 0, monthlyPayment: 0 });
+        }
+        return { monthlyPayment: 0, schedule: years, totalInterest10: 0, balanceAt10: 0 };
+      }
+      const rM = annualRate / 12;
+      const paymentM = loanAmount * rM * Math.pow(1 + rM, termMonths) / (Math.pow(1 + rM, termMonths) - 1);
+      let balance = loanAmount;
+      for (let y = 1; y <= displayYears; y++) {
+        let interest = 0, principal = 0;
+        const startBalance = balance;
+        let sumStartOfMonth = 0;
+        for (let m = 1; m <= 12; m++) {
+          sumStartOfMonth += balance;
+          const im = balance * rM;
+          const pm = paymentM - im;
+          interest += im;
+          principal += pm;
+          balance -= pm;
+        }
+        years.push({
+          interestPaid:   interest,
+          principalPaid:  principal,
+          balanceEnd:     balance,
+          avgBalance:     sumStartOfMonth / 12,
+          monthlyPayment: paymentM,
+        });
+      }
+      return {
+        monthlyPayment: paymentM,
+        schedule: years,
+        totalInterest10: years.reduce((s, y) => s + y.interestPaid, 0),
+        balanceAt10: years[years.length - 1].balanceEnd,
+      };
+    }
+
+    /**
+     * Tax savings from BUYING vs renting, per year, for federal and CA separately.
+     *
+     * Federal: itemized = mortgage_interest_deductible + SALT_cap (10K floor when
+     * MAGI is high enough to phase the cap fully down). Rent baseline = standard deduction (rent SALT < standard).
+     * Federal savings from buying = max(0, fed_itemized − fed_standard) × fed_marginal.
+     *
+     * California: itemized = mortgage_interest_deductible_at_$1M_cap + property_tax
+     * (CA does NOT impose the federal $10K SALT cap on its own return). Rent baseline
+     * = CA standard deduction. CA savings = max(0, ca_itemized − ca_standard) × ca_marginal.
+     *
+     * Note: applying `gross_deductible_interest × marginal` directly would
+     * overstate federal savings by ignoring that the rent baseline already
+     * takes the standard deduction.
+     */
+    function deductionSavingsForYear(year, propertyTax, fedCap, caCap, fedStd, caStd, fedMarg, caMarg) {
+      const interest = year ? year.interestPaid : 0;
+      const avgBal   = year ? year.avgBalance   : 0;
+
+      const fedDedFrac = (avgBal > 0) ? Math.min(fedCap, avgBal) / avgBal : 0;
+      const caDedFrac  = (avgBal > 0) ? Math.min(caCap,  avgBal) / avgBal : 0;
+      const fedDedInt  = interest * fedDedFrac;
+      const caDedInt   = interest * caDedFrac;
+
+      const SALT_FLOOR = 10_000;
+      const fedItemized = fedDedInt + SALT_FLOOR;          // SALT capped at $10K (high-MAGI households fully phase down to the floor)
+      const caItemized  = caDedInt + propertyTax;          // CA: no SALT cap on its own return
+
+      const fedSavings = Math.max(0, fedItemized - fedStd) * fedMarg;
+      const caSavings  = Math.max(0, caItemized  - caStd ) * caMarg;
+
+      return {
+        fed: fedSavings,
+        ca:  caSavings,
+        fedDedFrac, caDedFrac, fedDedInt, caDedInt,
+        fedItemized, caItemized,
+      };
+    }
+
+    /**
+     * Year-N sale event for a buy scenario.  ltcgRate defaults to the CA-anchor
+     * combined LTCG (federal 20% + NIIT 3.8% + CA 13.3% = 37.1%) so legacy
+     * callers that don't pass it still produce the v14 reference numbers.
+     */
+    function saleY10(marketValueY10, purchasePrice, remainingLoan, ltcgRate, sec121) {
+      const grossProceeds = marketValueY10 * (1 - C.SALE_PCT);
+      // IRS §1001(b): amount realized = sale price − selling expenses.
+      // Selling expenses reduce the taxable gain BEFORE the §121 exclusion.
+      const amountRealized = grossProceeds;
+      const gain = amountRealized - purchasePrice;
+      const sec121Excl = (typeof sec121 === 'number') ? sec121 : C.SEC121_EXCL;
+      const taxableGain = Math.max(0, gain - sec121Excl);
+      const rate = (typeof ltcgRate === 'number') ? ltcgRate : C.LTCG_COMBINED;
+      const cgTax = taxableGain * rate;
+      const netFromSale = grossProceeds - cgTax - remainingLoan;
+      return { grossProceeds, amountRealized, gain, taxableGain, cgTax, netFromSale };
+    }
+
+    /* ===================================================================
+     * PER-SCENARIO CALCULATORS
+     * Each returns { y0: {...}, years: [year1..year10], summary: {...} }
+     * "year" entry shape:
+     *   { t, propertyTax, insurance, maintenance, mortgagePayment,
+     *     mortgageInterest, mortgagePrincipal, mortgageBalanceEnd,
+     *     fedSavings, caSavings, totalSavings,
+     *     grossAnnualOut, netAnnualOut, cumGrossOut, cumNetOut,
+     *     opportunityCostFV, opportunityAdjustedNetWorth,
+     *     portfolio, marketValue, homeEquity, netWorth }
+     * "summary":
+     *   { y0Outflow, cgTaxY0, totalGross10, totalNet10, sale: {...}|null,
+     *     portfolioY10, homeEquityY10, netWorthY10, opportunityCostY10,
+     *     trueWealthY10 }
+     * =================================================================== */
+
+    function calcScenario(state, scenario) {
+      const { rent, rentEsc, mort, down, apprec, stock, buyerCommish } = state;
+      const price = (typeof state.price === 'number' && state.price > 0) ? state.price : C.PRICE;
+      const capital = (typeof state.capital === 'number' && state.capital > 0) ? state.capital : C.CAPITAL_Y0;
+      const buyerCommissionPct = buyerCommish ? C.BUYER_AGENT_PCT : 0;
+      const horizon = (typeof state.horizon === 'number' && state.horizon > 0) ? state.horizon : C.HORIZON_YEARS;
+
+      // State-driven tax constants.  Fall back to the CA anchor scenario when
+      // state.taxState is unspecified so legacy callers (older self-tests
+      // without a taxState field) still resolve to the v14 reference numbers.
+      const st = STATES[state.taxState] || STATES.CA;
+      const stateMarginal   = st.marginal;
+      const stateLTCG       = st.ltcg;
+      const stateStd        = st.std;
+      const stateMortCap    = st.mortCap;
+      const statePtaxRate   = st.ptaxRate;
+      const statePtaxGrowth = (st.ptaxRegime === 'prop13') ? C.PROP13_GROWTH : apprec;
+      // Federal context: filing status drives standard deduction + §121 exclusion;
+      // federal marginal drives itemized-deduction value and federal LTCG.  Both
+      // fall back to MFJ / C.FED_MARGINAL when state values are missing.
+      const fs              = FILING_STATUS[state.filingStatus] || FILING_STATUS.MFJ;
+      const fedStd          = fs.fedStd;
+      const sec121Exclusion = fs.sec121;
+      const fedMarg         = (typeof state.federalMarginal === 'number' && state.federalMarginal > 0) ? state.federalMarginal : C.FED_MARGINAL;
+      // Federal LTCG mapping: 20% at top bracket (37%), 15% below.  Documented
+      // simplification — actual LTCG depends on taxable-income thresholds.
+      const fedLTCG         = (fedMarg >= 0.37) ? C.FED_LTCG : 0.15;
+      // Combined LTCG for year-0 stock liquidation: federal LT + NIIT + state LTCG.
+      const ltcgCombined    = fedLTCG + C.NIIT + stateLTCG;
+      // Combined LTCG for year-N real-estate sale: same federal layers; state
+      // component uses st.ltcg_re if defined (WA exempts real estate from its
+      // capital gains tax per RCW 82.87.050(8)), else falls back to stateLTCG.
+      const stateLTCG_RE    = (typeof st.ltcg_re === 'number') ? st.ltcg_re : stateLTCG;
+      const ltcgCombinedRE  = fedLTCG + C.NIIT + stateLTCG_RE;
+
+      // Year-0 deployment & cap-gains tax.
+      // Scenario A (Buy): deployment = down × price + closing + commission.
+      // At down=100% this collapses naturally to an all-cash purchase (loan=0,
+      // no interest deduction). Scenario B (Rent): no deployment.
+      let deployment = 0;
+      if (scenario === 'A') {
+        deployment = down * price + price * C.CLOSING_PCT + price * buyerCommissionPct;
+      } // B (Rent): 0
+      // 100% gain assumption: tax = deployment * LTCG, paid externally.
+      const cgTaxY0 = deployment * ltcgCombined * (1 - C.STOCK_BASIS_FR);
+
+      const y0Outflow = deployment + cgTaxY0;
+      // Design decision (cash framing rather than gross-up cascade): BOTH the
+      // deployment AND the year-0 cap-gains tax bill leave the portfolio at year 0.
+      // First-order on the realized gain, no infinite gross-up cascade.
+      const portfolioY0 = capital - deployment - cgTaxY0;
+
+      // Mortgage schedule (only meaningful for Buy at down<100; at down=100 loan=0).
+      let loanAmount = 0;
+      if (scenario === 'A') loanAmount = (1 - down) * price;
+      const amort = amortize(loanAmount, mort, C.LOAN_TERM_MONTHS, horizon);
+
+      const years = [];
+      let cumGross = y0Outflow;  // year-0 included as the running start
+      let cumNet = y0Outflow;
+      let portfolio = portfolioY0;
+      // Opportunity-cost adjustment: future value of annual operating outflows.
+      // Year-0 outflow is deliberately excluded because it already reduces portfolioY0.
+      let opportunityCostFV = 0;
+
+      for (let t = 1; t <= horizon; t++) {
+        portfolio *= (1 + stock);                                  // end-of-year compounding
+        const marketValue = price * Math.pow(1 + apprec, t);
+        const propertyTax = price * statePtaxRate * Math.pow(1 + statePtaxGrowth, t - 1);
+        const insurance   = (scenario === 'B') ? 0 : marketValue * C.INS_RATE;
+        const maintRate   = (t <= 5)  ? C.MAINT_RATE_1_5
+                          : (t <= 10) ? C.MAINT_RATE_6_10
+                          : (t <= 15) ? C.MAINT_RATE_11_15
+                          :             C.MAINT_RATE_16_20;
+        const maintenance = (scenario === 'B') ? 0 : marketValue * maintRate;
+
+        let mortgagePayment = 0, mortgageInterest = 0, mortgagePrincipal = 0, mortgageBalanceEnd = 0;
+        let fedSavings = 0, caSavings = 0;
+        if (scenario !== 'B') {
+          // Buy path computes deduction savings against the standard-deduction
+          // baseline. At down=100% (all-cash) the loan is 0 and there's no
+          // mortgage-interest component — only property tax flows through.
+          let yearArg = null;
+          if (loanAmount > 0) {
+            const y = amort.schedule[t - 1];
+            mortgagePayment    = y.monthlyPayment * 12;
+            mortgageInterest   = y.interestPaid;
+            mortgagePrincipal  = y.principalPaid;
+            mortgageBalanceEnd = y.balanceEnd;
+            yearArg = y;
+          }
+          const ded = deductionSavingsForYear(yearArg, propertyTax, C.FED_INT_CAP, stateMortCap, fedStd, stateStd, fedMarg, stateMarginal);
+          fedSavings = ded.fed;
+          caSavings  = ded.ca;
+        }
+        // CA savings is now a single combined figure (mortgage interest + property tax,
+        // both contributing to the standard-deduction-comparison itemized total). The
+        // v1 split into caMortSavings / caPtaxSavings is gone — table renderer uses
+        // totalSavings only, so no consumer relies on the split.
+        const totalSavings  = fedSavings + caSavings;
+
+        let grossAnnualOut, netAnnualOut;
+        if (scenario === 'B') {
+          const monthlyRentT = rent * Math.pow(1 + rentEsc, t - 1);
+          grossAnnualOut = 12 * monthlyRentT;
+          netAnnualOut   = grossAnnualOut;   // no savings on rent
+        } else {
+          grossAnnualOut = mortgagePayment + propertyTax + insurance + maintenance;
+          netAnnualOut   = grossAnnualOut - totalSavings;
+        }
+
+        cumGross += grossAnnualOut;
+        cumNet   += netAnnualOut;
+
+        const homeEquity = (scenario === 'B') ? 0 : marketValue - mortgageBalanceEnd;
+        const netWorth = portfolio + homeEquity;
+        // End-of-year convention: year-t outflow would have compounded for (k-t)
+        // years by end of year k. Recurrence implements Σ cost_i×(1+r)^(t-i).
+        opportunityCostFV = opportunityCostFV * (1 + stock) + netAnnualOut;
+        const opportunityAdjustedNetWorth = netWorth - opportunityCostFV;
+
+        years.push({
+          t,
+          propertyTax, insurance, maintenance,
+          mortgagePayment, mortgageInterest, mortgagePrincipal, mortgageBalanceEnd,
+          fedSavings, caSavings, totalSavings,
+          grossAnnualOut, netAnnualOut, cumGrossOut: cumGross, cumNetOut: cumNet,
+          opportunityCostFV, opportunityAdjustedNetWorth,
+          portfolio, marketValue, homeEquity, netWorth,
+        });
+      }
+
+      // Year-N sale event (Buy only).
+      let sale = null;
+      let saleCredit = 0;
+      if (scenario !== 'B') {
+        const last = years[years.length - 1];
+        sale = saleY10(last.marketValue, price, last.mortgageBalanceEnd, ltcgCombinedRE, sec121Exclusion);
+        saleCredit = sale.netFromSale;
+      }
+
+      const totalGross10 = cumGross;       // does NOT include sale credit
+      const totalNet10 = cumNet - saleCredit;
+
+      const last = years[years.length - 1];
+      const netWorthY10 = last.netWorth + (scenario !== 'B' ? (saleCredit - last.homeEquity) : 0);
+      // ^ At year N the homeowner realizes home equity into cash (less sale costs + cg tax).
+      //   Net worth at year N with sale = portfolio + saleCredit (rather than portfolio + raw equity).
+      const opportunityCostY10 = last.opportunityCostFV;
+      const trueWealthY10 = netWorthY10 - opportunityCostY10;
+
+      return {
+        scenario,
+        deployment, cgTaxY0, y0Outflow,
+        portfolioY0,
+        amort,
+        years,
+        sale,
+        summary: {
+          y0Outflow,
+          cgTaxY0,
+          deployment,
+          totalGross10,
+          totalNet10,
+          saleCredit,
+          portfolioY10:  last.portfolio,
+          homeEquityY10: last.homeEquity,
+          netWorthY10,
+          opportunityCostY10,
+          trueWealthY10,
+        },
+      };
+    }
+
+    /* ===================================================================
+     * MATRIX BUILDER
+     * Returns matrix[i][j] = { A: yNOpportunityAdjustedWealth, B: ..., C: ... }
+     * over MATRIX_STOCK_RETURNS × MATRIX_APPRECIATIONS, holding other
+     * sliders at their current state.
+     * =================================================================== */
+    function buildMatrix(state) {
+      const matrix = [];
+      for (let i = 0; i < MATRIX_STOCK_RETURNS.length; i++) {
+        const row = [];
+        for (let j = 0; j < MATRIX_APPRECIATIONS.length; j++) {
+          const cellState = { ...state, stock: MATRIX_STOCK_RETURNS[i], apprec: MATRIX_APPRECIATIONS[j] };
+          const A = calcScenario(cellState, 'A').summary.trueWealthY10;
+          const B = calcScenario(cellState, 'B').summary.trueWealthY10;
+          row.push({ A, B });
+        }
+        matrix.push(row);
+      }
+      return matrix;
+    }
+
+    /* ===================================================================
+     * WARNINGS
+     * =================================================================== */
+    function computeWarnings(state) {
+      const out = [];
+      if (state.down === 0) {
+        out.push({
+          cls: 'warn',
+          html: '<strong>0% down on a jumbo loan is unusual.</strong> Lenders typically require 10–20%+ down or piggyback financing for jumbos. Rate and availability not modeled.',
+        });
+      } else if (state.down < 0.20) {
+        out.push({
+          cls: 'warn',
+          html: `<strong>${fmtPct(state.down, 0)} down on a jumbo loan is unusual.</strong> Most jumbo lenders require 10–20%+ down. PMI is not modeled (jumbos typically don't carry PMI; piggyback structures are the usual workaround).`,
+        });
+      }
+      if (state.down >= 1.0) {
+        out.push({
+          cls: 'warn-info',
+          html: '<strong>100% down: all-cash purchase.</strong> Scenario A models the buy with no mortgage at this slider state — no loan, no mortgage-interest deduction. Only property tax flows through the itemized-deduction calculation.',
+        });
+      }
+      if (state.apprec === 0 && state.down < 1.0) {
+        out.push({
+          cls: 'warn-info',
+          html: '<strong>0% house appreciation:</strong> the Buy scenario pays sale costs (~6% of price) with no offsetting gain at the horizon. Renting becomes structurally favored.',
+        });
+      }
+
+      // Low-capital coverage check: if year-0 outflow for the Buy scenario exceeds
+      // the starting portfolio, portfolio_y0 goes negative and downstream outputs
+      // are economically meaningless. Warn the user before they read the number.
+      const buyerCommissionPct = state.buyerCommish ? C.BUYER_AGENT_PCT : 0;
+      const closing = state.price * C.CLOSING_PCT;
+      const commission = state.price * buyerCommissionPct;
+      const stWarn = STATES[state.taxState] || STATES.CA;
+      const fedMargWarn = (typeof state.federalMarginal === 'number' && state.federalMarginal > 0) ? state.federalMarginal : C.FED_MARGINAL;
+      const fedLTCGWarn = (fedMargWarn >= 0.37) ? C.FED_LTCG : 0.15;
+      const ltcgEff = (fedLTCGWarn + C.NIIT + stWarn.ltcg) * (1 - C.STOCK_BASIS_FR);
+      const deployBuy = state.down * state.price + closing + commission;
+      const y0Buy = deployBuy * (1 + ltcgEff);
+      if (y0Buy > state.capital) {
+        out.push({
+          cls: 'warn',
+          html: `<strong>Scenario A (Buy) year-0 outflow exceeds the starting portfolio</strong> (${fmtUSD(y0Buy)} > ${fmtUSD(state.capital)}). Portfolio at year 0 goes negative; Buy results are not economically meaningful at this slider state. Increase the starting portfolio, lower the house price, or lower the down payment.`,
+        });
+      }
+
+      return out;
+    }
+
+    /* ===================================================================
+     * RENDERERS
+     * =================================================================== */
+
+    function renderWarnings(warnings) {
+      refs.warnings.innerHTML = warnings
+        .map(w => `<div class="${w.cls}">${w.html}</div>`)
+        .join('');
+    }
+
+    function renderSummaryCards(scenA, scenB) {
+      const winnerTrueWealth = ['A', 'B'].map(k => ({ k, v: ({A: scenA, B: scenB}[k]).summary.trueWealthY10 }))
+        .sort((a, b) => b.v - a.v)[0].k;
+      const winnerCostNet = ['A', 'B'].map(k => ({ k, v: ({A: scenA, B: scenB}[k]).summary.totalNet10 }))
+        .sort((a, b) => a.v - b.v)[0].k;  // lowest cost wins
+
+      function fill(prefix, s) {
+        $(`${prefix}-true-nw`).textContent = fmtUSDfull(s.summary.trueWealthY10);
+        $(`${prefix}-nw`).textContent      = fmtUSDfull(s.summary.netWorthY10);
+        $(`${prefix}-opp`).textContent     = fmtUSDfull(s.summary.opportunityCostY10);
+        $(`${prefix}-y0`).textContent      = fmtUSDfull(s.summary.y0Outflow);
+        $(`${prefix}-gross`).textContent   = fmtUSDfull(s.summary.totalGross10);
+        $(`${prefix}-net`).textContent     = fmtUSDfull(s.summary.totalNet10);
+        $(`${prefix}-port`).textContent    = fmtUSDfull(s.summary.portfolioY10);
+        $(`${prefix}-eq`).textContent      = fmtUSDfull(s.summary.homeEquityY10);
+      }
+      fill('A', scenA); fill('B', scenB);
+
+      ['A', 'B'].forEach(k => {
+        const badges = [];
+        if (k === winnerTrueWealth) badges.push('<span class="badge">HIGHEST ADJ WEALTH</span>');
+        if (k === winnerCostNet)    badges.push('<span class="badge" style="background:#3a6a7a">LOWEST NET COST</span>');
+        $(`badge-${k}`).innerHTML = badges.join(' ');
+      });
+    }
+
+    function renderCostChart(scenA, scenB) {
+      const years = [0, ...scenA.years.map(y => y.t)];
+      const key = (ui.costMode === 'gross') ? 'cumGrossOut' : 'cumNetOut';
+      // year-0 cumulative starts at y0Outflow (already baked in)
+      const seriesFor = s => [s.y0Outflow, ...s.years.map(y => y[key])];
+      // For "net of sale credit" mode, subtract the year-N sale credit at the year-N endpoint.
+      let aY = seriesFor(scenA), bY = seriesFor(scenB);
+      if (ui.costMode === 'net') {
+        aY[aY.length - 1] = scenA.summary.totalNet10;
+        bY[bY.length - 1] = scenB.summary.totalNet10;
+      }
+      const traces = [
+        { x: years, y: aY, mode: 'lines+markers', name: 'A — Buy',   line: { color: COLORS.A, width: 2.5 } },
+        { x: years, y: bY, mode: 'lines+markers', name: 'B — Rent',  line: { color: COLORS.B, width: 2.5 } },
+      ];
+      const layout = {
+        margin: { l: 70, r: 20, t: 35, b: 45 },
+        xaxis: { title: 'Year', dtick: 1, showgrid: true, gridcolor: '#e8e8e8', gridwidth: 1 },
+        yaxis: { title: 'Cumulative cash out ($)', tickformat: ',.2s', showgrid: true, gridcolor: '#e8e8e8', gridwidth: 1 },
+        hovermode: 'x unified',
+        plot_bgcolor: '#fafafa',
+        paper_bgcolor: 'transparent',
+        modebar: { bgcolor: 'transparent', color: '#999', activecolor: '#c43820' },
+        legend: { orientation: 'h', y: -0.18 },
+      };
+      Plotly.react('cost-chart', traces, layout, { displayModeBar: true, responsive: true });
+    }
+
+    function renderWealthChart(scenA, scenB) {
+      const years = [0, ...scenA.years.map(y => y.t)];
+      // Year-0 net worth includes the home asset for the Buy scenario (immediately
+      // after purchase, the home appears as equity on the household balance sheet).
+      const state = getState();
+      const homeEquityY0 = scen => scen === 'A' ? state.down * state.price : 0;
+      const seriesFor = s => [
+        s.portfolioY0 + homeEquityY0(s.scenario),
+        ...s.years.map(y => y.opportunityAdjustedNetWorth)
+      ];
+      // Note: at year N, the Buy scenario realizes sale → swap final point to true wealth WITH sale.
+      const apply = s => {
+        const arr = seriesFor(s);
+        arr[arr.length - 1] = s.summary.trueWealthY10;
+        return arr;
+      };
+      const traces = [
+        { x: years, y: apply(scenA), mode: 'lines+markers', name: 'A — Buy',  line: { color: COLORS.A, width: 2.5 } },
+        { x: years, y: apply(scenB), mode: 'lines+markers', name: 'B — Rent', line: { color: COLORS.B, width: 2.5 } },
+      ];
+      const layout = {
+        margin: { l: 70, r: 20, t: 35, b: 45 },
+        xaxis: { title: 'Year', dtick: 1, showgrid: true, gridcolor: '#e8e8e8', gridwidth: 1 },
+        yaxis: { title: 'Opportunity-cost-adjusted wealth ($)', tickformat: ',.2s', showgrid: true, gridcolor: '#e8e8e8', gridwidth: 1 },
+        hovermode: 'x unified',
+        plot_bgcolor: '#fafafa',
+        paper_bgcolor: 'transparent',
+        modebar: { bgcolor: 'transparent', color: '#999', activecolor: '#c43820' },
+        legend: { orientation: 'h', y: -0.18 },
+      };
+      Plotly.react('wealth-chart', traces, layout, { displayModeBar: true, responsive: true });
+    }
+
+    function renderCashflowTable(scenA, scenB) {
+      const map = { A: scenA, B: scenB };
+      const s = map[ui.tableScenario];
+
+      const headers = ['Yr', 'Gross out', 'Tax savings', 'Net out', 'Cum net', 'Portfolio', 'Equity', 'NW', 'Adj wealth'];
+      let html = '<table class="cashflow"><thead><tr>' +
+        headers.map(h => `<th>${h}</th>`).join('') + '</tr></thead><tbody>';
+
+      // Year 0 row
+      const y0Net = s.summary.y0Outflow;
+      const stateNow = getState();
+      const y0Equity = s.scenario === 'B' ? 0
+                     : stateNow.down * stateNow.price;
+      const y0NW = s.portfolioY0 + y0Equity;
+      html += `<tr><td class="year">0</td>` +
+        `<td>${fmtUSDfull(s.summary.y0Outflow)}</td>` +
+        `<td>—</td>` +
+        `<td>${fmtUSDfull(y0Net)}</td>` +
+        `<td>${fmtUSDfull(y0Net)}</td>` +
+        `<td>${fmtUSDfull(s.portfolioY0)}</td>` +
+        `<td>${fmtUSDfull(y0Equity)}</td>` +
+        `<td>${fmtUSDfull(y0NW)}</td>` +
+        `<td>${fmtUSDfull(y0NW)}</td>` +
+        `</tr>`;
+
+      // Years 1..10
+      s.years.forEach((y, idx) => {
+        const isLast = idx === s.years.length - 1;
+        const netOutDisplay = (isLast && s.scenario !== 'B')
+          ? y.netAnnualOut - s.summary.saleCredit   // show sale credit netted into the year-10 row
+          : y.netAnnualOut;
+        const cumNetDisplay = (isLast && s.scenario !== 'B') ? s.summary.totalNet10 : y.cumNetOut;
+        const nwDisplay = (isLast && s.scenario !== 'B') ? s.summary.netWorthY10 : y.netWorth;
+        const adjWealthDisplay = isLast ? s.summary.trueWealthY10 : y.opportunityAdjustedNetWorth;
+        const equityDisplay = (isLast && s.scenario !== 'B') ? s.summary.saleCredit : y.homeEquity;
+        const netClass = netOutDisplay < 0 ? 'pos' : '';
+        html += `<tr>` +
+          `<td class="year">${y.t}${isLast && s.scenario !== 'B' ? '*' : ''}</td>` +
+          `<td>${fmtUSDfull(y.grossAnnualOut)}</td>` +
+          `<td>${fmtUSDfull(y.totalSavings)}</td>` +
+          `<td class="${netClass}">${fmtUSDfull(netOutDisplay)}</td>` +
+          `<td>${fmtUSDfull(cumNetDisplay)}</td>` +
+          `<td>${fmtUSDfull(y.portfolio)}</td>` +
+          `<td>${fmtUSDfull(equityDisplay)}</td>` +
+          `<td>${fmtUSDfull(nwDisplay)}</td>` +
+          `<td>${fmtUSDfull(adjWealthDisplay)}</td>` +
+          `</tr>`;
+      });
+
+      html += '</tbody></table>';
+      if (s.scenario !== 'B') {
+        html += '<div style="font-size: 0.72rem; color: var(--soft); margin-top: 0.3rem;">' +
+          `* Year ${stateNow.horizon} includes the home sale: equity column shows net cash from sale (gross proceeds − sale costs − cap-gains tax above §121 exclusion − remaining loan); net out column nets the sale credit against operating cost.</div>`;
+      }
+      refs.cashflowTable.innerHTML = html;
+    }
+
+    /* Heatmap for a single scenario in the small-multiples grid. */
+    function renderMatrixSmallMultiple(divId, matrix, scenarioKey, sliderState) {
+      // z[i][j] = matrix[i][j][scenarioKey]; rows = stock returns, cols = appreciations
+      // Plotly heatmap expects z arranged as z[y_index][x_index], with x and y arrays for axis labels.
+      const z = matrix.map(row => row.map(cell => cell[scenarioKey]));
+      const xLabels = MATRIX_APPRECIATIONS.map(v => fmtPct(v, 0));
+      const yLabels = MATRIX_STOCK_RETURNS.map(v  => fmtPct(v, 0));
+
+      const text = z.map(row => row.map(v => fmtUSD(v)));
+
+      const trace = {
+        type: 'heatmap',
+        z, x: xLabels, y: yLabels,
+        colorscale: WARM_SHADES_COLORSCALE,
+        showscale: false,
+        text, texttemplate: '%{text}',
+        textfont: { size: 12, color: '#222' },
+        hovertemplate: 'stock %{y} × apprec %{x}<br>%{text}<extra></extra>',
+        xgap: 1, ygap: 1,
+      };
+      // Slider-position overlay: force categorical axes in the layout below, then
+      // use category-index coordinates so the rectangle wraps the nearest grid cell.
+      const nearestI = nearestIndex(MATRIX_STOCK_RETURNS, sliderState.stock);
+      const nearestJ = nearestIndex(MATRIX_APPRECIATIONS, sliderState.apprec);
+      const shapes = [{
+        type: 'rect',
+        x0: nearestJ - 0.5, x1: nearestJ + 0.5,
+        y0: nearestI - 0.5, y1: nearestI + 0.5,
+        line: { color: '#222', width: 3 },
+        fillcolor: 'rgba(0,0,0,0)',
+      }];
+      const layout = {
+        margin: { l: 50, r: 5, t: 30, b: 40 },
+        xaxis: { type: 'category', title: { text: 'House appreciation %/yr', standoff: 6 }, tickfont: { size: 11 } },
+        yaxis: { type: 'category', title: { text: 'Stock return %/yr', standoff: 6 }, tickfont: { size: 11 } },
+        shapes,
+        plot_bgcolor: '#fff',
+        paper_bgcolor: 'transparent',
+        modebar: { bgcolor: 'transparent', color: '#999', activecolor: '#c43820' },
+      };
+      Plotly.react(divId, [trace], layout, { displayModeBar: true, responsive: true });
+    }
+
+    function nearestIndex(arr, v) {
+      let best = 0, bestD = Infinity;
+      for (let i = 0; i < arr.length; i++) {
+        const d = Math.abs(arr[i] - v);
+        if (d < bestD) { bestD = d; best = i; }
+      }
+      return best;
+    }
+
+    /* Winner-region heatmap with binary (Buy vs Rent) coloring. */
+    function renderWinnerMatrix(matrix, sliderState) {
+      // For each cell determine the winner (highest opportunity-cost-adjusted wealth).
+      const winners = matrix.map(row => row.map(cell => {
+        const arr = [['A', cell.A], ['B', cell.B]].sort((a, b) => b[1] - a[1]);
+        return { winner: arr[0][0], lead: arr[0][1] - arr[1][1], cell };
+      }));
+      // z = 0 (Buy / A), 1 (Rent / B) for binary categorical colorscale.
+      const map = { A: 0, B: 1 };
+      const z = winners.map(row => row.map(w => map[w.winner]));
+      const text = winners.map(row => row.map(w => {
+        const label = w.winner === 'A' ? 'Buy' : 'Rent';
+        return `${label}<br>${fmtUSD(w.cell[w.winner])}<br>lead ${fmtUSD(w.lead)}`;
+      }));
+      const xLabels = MATRIX_APPRECIATIONS.map(v => fmtPct(v, 0));
+      const yLabels = MATRIX_STOCK_RETURNS.map(v  => fmtPct(v, 0));
+
+      // Binary categorical colorscale: A (Buy) → amber, B (Rent) → slate
+      const colorscale = [
+        [0.00, COLORS.A], [0.50, COLORS.A],
+        [0.51, COLORS.B], [1.00, COLORS.B],
+      ];
+      const trace = {
+        type: 'heatmap',
+        z, x: xLabels, y: yLabels,
+        colorscale,
+        zmin: 0, zmax: 1,
+        showscale: false,
+        text, texttemplate: '%{text}',
+        textfont: { size: 11, color: '#fff' },
+        hovertemplate: 'stock %{y} × apprec %{x}<br>%{text}<extra></extra>',
+        xgap: 1, ygap: 1,
+      };
+      const nearestI = nearestIndex(MATRIX_STOCK_RETURNS, sliderState.stock);
+      const nearestJ = nearestIndex(MATRIX_APPRECIATIONS, sliderState.apprec);
+      const shapes = [{
+        type: 'rect',
+        x0: nearestJ - 0.5, x1: nearestJ + 0.5,
+        y0: nearestI - 0.5, y1: nearestI + 0.5,
+        line: { color: '#222', width: 3 },
+        fillcolor: 'rgba(0,0,0,0)',
+      }];
+      const layout = {
+        margin: { l: 70, r: 20, t: 35, b: 50 },
+        xaxis: { type: 'category', title: { text: 'House appreciation %/yr', standoff: 6 } },
+        yaxis: { type: 'category', title: { text: 'Stock return %/yr', standoff: 6 } },
+        shapes,
+        plot_bgcolor: '#fff',
+        paper_bgcolor: 'transparent',
+        modebar: { bgcolor: 'transparent', color: '#999', activecolor: '#c43820' },
+      };
+      Plotly.react('matrix-winner', [trace], layout, { displayModeBar: true, responsive: true });
+    }
+
+    /* ===================================================================
+     * MAIN PIPELINE
+     * =================================================================== */
+    function getState() {
+      return {
+        taxState: refs.taxState.value || 'CA',
+        filingStatus: refs.filingStatus.value || 'MFJ',
+        federalMarginal: parseFloat(refs.federalMarginal.value) || C.FED_MARGINAL,
+        price:   parseFloat(refs.price.value),
+        rent:    parseFloat(refs.rent.value),
+        rentEsc: parseFloat(refs.rentEsc.value) / 100,
+        mort:    parseFloat(refs.mort.value) / 100,
+        down:    parseFloat(refs.down.value) / 100,
+        apprec:  parseFloat(refs.apprec.value) / 100,
+        stock:   parseFloat(refs.stock.value) / 100,
+        capital: parseFloat(refs.capital.value),
+        horizon: parseInt(refs.horizon.value, 10),
+        buyerCommish: refs.buyerCommish.checked,
+      };
+    }
+
+    function updateValueDisplays(state) {
+      const st = STATES[state.taxState] || STATES.CA;
+      const fs = FILING_STATUS[state.filingStatus] || FILING_STATUS.MFJ;
+      const fedLTCG = (state.federalMarginal >= 0.37) ? 0.20 : 0.15;
+      const ltcgCombined = fedLTCG + C.NIIT + st.ltcg;
+      refs.taxStateSummary.textContent = `fed marg ${fmtPct(state.federalMarginal, 0)} · combined LTCG ${fmtPct(ltcgCombined, 2)} · state ${state.taxState} ptax ${fmtPct(st.ptaxRate, 2)} · §121 $${(fs.sec121/1000).toFixed(0)}K${st.ptaxRegime === 'prop13' ? ' · Prop 13' : ''}`;
+      refs.priceVal.textContent   = `$${(state.price / 1e6).toFixed(1)}M`;
+      refs.rentVal.textContent    = `$${(state.rent).toLocaleString()}`;
+      refs.rentEscVal.textContent = `${(state.rentEsc * 100).toFixed(1)}%`;
+      refs.mortVal.textContent    = `${(state.mort * 100).toFixed(2)}%`;
+      refs.downVal.textContent    = `${(state.down * 100).toFixed(0)}%`;
+      refs.apprecVal.textContent  = `${(state.apprec * 100).toFixed(1)}%`;
+      refs.stockVal.textContent   = `${(state.stock * 100).toFixed(1)}%`;
+      refs.capitalVal.textContent = `$${(state.capital / 1e6).toFixed(1)}M`;
+      refs.horizonVal.textContent = `${state.horizon}`;
+      // Update all "year N" labels embedded in the HTML to reflect the current horizon.
+      document.querySelectorAll('.horizon-yr').forEach(el => { el.textContent = state.horizon; });
+    }
+
+    function safeRun(name, fn) {
+      try { fn(); }
+      catch (e) {
+        window.__errors.push('[' + name + '] ' + (e && e.message ? e.message : e) + (e && e.stack ? '\n  ' + e.stack.split('\n').slice(0, 6).join('\n  ') : ''));
+        if (typeof __renderErrorPanel === 'function') __renderErrorPanel();
+      }
+    }
+
+    function recomputeAndRender() {
+      if (typeof Plotly === 'undefined') {
+        window.__errors.push('recomputeAndRender called but Plotly is undefined. CDN load may have failed or been blocked.');
+        if (typeof __renderErrorPanel === 'function') __renderErrorPanel();
+        // continue anyway — non-Plotly renderers (cards, table) should still work
+      }
+      const state = getState();
+      safeRun('updateValueDisplays', () => updateValueDisplays(state));
+
+      let A, B;
+      safeRun('calcScenarios', () => {
+        A = calcScenario(state, 'A');
+        B = calcScenario(state, 'B');
+      });
+      if (!A || !B) return;
+
+      safeRun('renderWarnings',     () => renderWarnings(computeWarnings(state)));
+      safeRun('renderSummaryCards', () => renderSummaryCards(A, B));
+      safeRun('renderCostChart',    () => renderCostChart(A, B));
+      safeRun('renderWealthChart',  () => renderWealthChart(A, B));
+      safeRun('renderCashflowTable',() => renderCashflowTable(A, B));
+
+      let matrix;
+      safeRun('buildMatrix', () => { matrix = buildMatrix(state); });
+      if (matrix) {
+        safeRun('renderMatrix-A', () => renderMatrixSmallMultiple('matrix-A', matrix, 'A', state));
+        safeRun('renderMatrix-B', () => renderMatrixSmallMultiple('matrix-B', matrix, 'B', state));
+        safeRun('renderWinnerMatrix', () => renderWinnerMatrix(matrix, state));
+      }
+    }
+
+    /* Debounce helper. */
+    function debounce(fn, ms) {
+      let t = null;
+      return (...args) => {
+        if (t) clearTimeout(t);
+        t = setTimeout(() => { t = null; fn(...args); }, ms);
+      };
+    }
+    const recomputeDebounced = debounce(recomputeAndRender, 150);
+
+    /* ===================================================================
+     * EVENT WIRING
+     * =================================================================== */
+    function wireEvents() {
+      ['price', 'rent', 'rentEsc', 'mort', 'down', 'apprec', 'stock', 'capital', 'horizon'].forEach(id => {
+        refs[id].addEventListener('input', recomputeDebounced);
+      });
+      refs.taxState.addEventListener('change', recomputeAndRender);
+      refs.filingStatus.addEventListener('change', recomputeAndRender);
+      refs.federalMarginal.addEventListener('change', recomputeAndRender);
+      refs.buyerCommish.addEventListener('change', recomputeAndRender);
+
+      // Cost mode toggle (gross / net)
+      refs.costToggle.querySelectorAll('button').forEach(btn => {
+        btn.addEventListener('click', () => {
+          refs.costToggle.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          ui.costMode = btn.dataset.mode;
+          recomputeAndRender();
+        });
+      });
+
+      // Table scenario tabs (A / B / C)
+      refs.tableTabs.querySelectorAll('button').forEach(btn => {
+        btn.addEventListener('click', () => {
+          refs.tableTabs.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          ui.tableScenario = btn.dataset.scen;
+          recomputeAndRender();
+        });
+      });
+
+      // Info-button click-toggle (for touch + keyboard accessibility; hover-only doesn't work on mobile)
+      // Strategy: click toggles .active class on the button; clicking elsewhere closes all open tooltips.
+      document.querySelectorAll('.info-btn').forEach(b => {
+        b.addEventListener('click', e => {
+          e.stopPropagation();
+          const wasActive = b.classList.contains('active');
+          document.querySelectorAll('.info-btn.active').forEach(x => x.classList.remove('active'));
+          if (!wasActive) b.classList.add('active');
+        });
+        b.addEventListener('keydown', e => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            b.click();
+          } else if (e.key === 'Escape') {
+            b.classList.remove('active');
+            b.blur();
+          }
+        });
+      });
+      // Click anywhere else closes all tooltips.
+      document.addEventListener('click', () => {
+        document.querySelectorAll('.info-btn.active').forEach(x => x.classList.remove('active'));
+      });
+    }
+
+    /* ===================================================================
+     * SELF-TESTS
+     * Run once on load, log results to console. Fail loud if any fail.
+     * =================================================================== */
+    function runSelfTests() {
+      const results = [];
+      function eq(name, actual, expected, tol) {
+        const pass = Math.abs(actual - expected) <= tol;
+        results.push({ name, actual, expected, tol, pass });
+        if (!pass) console.warn('SELF-TEST FAIL', name, { actual, expected, tol });
+        return pass;
+      }
+      function isFin(name, v) {
+        const pass = Number.isFinite(v);
+        results.push({ name, pass, value: v });
+        if (!pass) console.warn('SELF-TEST FAIL (non-finite)', name, v);
+        return pass;
+      }
+
+      // (1) Standard amortization: $4M at 6% × 30 yrs → $23,982.42/mo
+      const t1 = amortize(4_000_000, 0.06, 360, 1);
+      eq('mortgage payment $4M @ 6%/30y', t1.monthlyPayment, 23982.42, 0.50);
+
+      // (2) Canonical loan ($3.8392M at 6.35% × 30 yrs): closed-form balance at month 120
+      const t2 = amortize(3_839_200, 0.0635, 360, 10);
+      // Independent calc: balance(120) = L * ((1+r)^N - (1+r)^n) / ((1+r)^N - 1)
+      const r = 0.0635/12, N = 360, n = 120;
+      const expectedBal = 3_839_200 * (Math.pow(1+r, N) - Math.pow(1+r, n)) / (Math.pow(1+r, N) - 1);
+      eq('year-10 balance canonical loan', t2.balanceAt10, expectedBal, 1.0);
+
+      // (3) Buy at down=100%: no loan, no mortgage interest throughout — pure invariants.
+      // Replaces the prior B@down=100 == A collapse test; after v17 the Buy path
+      // absorbs the all-cash case via the down=100% slider value, so the "collapse"
+      // is no longer a model-internal property to assert (it's a definition).
+      const stateAll = { price: C.PRICE, capital: C.CAPITAL_Y0, rent: 12000, rentEsc: 0.04, mort: 0.0635, down: 1.0, apprec: 0.05, stock: 0.09, buyerCommish: false, taxState: 'CA', filingStatus: 'MFJ', federalMarginal: 0.37 };
+      const buyAllCash = calcScenario(stateAll, 'A');
+      eq('Buy@down=100%: mortgage interest year 1 = 0', buyAllCash.years[0].mortgageInterest, 0, 1e-9);
+      eq('Buy@down=100%: mortgage interest year 5 = 0', buyAllCash.years[4].mortgageInterest, 0, 1e-9);
+      eq('Buy@down=100%: mortgage balance year 10 = 0', buyAllCash.years[9].mortgageBalanceEnd, 0, 1e-9);
+      // Pinned value: Buy@down=100% at canonical $4.799M/$15M MFJ/37% CA anchor.
+      // This anchors the old all-cash result inside the consolidated Buy path —
+      // matches the historical Scenario-A pins from the pre-v17 model.
+      eq('Buy@down=100% canonical NW (was old Scenario A)', buyAllCash.summary.netWorthY10, 26288762, 1);
+      eq('Buy@down=100% canonical adjusted wealth (was old Scenario A)', buyAllCash.summary.trueWealthY10, 24649112, 1);
+
+      // (4) Sale tax with $500K §121 MFJ exclusion + IRS §1001(b) sale-cost reduction.
+      // Sale price PRICE + 1,000,000 → market value PRICE + 1M; gross proceeds = (PRICE+1M)*0.94;
+      // amount realized = gross proceeds; gain = (PRICE+1M)*0.94 − PRICE.
+      // For PRICE = 4_799_000: amount realized = (4_799_000 + 1_000_000)*0.94 = 5_450_460; gain = 5_450_460 - 4_799_000 = 651_460.
+      // Taxable gain = 651_460 - 500_000 = 151_460. cg_tax = 151_460 * 0.371 = 56,191.66.
+      const sale1 = saleY10(C.PRICE + 200_000, C.PRICE, 0);
+      // mv 4_999_000; proceeds 4_699_060; gain = 4_699_060 - 4_799_000 = -99_940 → taxable = 0
+      eq('sale tax with $200K nominal gain → §1001(b) net loss → cg_tax=0', sale1.cgTax, 0, 0.01);
+      const sale2 = saleY10(C.PRICE + 1_000_000, C.PRICE, 0);
+      const expCgTax2 = ((C.PRICE + 1_000_000) * (1 - C.SALE_PCT) - C.PRICE - C.SEC121_EXCL) * C.LTCG_COMBINED;
+      eq('sale tax with $1M nominal gain (post §1001(b) + §121)', sale2.cgTax, expCgTax2, 0.50);
+
+      // (5) Tax-savings calc (itemized-vs-standard-deduction comparison).
+      // Year with avg_balance 1.5M, interest 100K, property tax 50K.
+      // Federal: ded_int = 100K * 750K/1.5M = 50K; itemized = 50K + 10K SALT = 60K;
+      //   savings = max(0, 60K - 30,800) * 0.37 = 29,200 * 0.37 = $10,804.
+      // CA: ded_int = 100K * 1M/1.5M = 66.67K; itemized = 66.67K + 50K = 116.67K;
+      //   savings = max(0, 116.67K - 11,080) * 0.133 = 105,587 * 0.133 = $14,043.
+      const fakeYear = { interestPaid: 100_000, avgBalance: 1_500_000 };
+      const ded = deductionSavingsForYear(fakeYear, 50_000, 750_000, 1_000_000, 30_800, 11_080, 0.37, 0.133);
+      eq('fed ded frac (avg 1.5M, cap 750K)', ded.fedDedFrac, 0.5, 1e-9);
+      eq('fed savings (itemized vs standard)', ded.fed, (60_000 - 30_800) * 0.37, 0.01);
+      eq('ca ded frac (avg 1.5M, cap 1M)', ded.caDedFrac, 2/3, 1e-9);
+      eq('ca savings (itemized vs standard)', ded.ca, ((100_000*2/3) + 50_000 - 11_080) * 0.133, 0.01);
+
+      // (6) Opportunity-cost adjustment sanity: independently sum the FV of net annual outflows.
+      // Canonical $4.799M / $15M / MFJ / 37% / CA anchor at down=20%; Buy = formerly
+      // Scenario B (financed), Rent = formerly Scenario C. Pinned values byte-identical
+      // to pre-v17 model under the rename (Buy@20% == old B, Rent == old C).
+      const defState = { price: C.PRICE, capital: C.CAPITAL_Y0, rent: 12000, rentEsc: 0.04, mort: 0.0635, down: 0.20, apprec: 0.05, stock: 0.09, buyerCommish: false, taxState: 'CA', filingStatus: 'MFJ', federalMarginal: 0.37 };
+      const defA = calcScenario(defState, 'A').summary;  // Buy at down=20%
+      const defB = calcScenario(defState, 'B').summary;  // Rent
+      // The adjustment must not change the base/unadjusted net-worth values.
+      eq('default Buy unadjusted NW invariant',  defA.netWorthY10, 35507098, 1);
+      eq('default Rent unadjusted NW invariant', defB.netWorthY10, 35510455, 1);
+      const defScenA = calcScenario(defState, 'A');
+      const manualOppA = defScenA.years.reduce((sum, y) => sum + y.netAnnualOut * Math.pow(1 + defState.stock, (defState.horizon || C.HORIZON_YEARS) - y.t), 0);
+      eq('default Buy opportunity-cost FV: manual sum == recurrence', defScenA.summary.opportunityCostY10, manualOppA, 1);
+      eq('default Buy adjusted-wealth identity: NW − opp_cost', defScenA.summary.trueWealthY10, defScenA.summary.netWorthY10 - manualOppA, 1);
+      eq('default Buy adjusted wealth',  defA.trueWealthY10, 29791250, 1);
+      eq('default Rent adjusted wealth', defB.trueWealthY10, 32955551, 1);
+      isFin('default Buy adjusted wealth finite',  defA.trueWealthY10);
+      isFin('default Rent adjusted wealth finite', defB.trueWealthY10);
+
+      // (6b) Multi-state anchor — pins canonical $4.799M / $15M / MFJ / 37% scenario
+      // at down=20% across 6 states with materially different tax handling:
+      //   CA — Prop 13 ptax cap, $1M mortgage cap, 13.3% state LTCG
+      //   TX — no state income tax, market ptax reassessment
+      //   NY — high state income, high property tax
+      //   FL — no state income tax (and no homestead caps modeled)
+      //   MA — flat 5% state LTCG vs 9% top marginal (HRS §62 analog)
+      //   WA — 7% capital-gains-only above $270K MFJ, no general income tax
+      // Pin values are byte-identical to the pre-v17 model's Scenario-B (financed)
+      // multi-state pins — Buy@20% IS the old B path under the consolidation. The
+      // Rent invariant ($32,955,551 trueWealth) is state-invariant by construction
+      // (renter has no state-side property tax or mortgage interest exposure).
+      const MULTI_STATE = {
+        CA: { nw: 35507098, adj: 29791250 },
+        TX: { nw: 36104488, adj: 29930512 },
+        NY: { nw: 35614898, adj: 29627652 },
+        FL: { nw: 36104488, adj: 30360211 },
+        MA: { nw: 35879905, adj: 30097744 },
+        WA: { nw: 35933505, adj: 30209606 },
+      };
+      for (const [code, expected] of Object.entries(MULTI_STATE)) {
+        const stMulti = { ...defState, taxState: code, filingStatus: 'MFJ', federalMarginal: 0.37 };
+        const sBuy = calcScenario(stMulti, 'A').summary;   // Buy at down=20%
+        eq(`canonical anchor ${code} Buy unadjusted NW`,    sBuy.netWorthY10,   expected.nw,  1);
+        eq(`canonical anchor ${code} Buy adjusted wealth`,  sBuy.trueWealthY10, expected.adj, 1);
+        const sRent = calcScenario(stMulti, 'B').summary;  // Rent
+        eq(`canonical anchor ${code} Rent adjusted (state-invariant)`, sRent.trueWealthY10, 32955551, 1);
+      }
+
+      // (6c) Buy@down=100% multi-state anchor — validates the consolidation by
+      // asserting that Buy at 100% down reproduces the historical Scenario-A
+      // (all-cash) multi-state pins from the pre-v17 model.
+      const MULTI_STATE_ALLCASH = {
+        CA: { nw: 26288762, adj: 24649112 },
+        TX: { nw: 28094960, adj: 26125494 },
+        NY: { nw: 26614693, adj: 24753088 },
+        FL: { nw: 28094960, adj: 26555193 },
+        MA: { nw: 27415938, adj: 25773167 },
+        WA: { nw: 27287763, adj: 25768373 },
+      };
+      for (const [code, expected] of Object.entries(MULTI_STATE_ALLCASH)) {
+        const stAllCash = { ...defState, taxState: code, filingStatus: 'MFJ', federalMarginal: 0.37, down: 1.0 };
+        const sAllCash = calcScenario(stAllCash, 'A').summary;
+        eq(`canonical anchor ${code} Buy@100% unadjusted NW (was old A)`,   sAllCash.netWorthY10,   expected.nw,  1);
+        eq(`canonical anchor ${code} Buy@100% adjusted wealth (was old A)`, sAllCash.trueWealthY10, expected.adj, 1);
+      }
+
+      // (7) Price-slider linearity: at 2× default price, year-0 deployment scales 2×
+      // for the Buy scenario (closing costs scale with price too, so the multiplier
+      // is exactly 2.0). Sale gross proceeds at year-N scale 2× too. CG tax above
+      // the §121 exclusion is NOT exactly 2× because the §121 exclusion is a fixed
+      // absolute deduction — but the gross-proceeds and pre-§121 gain components ARE.
+      const dbl = { ...defState, price: defState.price * 2 };
+      const dblA = calcScenario(dbl, 'A');  // Buy at 2× price
+      eq('2x-price Buy y0 outflow scales 2x', dblA.summary.y0Outflow, defA.y0Outflow * 2, 1);
+      eq('2x-price Buy sale gross proceeds scales 2x', dblA.sale.grossProceeds, calcScenario(defState, 'A').sale.grossProceeds * 2, 1);
+      eq('2x-price Buy mortgage interest year 1 scales 2x', dblA.years[0].mortgageInterest, calcScenario(defState, 'A').years[0].mortgageInterest * 2, 1);
+
+      // (8) Portfolio-slider linearity: at +$5M to starting portfolio, the only thing that
+      // changes in calcScenario is portfolioY0 (+$5M); operating outflows are unchanged; the
+      // portfolio compounds at the stock rate so the year-N portfolio increases by exactly
+      // $5M × (1+stock)^N. Year-N NW for buy scenarios picks that up identically.
+      const plus5 = { ...defState, capital: defState.capital + 5_000_000 };
+      const ratio = Math.pow(1 + defState.stock, defState.horizon || C.HORIZON_YEARS);
+      for (const scen of ['A', 'B']) {
+        const base = calcScenario(defState, scen).summary;
+        const more = calcScenario(plus5, scen).summary;
+        eq(`+$5M capital scen ${scen}: portfolioY10 delta = 5M × (1+stock)^N`, more.portfolioY10 - base.portfolioY10, 5_000_000 * ratio, 1);
+        eq(`+$5M capital scen ${scen}: netWorthY10 delta = same`, more.netWorthY10 - base.netWorthY10, 5_000_000 * ratio, 1);
+        // Adjusted wealth picks up the same delta because opportunityCostY10 is unchanged
+        // (it depends only on netAnnualOut and stock, not on portfolio level).
+        eq(`+$5M capital scen ${scen}: trueWealthY10 delta = same`, more.trueWealthY10 - base.trueWealthY10, 5_000_000 * ratio, 1);
+      }
+      // (9a) Low-capital coverage warning triggers when Buy y0 outflow > capital.
+      const tight = { ...defState, capital: 500_000 };  // way below Buy y0 outflow at default price+down
+      const warnsTight = computeWarnings(tight);
+      const tightHasBuyCoverage = warnsTight.some(w => w.html.includes('Scenario A (Buy) year-0 outflow exceeds'));
+      eq('capital $500K triggers Buy coverage warning', tightHasBuyCoverage ? 1 : 0, 1, 0);
+      const ample = { ...defState, capital: 50_000_000 };
+      const warnsAmple = computeWarnings(ample);
+      const ampleHasBuyCoverage = warnsAmple.some(w => w.html.includes('Scenario A (Buy) year-0 outflow exceeds'));
+      eq('capital $50M suppresses Buy coverage warning', ampleHasBuyCoverage ? 1 : 0, 0, 0);
+
+      // (9b) Finiteness sweep over slider corners (3^8 = 6561 corners × 2 scenarios).
+      const grid = {
+        price:   [2_000_000, 4_799_000, 10_000_000],
+        capital: [1_000_000, 15_000_000, 50_000_000],
+        rent:    [8000, 14000, 20000],
+        rentEsc: [0, 0.04, 0.08],
+        mort:    [0.04, 0.065, 0.09],
+        down:    [0, 0.5, 1.0],
+        apprec:  [0, 0.05, 0.10],
+        stock:   [0, 0.20, 0.40],
+      };
+      let nonFinite = 0, totalCorners = 0;
+      for (const price of grid.price)
+        for (const capital of grid.capital)
+          for (const rent of grid.rent)
+            for (const rentEsc of grid.rentEsc)
+              for (const mort of grid.mort)
+                for (const down of grid.down)
+                  for (const apprec of grid.apprec)
+                    for (const stock of grid.stock) {
+                      totalCorners++;
+                      const st = { price, capital, rent, rentEsc, mort, down, apprec, stock, buyerCommish: false };
+                      for (const scen of ['A', 'B']) {
+                        const s = calcScenario(st, scen).summary;
+                        if (!Number.isFinite(s.netWorthY10) || !Number.isFinite(s.trueWealthY10) || !Number.isFinite(s.opportunityCostY10) || !Number.isFinite(s.totalNet10)) {
+                          nonFinite++;
+                        }
+                      }
+                    }
+      eq(`finiteness sweep (${totalCorners} corners × 2 scenarios)`, nonFinite, 0, 0);
+
+      // Report
+      const passed = results.filter(r => r.pass).length;
+      const failed = results.length - passed;
+      const status = failed === 0 ? '✅ ALL PASS' : `❌ ${failed} FAIL`;
+      console.log(`Self-tests: ${status} (${passed}/${results.length})`);
+      console.table(results);
+
+      if (failed > 0) {
+        const banner = document.createElement('div');
+        banner.className = 'warn warn-fail';
+        banner.innerHTML = `<strong>Self-test failures (${failed}):</strong> open the browser console for details.`;
+        document.body.insertBefore(banner, document.body.firstChild);
+      }
+      return { passed, failed, results };
+    }
+
+    /* ===================================================================
+     * INIT
+     * =================================================================== */
+    function populateStateDropdown() {
+      const sel = refs.taxState;
+      const entries = Object.entries(STATES).sort((a, b) => a[1].name.localeCompare(b[1].name));
+      for (const [code, st] of entries) {
+        const opt = document.createElement('option');
+        opt.value = code;
+        opt.textContent = `${st.name} (${code})`;
+        sel.appendChild(opt);
+      }
+      sel.value = 'CA';  // default
+    }
+
+    function populateFilingDropdown() {
+      const sel = refs.filingStatus;
+      for (const [code, fs] of Object.entries(FILING_STATUS)) {
+        const opt = document.createElement('option');
+        opt.value = code;
+        opt.textContent = fs.name;
+        sel.appendChild(opt);
+      }
+      sel.value = 'MFJ';  // default
+    }
+
+    function populateFederalMarginalDropdown() {
+      const sel = refs.federalMarginal;
+      for (const opt of FED_MARGINAL_OPTIONS) {
+        const el = document.createElement('option');
+        el.value = opt.value;
+        el.textContent = opt.label;
+        sel.appendChild(el);
+      }
+      sel.value = String(C.FED_MARGINAL);  // 0.32 default
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      populateStateDropdown();
+      populateFilingDropdown();
+      populateFederalMarginalDropdown();
+      wireEvents();
+      try {
+        const t = runSelfTests();
+        window.__selfTests = t;
+      } catch (e) {
+        console.error('Self-tests threw', e);
+      }
+      recomputeAndRender();
+    });
+  </script>
+</body>
+</html>
