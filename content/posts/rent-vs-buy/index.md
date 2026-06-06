@@ -1,5 +1,5 @@
 ---
-date: "2026-05-19"
+date: "2026-06-05"
 lastmod: "2026-06-05"
 author: "Diego Scarabelli"
 title: "Should You Buy or Rent? The Honest Math"
@@ -21,13 +21,15 @@ math:
 
 ## Why this exists
 
-You often hear: *buy a house, because rent is throwing money away.* That framing ignores opportunity cost: the money you put into the down payment, mortgage principal payments, property tax, insurance, and maintenance could have been invested elsewhere, like the stock market. Considering all the factors and their impact on this decision is non-trivial.
+You often hear: *buy a house, because rent is throwing money away.* That framing ignores opportunity cost: the money you put into the down payment, mortgage principal payments, property tax, insurance, and maintenance could have been invested in other assets, like the stock market. Considering all the factors and their impact on this decision is non-trivial.
 
-I used [system2](https://github.com/diegoscarabelli/system2) to create a thoughtful simulation that answers the question in a sound and explainable way. The model is U.S.-specific. State (50 + DC), filing status, and federal marginal bracket are dropdowns that drive the tax math; nine sliders set the financial inputs (price, rent, mortgage rate, down payment, returns, horizon, and more).
+I built a thoughtful simulation using [system2](https://github.com/diegoscarabelli/system2) to answer this question with sound math and clear explanations. It's tailored for the US, with dropdowns for your state (50 + DC), filing status, and federal bracket, all driving the tax calculations. Nine sliders let you dial in the financial details: home price, rent, mortgage rate, down payment, returns, time horizon, and more.
+
+Hover the **ⓘ** icon next to any field to see what it means. The methodology section below walks through every assumption, simplification, and equation.
+
+Here's a snapshot of system2 in action while building this:
 
 {{< image src="index_files/system2_screenshot.png" caption="Originally a system2 project, turned into this post." >}}
-
-Hover the **ⓘ** button next to any field for an inline definition, and read the methodology section below the dashboard for every assumption, simplification, and equation.
 
 ## The model
 
