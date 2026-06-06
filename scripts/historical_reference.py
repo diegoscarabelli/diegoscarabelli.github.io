@@ -28,7 +28,8 @@ import pandas as pd
 import plotly.graph_objects as go
 import yfinance as yf
 
-# 20-year window ending today, anchored to a calendar month for a clean axis.
+# 20-year window anchored on calendar months for a clean axis. END_MONTH is
+# the first day of the current month (today snapped to month-start via Period).
 END_MONTH = pd.Timestamp.today().to_period("M").to_timestamp()
 START_MONTH = (END_MONTH - pd.DateOffset(years=20)).to_period("M").to_timestamp()
 
