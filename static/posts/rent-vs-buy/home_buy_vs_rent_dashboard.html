@@ -978,7 +978,8 @@
 
     /**
      * Build a 360-month amortization schedule for a fixed-rate loan.
-     * Returns per-year aggregates for years 1..10:
+     * Returns per-year aggregates for years 1..`displayYears` (the
+     * caller-supplied horizon, 3-20):
      *   { interestPaid, principalPaid, balanceEnd, avgBalance, monthlyPayment }
      * If loanAmount <= 0, returns an empty-loan schedule (all zeros).
      */
@@ -1081,7 +1082,11 @@
 
     /* ===================================================================
      * PER-SCENARIO CALCULATORS
-     * Each returns { y0: {...}, years: [year1..year10], summary: {...} }
+     * Each returns { y0: {...}, years: [year1..yearN], summary: {...} }
+     * where N is the configured horizon (3-20). Summary field names
+     * ending in `10` are historical (the horizon was originally fixed
+     * at 10 years); they now hold the year-N value for whatever N the
+     * state's horizon slider was set to.
      * "year" entry shape:
      *   { t, propertyTax, insurance, maintenance, mortgagePayment,
      *     mortgageInterest, mortgagePrincipal, mortgageBalanceEnd,
