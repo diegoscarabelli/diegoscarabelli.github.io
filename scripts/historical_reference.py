@@ -71,6 +71,12 @@ def fetch_sp500_tr() -> pd.Series:
         progress=False,
         auto_adjust=False,
     )
+    if df is None or df.empty or "Close" not in df.columns:
+        raise RuntimeError(
+            "yfinance returned no data for ^SP500TR (network blip, ticker "
+            "renamed, or yfinance schema change). Re-run later or inspect "
+            "the response manually."
+        )
     close = df["Close"]
     if isinstance(close, pd.DataFrame):
         # MultiIndex case: columns are tickers under the "Close" field.
@@ -174,13 +180,25 @@ def build_chart() -> str:
         hovermode="x unified",
     )
 
-    return fig.to_html(
+    html = fig.to_html(
         include_plotlyjs="cdn",
         full_html=True,
         # Default is "100%" which collapses to zero inside the iframe body
         # (no intrinsic height), so layout.height never gets a chance to apply.
         default_height="600px",
         config={"displayModeBar": False, "responsive": True},
+    )
+    # Plotly's full_html output ships `<html><head><meta charset="utf-8"/></head>`
+    # with no doctype, lang, viewport, or title — which puts the iframed
+    # document in quirks mode and weakens a11y metadata. Patch the head once.
+    return html.replace(
+        '<html>\n<head><meta charset="utf-8" /></head>',
+        '<!DOCTYPE html>\n<html lang="en">\n<head>\n'
+        '<meta charset="utf-8">\n'
+        '<meta name="viewport" content="width=device-width, initial-scale=1">\n'
+        '<title>S&amp;P 500 vs Case-Shiller home prices (20-year reference)</title>\n'
+        '</head>',
+        1,
     )
 
 
