@@ -101,8 +101,18 @@ def build_chart() -> str:
     # Clip each series to the 20-year window, then align to the latest common
     # start month so every line begins at the same point.
     clipped = {k: v.loc[(v.index >= START_MONTH) & (v.index <= END_MONTH)] for k, v in raw.items()}
+    empty = [k for k, v in clipped.items() if v.empty]
+    if empty:
+        raise RuntimeError(
+            f"No observations in {START_MONTH:%Y-%m} to {END_MONTH:%Y-%m} for: {', '.join(empty)}. "
+            "A FRED/yfinance hiccup or a stale ticker is likely; re-run later."
+        )
     common_start = max(s.index[0] for s in clipped.values())
     common_end = min(s.index[-1] for s in clipped.values())
+    if common_start > common_end:
+        raise RuntimeError(
+            f"Series do not overlap: latest start {common_start:%Y-%m} > earliest end {common_end:%Y-%m}."
+        )
     aligned = {k: v.loc[(v.index >= common_start) & (v.index <= common_end)] for k, v in clipped.items()}
 
     # Normalise to 100 at common_start so all lines share a starting point.
