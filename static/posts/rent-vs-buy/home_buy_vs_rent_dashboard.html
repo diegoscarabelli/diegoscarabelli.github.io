@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Home Buy vs Rent — Cost Analysis</title>
   <script src="https://cdn.plot.ly/plotly-2.35.2.min.js" onerror="window.__plotlyLoadError = true"></script>
   <script>
@@ -1649,10 +1650,11 @@
     }
 
     function recomputeAndRender() {
-      if (typeof Plotly === 'undefined') {
-        window.__errors.push('recomputeAndRender called but Plotly is undefined. CDN load may have failed or been blocked.');
+      const plotlyMissing = (typeof Plotly === 'undefined');
+      if (plotlyMissing && !window.__plotlyErrorReported) {
+        window.__errors.push('Plotly is undefined; charts will not render. CDN load may have failed or been blocked.');
         if (typeof __renderErrorPanel === 'function') __renderErrorPanel();
-        // continue anyway — non-Plotly renderers (cards, table) should still work
+        window.__plotlyErrorReported = true;
       }
       const state = getState();
       safeRun('updateValueDisplays', () => updateValueDisplays(state));
@@ -1664,11 +1666,15 @@
       });
       if (!A || !B) return;
 
+      /* Non-Plotly renderers first — these still work without Plotly. */
       safeRun('renderWarnings',     () => renderWarnings(computeWarnings(state)));
       safeRun('renderSummaryCards', () => renderSummaryCards(A, B));
+      safeRun('renderCashflowTable',() => renderCashflowTable(A, B));
+
+      if (plotlyMissing) return;
+
       safeRun('renderCostChart',    () => renderCostChart(A, B));
       safeRun('renderWealthChart',  () => renderWealthChart(A, B));
-      safeRun('renderCashflowTable',() => renderCashflowTable(A, B));
 
       let matrix;
       safeRun('buildMatrix', () => { matrix = buildMatrix(state); });
@@ -1724,6 +1730,14 @@
       // Info-button click-toggle (for touch + keyboard accessibility; hover-only doesn't work on mobile)
       // Strategy: click toggles .active class on the button; clicking elsewhere closes all open tooltips.
       document.querySelectorAll('.info-btn').forEach(b => {
+        /* A11y: expose button semantics + the tooltip text to assistive tech.
+           The visual span+JS+tabindex pattern looks like a button to users but
+           reads as a generic span to screen readers without these attributes. */
+        b.setAttribute('role', 'button');
+        if (!b.hasAttribute('aria-label')) {
+          const info = b.getAttribute('data-info');
+          if (info) b.setAttribute('aria-label', info);
+        }
         b.addEventListener('click', e => {
           e.stopPropagation();
           const wasActive = b.classList.contains('active');

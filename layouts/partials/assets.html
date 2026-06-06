@@ -117,7 +117,7 @@
     {{- /* Override: $...$ removed as inline delimiter (singleDollarTextMath:false) so currency $ is safe */ -}}
     {{- $delimiters = $delimiters | append (dict "left" "\\(" "right" "\\)" "display" false) -}}
     {{- if and $math.inlineLeftDelimiter $math.inlineRightDelimiter -}}
-        {{- $delimiters = $delimiters | append (dict "left" $math.inlineRightDelimiter "right" $math.inlineRightDelimiter "display" false) -}}
+        {{- $delimiters = $delimiters | append (dict "left" $math.inlineLeftDelimiter "right" $math.inlineRightDelimiter "display" false) -}}
     {{- end -}}
     {{- $config = dict "strict" false "delimiters" $delimiters | dict "math" | merge $config -}}
 {{- end -}}
