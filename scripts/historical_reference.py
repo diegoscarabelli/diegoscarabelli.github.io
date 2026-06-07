@@ -71,14 +71,19 @@ def fetch_sp500_tr() -> pd.Series:
         progress=False,
         auto_adjust=False,
     )
-    # `Close` can sit on either the flat columns or the top level of a
-    # `(field, ticker)` MultiIndex — check the right level either way.
-    top_columns = df.columns.get_level_values(0) if isinstance(df.columns, pd.MultiIndex) else df.columns
-    if df is None or df.empty or "Close" not in top_columns:
+    if df is None or df.empty:
         raise RuntimeError(
             "yfinance returned no data for ^SP500TR (network blip, ticker "
             "renamed, or yfinance schema change). Re-run later or inspect "
             "the response manually."
+        )
+    # `Close` can sit on either the flat columns or the top level of a
+    # `(field, ticker)` MultiIndex — check the right level either way.
+    top_columns = df.columns.get_level_values(0) if isinstance(df.columns, pd.MultiIndex) else df.columns
+    if "Close" not in top_columns:
+        raise RuntimeError(
+            "yfinance response for ^SP500TR has no 'Close' column "
+            f"(got {list(top_columns)}). Likely a yfinance schema change."
         )
     close = df["Close"]
     if isinstance(close, pd.DataFrame):
@@ -130,8 +135,10 @@ def build_chart() -> str:
         )
     aligned = {k: v.loc[(v.index >= common_start) & (v.index <= common_end)] for k, v in clipped.items()}
 
-    # Normalise to 100 at common_start so all lines share a starting point.
-    normalised = {k: 100.0 * v / v.iloc[0] for k, v in aligned.items()}
+    # Normalise to 1.0 at common_start: y-axis reads directly as a growth
+    # multiplier (1x = start, 2x = doubled, 0.5x = halved). Easier to read on a
+    # log scale than an index normalised to 100.
+    normalised = {k: v / v.iloc[0] for k, v in aligned.items()}
 
     # Highlight S&P 500 with a warmer hue; cities use a cool palette so the
     # eye reads "stock vs houses" rather than "five competing series".
@@ -154,7 +161,7 @@ def build_chart() -> str:
                 mode="lines",
                 name=f"{label} — {annual * 100:.1f}% CAGR",
                 line=dict(color=colors[label], width=widths.get(label, 2.0)),
-                hovertemplate="<b>%{fullData.name}</b><br>%{x|%b %Y}<br>Index = %{y:.0f}<extra></extra>",
+                hovertemplate="<b>%{fullData.name}</b><br>%{x|%b %Y}<br>%{y:.2f}× start<extra></extra>",
             )
         )
 
@@ -164,15 +171,20 @@ def build_chart() -> str:
         # the iframe (no intrinsic body height) and the chart renders near-zero.
         height=600,
         title=dict(
-            text=f"S&P 500 vs Case-Shiller home prices, {window_label} (indexed to 100)",
+            text=f"S&P 500 vs Case-Shiller home prices, {window_label}",
             x=0.5,
             xanchor="center",
             font=dict(size=15),
         ),
         yaxis=dict(
             type="log",
-            title="Index (log scale, start = 100)",
+            title="Growth multiple (log scale)",
             gridcolor="#e5e5e5",
+            # Show explicit multiplier ticks (0.5×, 1×, 2×, 5×, 10×) so the
+            # axis reads as "how many times the starting value", not as
+            # log-decade-with-implicit-multiplier.
+            tickvals=[0.5, 1, 2, 3, 5, 7, 10],
+            ticktext=["0.5×", "1× (start)", "2×", "3×", "5×", "7×", "10×"],
         ),
         xaxis=dict(title=None, gridcolor="#e5e5e5"),
         legend=dict(orientation="h", yanchor="top", y=-0.15, xanchor="center", x=0.5),
@@ -189,7 +201,7 @@ def build_chart() -> str:
         # Default is "100%" which collapses to zero inside the iframe body
         # (no intrinsic height), so layout.height never gets a chance to apply.
         default_height="600px",
-        config={"displayModeBar": False, "responsive": True},
+        config={"displayModeBar": True, "responsive": True},
     )
     # Plotly's full_html output ships `<html><head><meta charset="utf-8"/></head>`
     # with no doctype, lang, viewport, or title — which puts the iframed
