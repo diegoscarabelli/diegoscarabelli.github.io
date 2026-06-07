@@ -71,7 +71,10 @@ def fetch_sp500_tr() -> pd.Series:
         progress=False,
         auto_adjust=False,
     )
-    if df is None or df.empty or "Close" not in df.columns:
+    # `Close` can sit on either the flat columns or the top level of a
+    # `(field, ticker)` MultiIndex — check the right level either way.
+    top_columns = df.columns.get_level_values(0) if isinstance(df.columns, pd.MultiIndex) else df.columns
+    if df is None or df.empty or "Close" not in top_columns:
         raise RuntimeError(
             "yfinance returned no data for ^SP500TR (network blip, ticker "
             "renamed, or yfinance schema change). Re-run later or inspect "
@@ -191,15 +194,21 @@ def build_chart() -> str:
     # Plotly's full_html output ships `<html><head><meta charset="utf-8"/></head>`
     # with no doctype, lang, viewport, or title — which puts the iframed
     # document in quirks mode and weakens a11y metadata. Patch the head once.
-    return html.replace(
-        '<html>\n<head><meta charset="utf-8" /></head>',
+    plotly_head = '<html>\n<head><meta charset="utf-8" /></head>'
+    patched_head = (
         '<!DOCTYPE html>\n<html lang="en">\n<head>\n'
         '<meta charset="utf-8">\n'
         '<meta name="viewport" content="width=device-width, initial-scale=1">\n'
         '<title>S&amp;P 500 vs Case-Shiller home prices (20-year reference)</title>\n'
-        '</head>',
-        1,
+        '</head>'
     )
+    patched = html.replace(plotly_head, patched_head, 1)
+    if patched == html:
+        raise RuntimeError(
+            "Plotly head-patch failed: anchor string not found. The to_html() "
+            "output format likely changed; update `plotly_head` to match."
+        )
+    return patched
 
 
 def main() -> None:
