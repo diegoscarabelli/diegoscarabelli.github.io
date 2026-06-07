@@ -140,14 +140,15 @@ def build_chart() -> str:
     # log scale than an index normalised to 100.
     normalised = {k: v / v.iloc[0] for k, v in aligned.items()}
 
-    # Highlight S&P 500 with a warmer hue; cities use a cool palette so the
-    # eye reads "stock vs houses" rather than "five competing series".
+    # S&P 500 in warm red (hero, thicker line). City lines span four well-
+    # separated hues on the color wheel (green / blue / purple / cyan) so they
+    # don't blur together the way a four-blue palette did.
     colors = {
         "S&P 500 (total return)": "#c43820",
-        "San Francisco": "#1f6f8b",
-        "New York": "#2e9cca",
-        "Los Angeles": "#5b9bd5",
-        "Boston": "#0b3954",
+        "San Francisco": "#2ca02c",
+        "Boston": "#1f77b4",
+        "New York": "#9467bd",
+        "Los Angeles": "#17becf",
     }
     widths = {"S&P 500 (total return)": 3.0}
 
