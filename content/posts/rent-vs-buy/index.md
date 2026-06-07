@@ -6,7 +6,7 @@ title: "Should You Buy or Rent? The Honest Math"
 description: "An interactive calculator comparing buying vs renting across U.S. states, with the full tax math and opportunity cost made explicit."
 comments: true
 categories:
-- personal finance
+- economics
 tags:
 - rent-vs-buy
 - financial-modeling
