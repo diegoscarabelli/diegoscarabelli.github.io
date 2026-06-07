@@ -331,8 +331,12 @@
     }
     .tabs button.active.scenA { background: var(--amber); color: #fff; font-weight: 600; }   /* Buy */
     .tabs button.active.scenB { background: var(--slate); color: #fff; font-weight: 600; }   /* Rent */
+    /* Horizontal scroll on the wrapper so the table's full 7 dollar columns
+       never get clipped on narrow viewports / embedded iframes. */
+    #cashflow-table { overflow-x: auto; }
     table.cashflow {
       width: 100%;
+      min-width: 640px;
       border-collapse: collapse;
       font-size: 0.78rem;
       font-variant-numeric: tabular-nums;
