@@ -1,9 +1,14 @@
 {{- $file := .Get "file" -}}
 {{- $responsive := eq (.Get "responsive") "true" -}}
+{{- $caption := .Get "caption" | .Page.RenderString -}}
+{{- /* a11y: iframe needs a non-empty title; fall back caption -> generic. */ -}}
+{{- $title := .Get "title" | default ($caption | plainify) | default "Embedded Plotly figure" -}}
 
+{{- if $caption -}}<figure>{{- end }}
 <div class="plotly-container" style="width: 100%; overflow: hidden;">
   <iframe
     src="{{ $file }}"
+    title="{{ $title }}"
     style="border: none; display: block; width: 100%; transform-origin: top left;"
     frameborder="0"
     scrolling="no"
@@ -53,3 +58,7 @@
     ">
   </iframe>
 </div>
+{{- if $caption }}
+  <figcaption class="image-caption">{{ $caption | safeHTML }}</figcaption>
+</figure>
+{{- end }}
